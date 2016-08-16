@@ -11,13 +11,14 @@ namespace Table.Controllers
 { 
     public class HomeController : Controller
     {
-        string connection = @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True";
+        string connection = @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True;";
         public static List<Task> TaskList = new List<Task>();
         
         // GET: Home
         public ActionResult Index()
         {
             GetTasksFromDatabase();
+            DbExecuteCommand("Select * from Users");
             ViewBag.Tasks = TaskList;
             return View("Index");
         }
@@ -88,6 +89,19 @@ namespace Table.Controllers
                 int Priority = Int32.Parse(row["Priority"].ToString());
                 bool IsCompleted = Boolean.Parse(row["IsComplete"].ToString());
                 TaskList.Add(new Task(Id, UserId, Description, Data, Priority, IsCompleted));
+            }
+        }
+       private void DbExecuteCommand(string command)
+        {
+            using (var conn = new SqlConnection(connection))
+            {
+                using (var cmd = new SqlCommand(command, conn))
+                {
+                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
             }
         }
     }
