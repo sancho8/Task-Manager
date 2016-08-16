@@ -30,8 +30,6 @@
 </table>
 @using (Html.BeginForm("AddTask", "Home", FormMethod.Post))
 {
-    @Html.TextBox("id", "¬ведите номер", new { @type = "number" })
-    @Html.TextBox("userid", "¬ведите номер", new { @type = "number" })
     <input type="text" name="description" />
     @Html.TextBox("data", "¬ведите дату", new { @type = "date" })
     @Html.TextBox("priority", "¬ведите номер", new { @type = "number" })

@@ -13,28 +13,40 @@ namespace Table.Controllers
     {
         string connection = @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True;";
         public static List<Task> TaskList = new List<Task>();
-        
+        public int UserID = 2;
         // GET: Home
         public ActionResult Index()
         {
             GetTasksFromDatabase();
-            DbExecuteCommand("Select * from Users");
+            //DbExecuteCommand("Select * from Users");
             ViewBag.Tasks = TaskList;
             return View("Index");
         }
 
         [HttpPost]
-        public ActionResult AddTask(int id, int userid, string description, string data, int priority, bool iscompleted)
+        public ActionResult AddTask(string description, string data, int priority, bool iscompleted)
         {
             using (SqlConnection con = new SqlConnection(connection))
             {
                 string command =
                     "INSERT INTO Tasks (Id, UserId, Description, Data, Priority, IsComplete) VALUES (@Id, @UserId, @Description, @Data, @Priority, @IsComplete)";
+
+                //getting number of new id for added tak
+                int newId;
+                using (SqlConnection thisConnection = new SqlConnection(connection))
+                {
+                    using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(Id) FROM Tasks", thisConnection))
+                    {
+                        thisConnection.Open();
+                        newId = (int)(cmdCount.ExecuteScalar()) + 1;
+                    }
+                }
+
                 SqlCommand cmd = new SqlCommand(command);
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = con;
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.Parameters.AddWithValue("@UserId", userid);
+                cmd.Parameters.AddWithValue("@Id", newId);
+                cmd.Parameters.AddWithValue("@UserId", UserID);
                 cmd.Parameters.AddWithValue("@Description", description);
                 cmd.Parameters.AddWithValue("@Data", data);
                 cmd.Parameters.AddWithValue("@Priority", priority);
@@ -70,7 +82,7 @@ namespace Table.Controllers
 
             using (var conn = new SqlConnection(connection))
             {
-                string command = "SELECT * FROM Tasks WHERE UserId = 2";
+                string command = "SELECT * FROM Tasks WHERE UserId = " + UserID.ToString();
 
                 using (var cmd = new SqlCommand(command, conn))
                 {
@@ -91,8 +103,9 @@ namespace Table.Controllers
                 TaskList.Add(new Task(Id, UserId, Description, Data, Priority, IsCompleted));
             }
         }
+
        private void DbExecuteCommand(string command)
-        {
+       {
             using (var conn = new SqlConnection(connection))
             {
                 using (var cmd = new SqlCommand(command, conn))
@@ -103,6 +116,6 @@ namespace Table.Controllers
                     conn.Close();
                 }
             }
-        }
+       }
     }
 }
