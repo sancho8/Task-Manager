@@ -22,6 +22,30 @@ namespace Table.Controllers
             return View("Index");
         }
 
+        [HttpPost]
+        public ActionResult AddTask(int id, int userid, string description, string data, int priority, bool iscompleted)
+        {
+            using (SqlConnection con = new SqlConnection(connection))
+            {
+                string command =
+                    "INSERT INTO Tasks (Id, UserId, Description, Data, Priority, IsComplete) VALUES (@Id, @UserId, @Description, @Data, @Priority, @IsComplete)";
+                SqlCommand cmd = new SqlCommand(command);
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = con;
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@UserId", userid);
+                cmd.Parameters.AddWithValue("@Description", description);
+                cmd.Parameters.AddWithValue("@Data", data);
+                cmd.Parameters.AddWithValue("@Priority", priority);
+                cmd.Parameters.AddWithValue("@IsComplete", iscompleted);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            GetTasksFromDatabase();
+            ViewBag.Tasks = TaskList;
+            return View("Index");
+        }
+
         public ActionResult OrderTasks(string prop)
         {
             switch (prop)

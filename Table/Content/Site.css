@@ -15,4 +15,6 @@ select,
 textarea {
     max-width: 280px;
 }
-
+#container{
+    width: 900px;
+}

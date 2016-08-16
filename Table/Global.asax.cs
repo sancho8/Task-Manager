@@ -13,6 +13,7 @@ namespace Table
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
         }
     }
 }
