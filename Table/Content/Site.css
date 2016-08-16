@@ -22,3 +22,16 @@ textarea {
 #container{
     width: 900px;
 }
+table{
+    font-size: 18px;
+}
+input{
+    padding: 5px;
+    margin: 5px;
+}
+th{
+    padding: 5px;
+}
+td{
+    padding: 5px;
+}

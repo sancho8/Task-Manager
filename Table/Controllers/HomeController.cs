@@ -24,7 +24,7 @@ namespace Table.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddTask(string description, string data, int priority, bool iscompleted)
+        public ActionResult AddTask(string description, string data, int priority)
         {
             using (SqlConnection con = new SqlConnection(connection))
             {
@@ -50,7 +50,7 @@ namespace Table.Controllers
                 cmd.Parameters.AddWithValue("@Description", description);
                 cmd.Parameters.AddWithValue("@Data", data);
                 cmd.Parameters.AddWithValue("@Priority", priority);
-                cmd.Parameters.AddWithValue("@IsComplete", iscompleted);
+                cmd.Parameters.AddWithValue("@IsComplete", false);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }

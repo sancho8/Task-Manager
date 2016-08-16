@@ -1,17 +1,16 @@
-@model Table.Models.Task
 @{
     ViewBag.Title = "Index";
 }
 <div id="container">
-<table style="width: 100%">
+<table class="table-bordered">
     <thead>
         <tr>
-            <th>Number @Html.ActionLink("+", "OrderTasks", "Home", new { prop = "Id" }, null)</th>
-            <th>Userid @Html.ActionLink("+", "OrderTasks", "Home", new { prop = "UserId" }, null)</th>
-            <th>Description @Html.ActionLink("+", "OrderTasks", "Home", new { prop = "Description" }, null)</th>
-            <th>Data @Html.ActionLink("+", "OrderTasks", "Home", new { prop = "Data" }, null)</th>
-            <th>Priority @Html.ActionLink("+", "OrderTasks", "Home", new { prop = "Priority" }, null)</th>
-            <th>Completed @Html.ActionLink("+", "OrderTasks", "Home", new { prop = "IsCompleted" }, null)</th>
+            <th>Number @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Id" }, new { @class= "glyphicon glyphicon-chevron-down" })</th>
+            <th>Userid @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "UserId" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+            <th>Description @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Description" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+            <th>Data @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Data" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+            <th>Priority @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Priority" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+            <th>Completed @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "IsCompleted" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +22,14 @@
                 <td>@t.Description</td>
                 <td>@t.Data</td>
                 <td>@t.Priority</td>
-                <td>@t.IsComplete</td>
+                @if (t.IsComplete)
+                {
+                    <td><input type="checkbox" checked="checked"></td>
+                }
+                else
+                {
+                    <td><input type="checkbox" /></td>
+                }
             </tr>
         }
     </tbody>
@@ -33,7 +39,6 @@
     <input type="text" name="description" />
     @Html.TextBox("data", "¬ведите дату", new { @type = "date" })
     @Html.TextBox("priority", "¬ведите номер", new { @type = "number" })
-    @Html.CheckBox("iscompleted", false)
     <input type="submit">
 }
 </div>
