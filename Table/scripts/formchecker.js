@@ -1,13 +1,10 @@
-﻿function TaskStatusChanged() {
-    alert('changed');
-    $.ajax({
-        url: location.href
+﻿function deleteTask() {
+    var name = $(this).parent();
+    alert(name);
+    /*$.ajax({
+        url: "Home/Index",
+        data: {}
     }).done(function () {
         alert('Added');
-    });
-}
-function changeChevron() {
-    $(this).removeClass("glyphicon-chevron-up");
-    $(this).addClass("glyphicon-chevron-down");
-    alert("changed class");
-}
+    });*/
+};

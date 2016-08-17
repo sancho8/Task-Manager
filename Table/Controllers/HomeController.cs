@@ -48,32 +48,28 @@ namespace Table.Controllers
                         newId = (int)(cmdCount.ExecuteScalar()) + 1;
                     }
                 }
-                int Id = 1;
                 try
                 {
                     HttpCookie cookie = Request.Cookies["Authorization"];
-                    Id = Int32.Parse(cookie["Id"]);
+                    int Id = Int32.Parse(cookie["Id"]);
+                    SqlCommand cmd = new SqlCommand(command);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@Id", newId);
+                    cmd.Parameters.AddWithValue("@UserId", Id);
+                    cmd.Parameters.AddWithValue("@Description", description);
+                    cmd.Parameters.AddWithValue("@Data", data);
+                    cmd.Parameters.AddWithValue("@Priority", priority);
+                    cmd.Parameters.AddWithValue("@IsComplete", false);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
 
                 }
-                SqlCommand cmd = new SqlCommand(command);
-                cmd.CommandType = CommandType.Text;
-                cmd.Connection = con;
-                cmd.Parameters.AddWithValue("@Id", newId);
-                cmd.Parameters.AddWithValue("@UserId", Id);
-                cmd.Parameters.AddWithValue("@Description", description);
-                cmd.Parameters.AddWithValue("@Data", data);
-                cmd.Parameters.AddWithValue("@Priority", priority);
-                cmd.Parameters.AddWithValue("@IsComplete", false);
-                con.Open();
-                cmd.ExecuteNonQuery();
             }
-            HttpCookie cook = Request.Cookies["Authorization"];
-            GetTasksFromDatabase(cook["Id"]);
-            ViewBag.Tasks = TaskList;
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult OrderTasks(string prop)
@@ -90,34 +86,12 @@ namespace Table.Controllers
             ViewBag.Tasks = TaskList;
             return View("Index");
         }
-        /*public ActionResult OrderTasks(string prop, bool asc)
-        {
-            switch (prop)
-            {
-                case "Id":
-                    if (asc)
-                    {
-                        TaskList = TaskList.OrderBy(o => o.Id).ToList();
-                    }
-                    else
-                    {
-                        TaskList = TaskList.OrderByDescending(o => o.Id).ToList();
-                    }
-                    break;
-                case "UserId": TaskList = TaskList.OrderBy(o => o.UserId).ToList(); break;
-                case "Description": TaskList = TaskList.OrderBy(o => o.Description).ToList(); break;
-                case "Data": TaskList = TaskList.OrderBy(o => o.Data).ToList(); break;
-                case "Priority": TaskList = TaskList.OrderBy(o => o.Priority).ToList(); break;
-                case "IsCompleted": TaskList = TaskList.OrderBy(o => o.IsComplete).ToList(); break;
-            }
-            ViewBag.Tasks = TaskList;
-            return View("Index");
-        }*/
-
 
         private void GetTasksFromDatabase(string UserID)
         {
             TaskList.Clear();
+
+            if (UserID == "") { return; }
 
             DataTable table = new DataTable();
 

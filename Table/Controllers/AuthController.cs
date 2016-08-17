@@ -35,7 +35,7 @@ namespace Table.Controllers
                     }
                     catch(Exception ex)
                     {
-                        Id = "1";
+                        Id = "";
                     }
                 }
             }
@@ -43,6 +43,16 @@ namespace Table.Controllers
             authCookie["Login"] = login;
             authCookie["Password"] = password;
             authCookie["Id"] = Id;
+            Response.Cookies.Add(authCookie);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult LogOutUser()
+        {
+            HttpCookie authCookie = new HttpCookie("Authorization");
+            authCookie["Login"] = "";
+            authCookie["Password"] = "";
+            authCookie["Id"] = "";
             Response.Cookies.Add(authCookie);
             return RedirectToAction("Index", "Home");
         }

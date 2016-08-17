@@ -35,3 +35,11 @@ th{
 td{
     padding: 5px;
 }
+table{
+    width: 100%;
+    margin: 5px;
+}
+form{
+    margin: 5px;
+    border: 2px solid blue;
+}

@@ -2,7 +2,13 @@
     ViewBag.Title = "Index";
 }
 <div id="container">
-    <span class="glyphicon glyphicon-chevron-up" onclick="changeChevron()"></span>
+    @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post))
+    {
+        @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })
+        @Html.TextBox("password", "", new { @type = "text", @placeholder = "введите пароль" })
+        <input type="submit" value="Войти">
+        <input type="submit" value="Выйти" href="@Url.Action("LogOurUser","Auth")">
+    }
 <table class="table-bordered">
     <thead>
         <tr>
@@ -12,7 +18,8 @@
             <th>Data @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Data" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
             <th>Priority @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Priority" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
             <th>Completed @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "IsCompleted" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-        </tr>
+            <th></th>
+          </tr>
     </thead>
     <tbody>
         @foreach (var t in ViewBag.Tasks)
@@ -24,13 +31,10 @@
                 <td>@t.Data</td>
                 <td>@t.Priority</td>
                 @if (t.IsComplete)
-                {
-                    <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged()"></td>
-                }
+                {<td><input type="checkbox" checked="checked" onchange="TaskStatusChanged()"></td>}
                 else
-                {
-                    <td><input type="checkbox" onchange="TaskStatusChanged()" /></td>
-                }
+                {<td><input type="checkbox" onchange="TaskStatusChanged()" /></td>}
+                <td><a href="#" onclick="deleteTask()"><span class="glyphicon glyphicon glyphicon-remove"></span></a></td>
             </tr>
         }
     </tbody>
@@ -40,12 +44,6 @@
     @Html.TextBox("description", "", new { @type = "text", @placeholder="Введите задание" })
     @Html.TextBox("data", "", new { @type = "date", @placeholder = "Введите дату" })
     @Html.TextBox("priority", "", new { @type = "number", @placeholder = "Введите приоритет" })
-    <input type="submit">
+    <input type="submit" value="Добавить">
 }
-    @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post))
-    {
-        @Html.TextBox("login","", new { @type = "text", @placeholder="введите логин"})
-        @Html.TextBox("password", "", new { @type = "text", @placeholder = "введите пароль" })
-        <input type="submit">
-    }
 </div>
