@@ -11,14 +11,21 @@ namespace Table.Controllers
 { 
     public class HomeController : Controller
     {
-        string connection = @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True;";
+        string connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectToDatabase"].ToString();
+            // @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True;";
         public static List<Task> TaskList = new List<Task>();
-        public int UserID = 2;
         // GET: Home
         public ActionResult Index()
         {
-            GetTasksFromDatabase();
-            //DbExecuteCommand("Select * from Users");
+            try
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                GetTasksFromDatabase(cookie["Id"]);
+            }
+            catch (Exception ex)
+            {
+
+            }
             ViewBag.Tasks = TaskList;
             return View("Index");
         }
@@ -41,12 +48,21 @@ namespace Table.Controllers
                         newId = (int)(cmdCount.ExecuteScalar()) + 1;
                     }
                 }
+                int Id = 1;
+                try
+                {
+                    HttpCookie cookie = Request.Cookies["Authorization"];
+                    Id = Int32.Parse(cookie["Id"]);
+                }
+                catch (Exception ex)
+                {
 
+                }
                 SqlCommand cmd = new SqlCommand(command);
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = con;
                 cmd.Parameters.AddWithValue("@Id", newId);
-                cmd.Parameters.AddWithValue("@UserId", UserID);
+                cmd.Parameters.AddWithValue("@UserId", Id);
                 cmd.Parameters.AddWithValue("@Description", description);
                 cmd.Parameters.AddWithValue("@Data", data);
                 cmd.Parameters.AddWithValue("@Priority", priority);
@@ -54,7 +70,8 @@ namespace Table.Controllers
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
-            GetTasksFromDatabase();
+            HttpCookie cook = Request.Cookies["Authorization"];
+            GetTasksFromDatabase(cook["Id"]);
             ViewBag.Tasks = TaskList;
             return View("Index");
         }
@@ -63,7 +80,30 @@ namespace Table.Controllers
         {
             switch (prop)
             {
-                case "Id": TaskList = TaskList.OrderBy(o => o.Id).ToList(); break;
+                case "Id": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Id).ToList(); break;
+                case "UserId": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.UserId).ToList(); break;
+                case "Description": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Description).ToList(); break;
+                case "Data": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Data).ToList(); break;
+                case "Priority": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Priority).ToList(); break;
+                case "IsCompleted": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.IsComplete).ToList(); break;
+            }
+            ViewBag.Tasks = TaskList;
+            return View("Index");
+        }
+        /*public ActionResult OrderTasks(string prop, bool asc)
+        {
+            switch (prop)
+            {
+                case "Id":
+                    if (asc)
+                    {
+                        TaskList = TaskList.OrderBy(o => o.Id).ToList();
+                    }
+                    else
+                    {
+                        TaskList = TaskList.OrderByDescending(o => o.Id).ToList();
+                    }
+                    break;
                 case "UserId": TaskList = TaskList.OrderBy(o => o.UserId).ToList(); break;
                 case "Description": TaskList = TaskList.OrderBy(o => o.Description).ToList(); break;
                 case "Data": TaskList = TaskList.OrderBy(o => o.Data).ToList(); break;
@@ -72,9 +112,10 @@ namespace Table.Controllers
             }
             ViewBag.Tasks = TaskList;
             return View("Index");
-        }
+        }*/
 
-        private void GetTasksFromDatabase()
+
+        private void GetTasksFromDatabase(string UserID)
         {
             TaskList.Clear();
 
@@ -82,7 +123,7 @@ namespace Table.Controllers
 
             using (var conn = new SqlConnection(connection))
             {
-                string command = "SELECT * FROM Tasks WHERE UserId = " + UserID.ToString();
+                string command = "SELECT * FROM Tasks WHERE UserId = " + UserID;
 
                 using (var cmd = new SqlCommand(command, conn))
                 {
@@ -102,6 +143,7 @@ namespace Table.Controllers
                 bool IsCompleted = Boolean.Parse(row["IsComplete"].ToString());
                 TaskList.Add(new Task(Id, UserId, Description, Data, Priority, IsCompleted));
             }
+            TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Id);
         }
 
        private void DbExecuteCommand(string command)
