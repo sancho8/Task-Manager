@@ -30,6 +30,21 @@ namespace Table.Controllers
             return View("Index");
         }
 
+        public ActionResult DeleteTask(string id)
+        {
+            using (var conn = new SqlConnection(connection))
+            {
+                using (var cmd = new SqlCommand("DELETE FROM Tasks WHERE Id='" + id +"'", conn))
+                {
+                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public ActionResult AddTask(string description, string data, int priority)
         {
