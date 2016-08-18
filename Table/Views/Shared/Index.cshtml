@@ -7,7 +7,7 @@
         @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })
         @Html.TextBox("password", "", new { @type = "text", @placeholder = "введите пароль" })
         <input type="submit" value="Войти">
-        <input type="submit" value="Выйти" href="@Url.Action("LogOurUser","Auth")">
+        <input type="submit" value="Выйти" href="@Url.Action("LogOutUser","Auth")">
     }
 <table class="table-bordered">
     <thead>
@@ -27,9 +27,9 @@
             <tr>
                 <td>@t.Id</td>
                 <td>@t.UserId</td>
-                <td>@t.Description</td>
-                <td>@t.Data</td>
-                <td>@t.Priority</td>
+                <td class="redact">@t.Description <a style='float:right; visibility:hidden' class='changeable change-desc' href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>
+                <td class="redact">@t.Data <a style='float:right; visibility:hidden' class='changeable change-data' href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>
+                <td class="redact">@t.Priority <a style='float:right; visibility:hidden' class='changeable change-prior' href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>
                 @if (t.IsComplete)
                 {<td><input type="checkbox" checked="checked" onchange="TaskStatusChanged()"></td>}
                 else
