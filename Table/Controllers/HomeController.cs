@@ -32,7 +32,7 @@ namespace Table.Controllers
 
         public ActionResult DeleteTask(string id)
         {
-            using (var conn = new SqlConnection(connection))
+            /*using (var conn = new SqlConnection(connection))
             {
                 using (var cmd = new SqlCommand("DELETE FROM Tasks WHERE Id='" + id +"'", conn))
                 {
@@ -41,7 +41,7 @@ namespace Table.Controllers
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
-            }
+            }*/
             return RedirectToAction("Index");
         }
 
@@ -63,28 +63,29 @@ namespace Table.Controllers
                         newId = (int)(cmdCount.ExecuteScalar()) + 1;
                     }
                 }
+                int Id = 0;
                 try
                 {
                     HttpCookie cookie = Request.Cookies["Authorization"];
-                    int Id = Int32.Parse(cookie["Id"]);
-                    SqlCommand cmd = new SqlCommand(command);
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = con;
-                    cmd.Parameters.AddWithValue("@Id", newId);
-                    cmd.Parameters.AddWithValue("@UserId", Id);
-                    cmd.Parameters.AddWithValue("@Description", description);
-                    cmd.Parameters.AddWithValue("@Data", data);
-                    cmd.Parameters.AddWithValue("@Priority", priority);
-                    cmd.Parameters.AddWithValue("@IsComplete", false);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
+                    Id = Int32.Parse(cookie["Id"]);
                 }
                 catch (Exception ex)
                 {
 
                 }
+                SqlCommand cmd = new SqlCommand(command);
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = con;
+                cmd.Parameters.AddWithValue("@Id", newId);
+                cmd.Parameters.AddWithValue("@UserId", Id);
+                cmd.Parameters.AddWithValue("@Description", description);
+                cmd.Parameters.AddWithValue("@Data", data+":00");
+                cmd.Parameters.AddWithValue("@Priority", priority);
+                cmd.Parameters.AddWithValue("@IsComplete", false);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
         }
 
         public ActionResult OrderTasks(string prop)

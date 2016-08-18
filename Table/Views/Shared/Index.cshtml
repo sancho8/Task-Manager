@@ -42,7 +42,7 @@
 @using (Html.BeginForm("AddTask", "Home", FormMethod.Post))
 {
     @Html.TextBox("description", "", new { @type = "text", @placeholder="Введите задание" })
-    @Html.TextBox("data", "", new { @type = "date", @placeholder = "Введите дату" })
+    @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату" })
     @Html.TextBox("priority", "", new { @type = "number", @placeholder = "Введите приоритет" })
     <input type="submit" value="Добавить">
 }
