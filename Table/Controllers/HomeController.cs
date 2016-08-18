@@ -32,7 +32,7 @@ namespace Table.Controllers
 
         public ActionResult DeleteTask(string id)
         {
-            /*using (var conn = new SqlConnection(connection))
+            using (var conn = new SqlConnection(connection))
             {
                 using (var cmd = new SqlCommand("DELETE FROM Tasks WHERE Id='" + id +"'", conn))
                 {
@@ -41,7 +41,16 @@ namespace Table.Controllers
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
-            }*/
+            }
+            using (var conn = new SqlConnection(connection))
+            {
+                using (var cmd = new SqlCommand("UPDATE Tasks SET Id = Id - 1 WHERE Id > '" + id + "'", conn))
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
             return RedirectToAction("Index");
         }
 
@@ -57,7 +66,7 @@ namespace Table.Controllers
                 int newId;
                 using (SqlConnection thisConnection = new SqlConnection(connection))
                 {
-                    using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(Id) FROM Tasks", thisConnection))
+                    using (SqlCommand cmdCount = new SqlCommand("SELECT TOP 1 Id FROM Tasks ORDER BY Id DESC", thisConnection))
                     {
                         thisConnection.Open();
                         newId = (int)(cmdCount.ExecuteScalar()) + 1;
