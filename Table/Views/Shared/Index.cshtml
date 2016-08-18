@@ -27,9 +27,22 @@
             <tr>
                 <td>@t.Id</td>
                 <td>@t.UserId</td>
-                <td class="redact">@t.Description <a style='float:right; visibility:hidden' class='changeable change-desc' href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>
-                <td class="redact">@t.Data <a style='float:right; visibility:hidden' class='changeable change-data' href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>
-                <td class="redact">@t.Priority <a style='float:right; visibility:hidden' class='changeable change-prior' href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>
+                <td class="redact">@t.Description 
+                    <a style='float:right; visibility:hidden' class='changeable change-desc' href='#'>
+                        <span class='glyphicon glyphicon-pencil'></span>
+                    </a>
+                    <input type="text" style='display:none' class="change-desc-input">
+                </td>
+                <td class="redact">@t.Data 
+                    <a style='float:right; visibility:hidden' class='changeable change-data' href='#'>
+                        <span class='glyphicon glyphicon-pencil'></span>
+                    </a>
+                </td>
+                <td class="redact">@t.Priority 
+                    <a style='float:right; visibility:hidden' class='changeable change-prior' href='#'>
+                        <span class='glyphicon glyphicon-pencil'></span>
+                    </a>
+                </td>
                 @if (t.IsComplete)
                 {<td><input type="checkbox" checked="checked" onchange="TaskStatusChanged()"></td>}
                 else

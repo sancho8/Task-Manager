@@ -15,17 +15,17 @@ $('.redact').mouseleave(function () {
     $(this).find(".changeable").css('visibility', 'hidden');
 });
 $(".changeable").click(function () {
-    alert($(this).attr('class'));
-    if($(this).class("change-desc")){
-        alert("desc");
+    if ($(this).attr('class') == "changeable change-desc") {
+        $(this).parents('td').find(".change-desc-input").css('display', 'inline');
+        $(this).parents('td').find(".change-desc-input").focus();
     }
-    if ($(this).attr('class') == "change-data") {
+    if ($(this).attr('class') == "changeable change-data") {
         alert("data");
     }
-    if ($(this).class("change-prior")) {
+    if ($(this).attr('class')=="changeable change-prior") {
         alert("prior");
     }
-    else {
-        alert("else");
-    }
 });
+$('.change-desc-input').focusout(function () {
+    $(this).css('display', 'none');
+})
