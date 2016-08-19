@@ -12,7 +12,7 @@
 <table class="table-bordered">
     <thead>
         <tr>
-            <th>Number @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Id" }, new { @class= "glyphicon glyphicon-chevron-down", @onclick = "Click()" })</th>
+            <th>Number @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Id" }, new { @class= "glyphicon glyphicon-chevron-down", @onclick = "Click()", })</th>
             <th>Userid @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "UserId" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
             <th>Description @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Description" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
             <th>Data @Html.ActionLink(" ", "OrderTasks", "Home", new { prop = "Data" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
@@ -27,19 +27,21 @@
             <tr>
                 <td>@t.Id</td>
                 <td>@t.UserId</td>
-                <td class="redact">@t.Description 
+                <td class="redact">
+                    <span id="redacttd">@t.Description
                     <a style='float:right; visibility:hidden' class='changeable change-desc' href='#'>
                         <span class='glyphicon glyphicon-pencil'></span>
                     </a>
-                    <input type="text" style='display:none' class="change-desc-input">
+                    </span>
+                    <input type="text" style='display:none' class="edit change-desc-input">
                 </td>
                 <td class="redact">@t.Data 
-                    <a style='float:right; visibility:hidden' class='changeable change-data' href='#'>
+                    <a style='float:right; visibility:hidden' class='edit changeable change-data' href='#'>
                         <span class='glyphicon glyphicon-pencil'></span>
                     </a>
                 </td>
                 <td class="redact">@t.Priority 
-                    <a style='float:right; visibility:hidden' class='changeable change-prior' href='#'>
+                    <a style='float:right; visibility:hidden' class='edit changeable change-prior' href='#'>
                         <span class='glyphicon glyphicon-pencil'></span>
                     </a>
                 </td>
