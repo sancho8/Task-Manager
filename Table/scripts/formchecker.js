@@ -1,19 +1,22 @@
-﻿$('table tr td:last-child').click(function () {
+﻿/*$('table tr td:last-child').click(function () {
     var id = $(this).parent('tr').find('td:first-child').text();
-    alert(id);
+    //alert(id);
     $.ajax({
         url: "Home/DeleteTask",
         data: { id: id },
     }).done(function (){
         alert("Called");
         });
-});
+});*/
+
 $('.redact').mouseover(function () {
     $(this).find(".changeable").css('visibility', 'visible');
 });
+
 $('.redact').mouseleave(function () {
     $(this).find(".changeable").css('visibility', 'hidden');
 });
+
 $(".changeable").click(function () {
     if ($(this).attr('class') == "changeable change-desc") {
         $(this).parents('td').find(".change-desc-input").css('display', 'inline');
@@ -26,6 +29,7 @@ $(".changeable").click(function () {
         alert("prior");
     }
 });
+
 $('.change-desc-input').focusout(function () {
     $(this).css('display', 'none');
 })

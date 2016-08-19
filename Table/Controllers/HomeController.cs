@@ -8,12 +8,13 @@ using System.Web.Mvc;
 using Table.Models;
 
 namespace Table.Controllers
-{ 
+{
     public class HomeController : Controller
     {
         string connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectToDatabase"].ToString();
-            // @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True;";
+        // @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True;";
         public static List<Task> TaskList = new List<Task>();
+
         // GET: Home
         public ActionResult Index()
         {
@@ -34,7 +35,7 @@ namespace Table.Controllers
         {
             using (var conn = new SqlConnection(connection))
             {
-                using (var cmd = new SqlCommand("DELETE FROM Tasks WHERE Id='" + id +"'", conn))
+                using (var cmd = new SqlCommand("DELETE FROM Tasks WHERE Id='" + id + "'", conn))
                 {
                     SqlDataAdapter adapt = new SqlDataAdapter(cmd);
                     conn.Open();
@@ -51,6 +52,16 @@ namespace Table.Controllers
                     conn.Close();
                 }
             }
+            try
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                GetTasksFromDatabase(cookie["Id"]);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            ViewBag.Tasks = TaskList;
             return RedirectToAction("Index");
         }
 
@@ -88,7 +99,7 @@ namespace Table.Controllers
                 cmd.Parameters.AddWithValue("@Id", newId);
                 cmd.Parameters.AddWithValue("@UserId", Id);
                 cmd.Parameters.AddWithValue("@Description", description);
-                cmd.Parameters.AddWithValue("@Data", data+":00");
+                cmd.Parameters.AddWithValue("@Data", data + ":00");
                 cmd.Parameters.AddWithValue("@Priority", priority);
                 cmd.Parameters.AddWithValue("@IsComplete", false);
                 con.Open();
@@ -142,11 +153,11 @@ namespace Table.Controllers
                 bool IsCompleted = Boolean.Parse(row["IsComplete"].ToString());
                 TaskList.Add(new Task(Id, UserId, Description, Data, Priority, IsCompleted));
             }
-            TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Id);
+            TaskList.OrderBy(o => o.Id).ThenBy(o => o.IsComplete);
         }
 
-       private void DbExecuteCommand(string command)
-       {
+        private void DbExecuteCommand(string command)
+        {
             using (var conn = new SqlConnection(connection))
             {
                 using (var cmd = new SqlCommand(command, conn))
@@ -157,6 +168,6 @@ namespace Table.Controllers
                     conn.Close();
                 }
             }
-       }
+        }
     }
 }

@@ -5,7 +5,7 @@
     @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post))
     {
         @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })
-        @Html.TextBox("password", "", new { @type = "text", @placeholder = "введите пароль" })
+        @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль" })
         <input type="submit" value="Войти">
         <input type="submit" value="Выйти" href="@Url.Action("LogOutUser","Auth")">
     }
@@ -47,7 +47,7 @@
                 {<td><input type="checkbox" checked="checked" onchange="TaskStatusChanged()"></td>}
                 else
                 {<td><input type="checkbox" onchange="TaskStatusChanged()" /></td>}
-                <td onclick="DeleteTask()"><a href="#"><span class="glyphicon glyphicon glyphicon-remove"></span></a></td>
+                <td>@Html.ActionLink(" ", "DeleteTask", "Home", new { id = @t.Id.ToString() }, new { @class = "glyphicon glyphicon-remove" })</td>
             </tr>
         }
     </tbody>
