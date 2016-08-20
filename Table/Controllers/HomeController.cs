@@ -66,12 +66,12 @@ namespace Table.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddTask(string description, string data, int priority)
+        public ActionResult AddTask(string description, string data, char priority, int number)
         {
             using (SqlConnection con = new SqlConnection(connection))
             {
                 string command =
-                    "INSERT INTO Tasks (Id, UserId, Description, Data, Priority, IsComplete) VALUES (@Id, @UserId, @Description, @Data, @Priority, @IsComplete)";
+                    "INSERT INTO Tasks (Id, UserId, Description, Data, Priority, Number, IsComplete) VALUES (@Id, @UserId, @Description, @Data, @Priority, @Number, @IsComplete)";
 
                 //getting number of new id for added tak
                 int newId;
@@ -101,6 +101,7 @@ namespace Table.Controllers
                 cmd.Parameters.AddWithValue("@Description", description);
                 cmd.Parameters.AddWithValue("@Data", data + ":00");
                 cmd.Parameters.AddWithValue("@Priority", priority);
+                cmd.Parameters.AddWithValue("@Number", number);
                 cmd.Parameters.AddWithValue("@IsComplete", false);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -112,11 +113,10 @@ namespace Table.Controllers
         {
             switch (prop)
             {
-                case "Id": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Id).ToList(); break;
-                case "UserId": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.UserId).ToList(); break;
                 case "Description": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Description).ToList(); break;
                 case "Data": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Data).ToList(); break;
                 case "Priority": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Priority).ToList(); break;
+                case "Number": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Number).ToList(); break;
                 case "IsCompleted": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.IsComplete).ToList(); break;
             }
             ViewBag.Tasks = TaskList;
@@ -149,9 +149,10 @@ namespace Table.Controllers
                 int UserId = Int32.Parse(row["UserId"].ToString());
                 string Description = row["Description"].ToString();
                 string Data = row["Data"].ToString();
-                int Priority = Int32.Parse(row["Priority"].ToString());
+                string Priority = row["Priority"].ToString();
+                int Number = Int32.Parse(row["Number"].ToString());
                 bool IsCompleted = Boolean.Parse(row["IsComplete"].ToString());
-                TaskList.Add(new Task(Id, UserId, Description, Data, Priority, IsCompleted));
+                TaskList.Add(new Task(Id, UserId, Description, Data, Priority, Number, IsCompleted));
             }
             TaskList.OrderBy(o => o.Id).ThenBy(o => o.IsComplete);
         }
