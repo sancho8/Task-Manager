@@ -3,6 +3,7 @@
 }
 
 body {
+    margin: 0px;
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -46,4 +47,248 @@ form{
 input .edit{
     width: 100%;
     height: 100%;
+}
+* {
+	//border: 1px solid blue;
+}
+#auth_box{
+	font-size: 18px;
+	color: white;
+}
+body{
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+}
+header {
+	border: 3px solid black;
+	border-radius: 10px;
+	background-image: url(images/bg1.jpg);
+	background-repeat: repeat;
+	color: black;
+	font-size:18px;
+}
+footer {
+	border: 3px solid black;
+	border-radius: 7px;
+	margin-top: 10px;
+	padding: 10px;
+}
+section {
+	border-radius: 10px;
+	border: 3px solid black;
+	margin-top: 10px;
+	background-image: url(images/container_bg.png);
+	background-repeat: repeat-x;
+}
+nav {
+	font-size:16px;
+}
+h1{
+	color: white;
+	font-family: Verdana;
+}
+h3{
+	color: white;
+	font-family: Verdana;
+}
+#container{
+	margin-left: auto;
+    margin-right: auto;
+	background-image: url(images/container_bg.png);
+	background-repeat: repeat-y;
+}
+#navbar {
+	margin-left: auto;
+    margin-right: auto;
+	text-align:center;
+}
+#logo{
+	height:120px;
+	width:180px;
+	border: 2px solid black;
+	margin-bottom: 10px;
+}
+.footer{
+	position:absolute;
+	bottom:0;
+}
+#slider{
+
+}
+ul
+{
+    list-style-type: none;
+}
+li span{
+	margin: 10px;
+	margin-top: 0px;
+}
+li{
+	color: white;
+	font-size: 24px;
+}
+/*-------------------Carousel------------------*/
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+.carousel-indicators {
+  bottom:-50px;
+}
+.carousel-inner {
+   margin-bottom:50px;
+}
+.carousel .item {
+  background-color: #048fc8;
+}
+.carousel-indicators li{
+	height: 20px;
+	width:20px;
+	background-color: #048fc8;
+}
+.carousel-indicators li.active{
+	height: 20px;
+	width:20px;
+	background-color: black;
+}
+/*---------------------------------------------*/
+.image{
+	margin-left: auto;
+	margin-right: auto;
+}
+#contact_form{
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 24px;
+}
+#contact_form_header{
+	margin: 10px;
+	text-align: center;
+	font-size: 42px;
+	font-family: Verdana;
+}
+/*-----------------Calendar----------------------*/
+/*-----------------------------------------------*/
+#register_button{
+	background-color: #057cbe;
+	color: white;
+}
+.navbar{
+	background-color: #044a7b;
+}
+.nav.navbar-nav li{
+	border-radius: 10px;
+}
+.nav.navbar-nav li a{
+	color: white;
+	border-radius: 10px;
+}
+.nav.navbar-nav li a:hover{
+	color: #057cbe;
+}
+.navbar-header p{
+	color: white;
+}
+.nav.navbar-nav.navbar-right span{
+	color:white;
+}
+.nav.navbar-nav.navbar-right span:hover{
+	color: #057cbe;
+}
+.navbar-inverse{
+	background-image: url(images/bg.jpg);
+	background-repeat: repeat;
+}
+/*-----------------------------------------------*/
+.copyright{
+	margin-top: 5px;
+	text-align:center;
+	color: white;
+	font-size: 24px;
+}
+.contact-info{
+	margin-top: 5px;
+	text-align:center;
+	color: white;
+	font-size: 24px;
+}
+#table_header{
+	font-size: 32px;
+	font-family: Verdana;
+	color:white;
+	text-align: center;
+	margin-top: 10px;
+}
+.tableimg{
+	height:240px;
+}
+#table_holder{
+	font-size: 16px;
+	height:600px;
+	overflow: auto;
+}
+#large_table_holder{
+	margin-left:auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-family: Verdana;
+	height:600px;
+	overflow: auto;
+	overflow-x: auto;
+}
+#calendar_holder{
+	height:600px;
+	overflow: auto;
+}
+.single-table{
+	margin-left:auto;
+	margin-right: auto;
+	width:100%;
+	font-size: 22px;
+}
+.desc{
+	width: 100%;
+	overflow: scroll;
+}
+.time-table{
+	width: 100%;
+	border: 2px solid #048ecf;
+	margin: 20px;
+	font-size: 22px;
+}
+.time-table tr{
+	padding-top: 10px;
+}
+.table-stripped{
+	background-color:white;
+}
+.glyphicon{
+	color: white;
+}
+.glyphicon:hover{
+		color: black;
+}
+.modal-header{
+	background-color:#048ecf;
+	color: black;
+}
+#myModal{
+	border: 1px solid black;
+	border-radius: 20px;
+}
+#table_navbar{
+	text-align: right;
+	font-size: 22px;
+}
+#myCarousel{
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+label{
+	font-size: 18px;
+}
+hr{
+	color: #014373;
 }

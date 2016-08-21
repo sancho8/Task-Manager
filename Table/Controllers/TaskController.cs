@@ -120,8 +120,33 @@ namespace Table.Controllers
                 cmd.Parameters.AddWithValue("@IsComplete", false);
                 con.Open();
                 cmd.ExecuteNonQuery();
-                return RedirectToAction("Index");
+                try
+                {
+                    HttpCookie cookie = Request.Cookies["Authorization"];
+                    GetTasksFromDatabase(cookie["Id"]);
+                }
+                catch (Exception ex)
+                {
+
+                }
+                ViewBag.Tasks = TaskList;
+                return GetTaskInPartialView();
             }
+        }
+
+        public ActionResult GetTaskInPartialView()
+        {
+            try
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                GetTasksFromDatabase(cookie["Id"]);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            ViewBag.Tasks = TaskList;
+            return PartialView("TaskRows");
         }
 
         public ActionResult OrderTasks(string prop)
@@ -135,7 +160,7 @@ namespace Table.Controllers
                 case "IsCompleted": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.IsComplete).ToList(); break;
             }
             ViewBag.Tasks = TaskList;
-            return View("Tasks");
+            return View("Index");
         }
 
         private void GetTasksFromDatabase(string UserID)

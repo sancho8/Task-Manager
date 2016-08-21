@@ -1,6 +1,62 @@
 ﻿@{
     ViewBag.Title = "Tasks";
 }
+@section Header{
+    <header class="row">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-brand">Task-manager</p>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="home.html">Home</a></li>
+                    <li class="active"><a href="#">Tasks</a></li>
+                    <li><a href="abouv.html">About</a></li>
+                    <li><a href="contacts.html">Contacts</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li data-toggle="modal" data-target="#myModal"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                    <li data-toggle="modal" data-target="#login_modal"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3">
+            <img src="#" id="logo" alt="logo" />
+        </div>
+        <div class="col-md-6 col-sm-4 col-xs-12 col-lg-6">
+            <h1>Lite task manager</h1>
+            <h3>Easily service to manage your tasks</h3>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3" id="auth_box">
+            <a class="btn btn-social-icon btn-facebook">
+                <span class="fa fa-facebook"></span>
+            </a>
+            <a class="btn btn-social-icon btn-twitter">
+                <span class="fa fa-twitter"></span>
+            </a>
+            <a class="btn btn-social-icon btn-vk">
+                <span class="fa fa-vk"></span>
+            </a>
+            <a class="btn btn-social-icon btn-odnoklassniki">
+                <span class="fa fa-odnoklassniki"></span>
+            </a>
+            <a class="btn btn-social-icon btn-google">
+                <span class="fa fa-google"></span>
+            </a>
+            <p>Sign in by your favourite social network</p>
+        </div>
+    </header>
+}
+@section Footer{
+    <footer class="row navbar-inverse">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 contact-info">
+            Contacts: 98sancho@ukr.net +380507773795
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 copyright">
+            © Created by Oleksandr Yaroshenko | CA "Step" 2016
+        </div>
+    </footer>
+}
 
 @{
     List<SelectListItem> priorityList = new List<SelectListItem>();
@@ -26,62 +82,52 @@
         Value = "D"
     });
 }
-<div id="container">
-    @ViewBag.IsLoggedIn
-    @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post))
-    {
-        @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })
-        @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль" })
-        <input type="submit" value="Войти">
-        <input type="submit" value="Выйти" href="@Url.Action("LogOutUser", "Auth")">
-        <input type="submit" value="Зарегистрироваться" href="@Url.Action("RedirectTo", "Home", new { view = "RegistrationPage" })">
-    }
-    <table class="table-bordered">
-        <thead>
-            <tr>
-                <th>Description @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                <th>Data @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                <th>Priority @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                <th>Number @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                <th>Completed @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var t in ViewBag.Tasks)
+<section class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12" id="container">
+        <h6>.</h6>
+        <div id="table_header">
+            Your task table
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12" id="table_navbar">
+            <a href="#" onclick="SingleTableMode()"><span class="glyphicon glyphicon-align-justify"></span></a>
+            <a href="#" onclick="MatrixMode()"><span class="glyphicon glyphicon-th-large"></span></a>
+            <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 table-responsive" id="large_table_holder">
+            @ViewBag.IsLoggedIn
+            @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post))
             {
-                <tr>
-                    <td class="redact">
-                        @t.Description
-                        <input type="text" style='display:none' class="change-desc-input">
-                    </td>
-                    <td class="redact">@t.Data </td>
-                    <td class="redact">@t.Priority </td>
-                    <td class="redact">@t.Number</td>
-                    @if (t.IsComplete)
-                {
-                        <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged()"></td>}
-                else
-                {
-                        <td><input type="checkbox" onchange="TaskStatusChanged()" /></td>}
-                    <td>
-                        <a href="#" onclick="EditTask(this)" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a href="#" onclick="SaveTask(this)" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
-                    </td>
-                    <td>@Html.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new { @class = "glyphicon glyphicon-remove" })</td>
-                </tr>
+                @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })
+                @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль" })
+                <input type="submit" value="Войти">
+                <input type="submit" value="Выйти" href="@Url.Action("LogOutUser", "Auth")">
+                <input type="submit" value="Зарегистрироваться" href="@Url.Action("RedirectTo", "Home", new { view = "RegistrationPage" })">
             }
-        </tbody>
-    </table>
-    @using (Html.BeginForm("AddTask", "Task", FormMethod.Post))
-    {
-        @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание" })
-        @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату" })
-        <label for="priotity">Приоритет:</label>
-        @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет" })
-        @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер" })
-        <input type="submit" value="Добавить">
-    }
-</div>
-
+            <table class="table-bordered">
+                <thead>
+                    <tr>
+                        <th>Description @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th>Data @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th>Priority @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th>Number @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th>Completed @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tablebody">
+                  @Html.Action("GetTaskInPartialView")
+                </tbody>
+            </table>
+            @using (Ajax.BeginForm("AddTask", new AjaxOptions { UpdateTargetId = "tablebody" }))
+            {
+                @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание" })
+                @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату" })
+                <label for="priotity">Приоритет:</label>
+                @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет" })
+                @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер" })
+                <input type="submit" value="Добавить">
+            }
+        </div>
+    </div>
+</section>

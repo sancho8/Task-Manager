@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Doer Task-Manager</title>
+    <link rel="icon" type="image/x-icon" href="~/Content/favicon.ico">
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Reset.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/scripts/jquery-1.10.2.js"></script>
@@ -12,9 +14,12 @@
     <script src="~/scripts/formchecker.js"></script>
 </head>
 <body>
+    @RenderSection("Header")
     @RenderBody()
+    @RenderSection("Footer")
     <script src="~/scripts/jquery.json-2.2.min.js"></script>
     <script src="~/scripts/formchecker.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
 </body>
 </html>
