@@ -77,7 +77,7 @@ namespace Table.Controllers
 
             }
             ViewBag.Tasks = TaskList;
-            return RedirectToAction("Index");
+            return GetTaskInPartialView();
         }
 
         [HttpPost]
