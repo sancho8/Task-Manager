@@ -57,5 +57,9 @@ namespace Table.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult AddUser(string login, string email, string password, string confirmpassword)
+        {
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
