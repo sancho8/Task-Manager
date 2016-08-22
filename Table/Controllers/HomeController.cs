@@ -14,7 +14,7 @@ namespace Table.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return RedirectToAction("Index","Task");
+                return RedirectToAction("Index", "Task");
         }
 
         public ActionResult MoveToPage(string page)

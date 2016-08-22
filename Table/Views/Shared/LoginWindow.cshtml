@@ -3,28 +3,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Login</h4>
+                <h4 class="modal-title">Вход</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal contact_form">
-                    <div style="font-size: 24px; text-align:center" class="reg_form_header">Enter data</div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">Login:</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" placeholder="Enter your login">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">Password:</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" placeholder="Enter your password">
-                        </div>
-                    </div>
-                </form>
+                @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post))
+            {
+                    <p>Введите логин:&nbsp; @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })</p>
+                    <p>Введите пароль: @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль" })</p>
+                    <p>
+                        <input type="submit" value="Войти" class="btn btn-default">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    </p>
+                }
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Login</button>
             </div>
         </div>
     </div>

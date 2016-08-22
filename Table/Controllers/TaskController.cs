@@ -88,7 +88,8 @@ namespace Table.Controllers
                 }
                 catch (Exception ex)
                 {
-
+                    ViewBag.ErrorMessage = ex.Message;
+                    return View("Error");
                 }
                 SqlCommand cmd = new SqlCommand(command);
                 cmd.CommandType = CommandType.Text;
@@ -145,6 +146,23 @@ namespace Table.Controllers
             }
             ViewBag.Tasks = TaskList;
             return PartialView("TaskRows");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTask(string id, string value)
+        {
+           /* using (var conn = new SqlConnection(connection))
+            {
+                string command = "UPDATE Tasks SET IsComplete = '" + value + "'WHERE Id = '" + id + "'";
+
+                using (var cmd = new SqlCommand(command, conn))
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }*/
+            return RedirectToAction("Index");
         }
 
         private void GetTasksFromDatabase(string UserID)

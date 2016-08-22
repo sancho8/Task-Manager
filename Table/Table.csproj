@@ -178,12 +178,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\Index.cshtml" />
-    <Content Include="Views\Shared\RegistrationPage.cshtml" />
     <Content Include="Views\Shared\Tasks.cshtml" />
     <Content Include="Views\Shared\TaskRows.cshtml" />
     <Content Include="Views\Shared\About.cshtml" />
     <Content Include="Views\Shared\LoginWindow.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\RegistrationWindow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

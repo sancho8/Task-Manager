@@ -10,11 +10,11 @@
         <td class="redact">@t.Number</td>
         @if (t.IsComplete)
         {
-            <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged()"></td>
+            <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
         }
         else
         {
-            <td><input type="checkbox" onchange="TaskStatusChanged()" /></td>
+            <td><input type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
         }
         <td>
             <a href="#" onclick="EditTask(this)" class="edit"><span class="glyphicon glyphicon-edit"></span></a>

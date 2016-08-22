@@ -100,14 +100,6 @@
             <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>
         </div>
         @ViewBag.IsLoggedIn
-        @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post))
-            {
-            @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })
-            @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль" })
-            <input type="submit" value="Войти">
-            <input type="submit" value="Выйти" href="@Url.Action("LogOutUser", "Auth")">
-            <input type="submit" value="Зарегистрироваться" href="@Url.Action("RedirectTo", "Home", new { view = "RegistrationPage" })">
-        }
         <div class="row table-condensed table-responsive" id="large_table_holder">
             <table class="table-bordered">
                 <thead>
@@ -141,3 +133,4 @@
     </div>
 </section>
 @Html.Partial("LoginWindow")
+@Html.Partial("RegistrationWindow")

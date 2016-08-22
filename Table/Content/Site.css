@@ -30,7 +30,9 @@ table{
 }
 form{
     margin: 5px;
-    border: 2px solid blue;
+}
+.modal-body{
+    margin: 0 auto;
 }
 input .edit{
     width: 100%;
@@ -214,7 +216,7 @@ li{
 	margin-left:auto;
 	margin-right: auto;
 	margin-bottom: 10px;
-	font-size: 20px;
+	font-size: 18px;
 	font-family: Verdana;
 	overflow: auto;
 	overflow-x: auto;

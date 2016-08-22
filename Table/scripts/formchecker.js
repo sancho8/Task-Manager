@@ -1,11 +1,11 @@
 ﻿function EditTask() {
     $('.edit').hide();
     $('.save').show();
-}
+};
 function SaveTask() {
     $('.save').hide();
     $('.edit').show();
-}
+};
 $(function () {
     $.ajaxSetup({ cache: false });
     $("#login-button").click(function (e) {
@@ -17,3 +17,16 @@ $(function () {
         });
     });
 });
+function TaskStatusChanged(elem) {
+    var value = elem.checked;
+    var a = elem.id;
+    alert(value + " " + a);
+    $.ajax({
+        url: 'Task/UpdateTask")',
+        type: 'POST',
+        data: { id: id, value: a },
+        success: function () {
+            alert("Success");
+        }
+    });
+};
