@@ -16,5 +16,19 @@ namespace Table.Controllers
         {
             return RedirectToAction("Index","Task");
         }
+
+        public ActionResult MoveToPage(string page)
+        {
+            if(page == "Tasks")
+            {
+                return RedirectToAction("Index", "Task");
+            }
+            return View(page);
+        }
+
+        public ActionResult Login()
+        {
+            return PartialView("LoginWindow");
+        }
     }
 }

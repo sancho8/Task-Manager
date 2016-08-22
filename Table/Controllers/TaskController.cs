@@ -18,26 +18,7 @@ namespace Table.Controllers
         // GET: Task
         public ActionResult Index()
         {
-            try
-            {
-                HttpCookie cookie = Request.Cookies["Authorization"];
-                if (cookie["Id"] == "")
-                {
-                    ViewBag.IsLoggedIn = false;
-                    ViewBag.UserName = "";
-                }
-                else
-                {
-                    ViewBag.IsLoggedIn = true;
-                    ViewBag.UserName = cookie["Login"];
-                }
-                GetTasksFromDatabase(cookie["Id"]);
-            }
-            catch (Exception ex)
-            {
-
-            }
-            ViewBag.Tasks = TaskList;
+            GetTaskInPartialView();
             return View("Tasks");
         }
 
@@ -74,7 +55,8 @@ namespace Table.Controllers
             }
             catch (Exception ex)
             {
-
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
             }
             ViewBag.Tasks = TaskList;
             return GetTaskInPartialView();
@@ -127,7 +109,8 @@ namespace Table.Controllers
                 }
                 catch (Exception ex)
                 {
-
+                    ViewBag.ErrorMessage = ex.Message;
+                    return View("Error");
                 }
                 ViewBag.Tasks = TaskList;
                 return GetTaskInPartialView();
@@ -143,7 +126,8 @@ namespace Table.Controllers
             }
             catch (Exception ex)
             {
-
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
             }
             ViewBag.Tasks = TaskList;
             return PartialView("TaskRows");
@@ -160,7 +144,7 @@ namespace Table.Controllers
                 case "IsCompleted": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.IsComplete).ToList(); break;
             }
             ViewBag.Tasks = TaskList;
-            return View("Index");
+            return PartialView("TaskRows");
         }
 
         private void GetTasksFromDatabase(string UserID)

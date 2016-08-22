@@ -9,10 +9,10 @@
                     <p class="navbar-brand">Task-manager</p>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="home.html">Home</a></li>
-                    <li class="active"><a href="#">Tasks</a></li>
-                    <li><a href="abouv.html">About</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
+                    <li>@Html.ActionLink("Home", "MoveToPage", "Home", new { page = "Home"} ,new { })</li>
+                    <li>@Html.ActionLink("Tasks", "MoveToPage", "Home", new { page = "Tasks" }, new { })</li>
+                    <li>@Html.ActionLink("About", "MoveToPage", "Home", new { page = "About" }, new { })</li>
+                    <li>@Html.ActionLink("Contacts", "MoveToPage", "Home", new { page = "Contacts" }, new { })</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li data-toggle="modal" data-target="#myModal"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
@@ -27,7 +27,8 @@
             <h1>Lite task manager</h1>
             <h3>Easily service to manage your tasks</h3>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3" id="auth_box">
+        <!--Social buttons
+            <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3" id="auth_box">
             <a class="btn btn-social-icon btn-facebook">
                 <span class="fa fa-facebook"></span>
             </a>
@@ -45,6 +46,7 @@
             </a>
             <p>Sign in by your favourite social network</p>
         </div>
+        -->
     </header>
 }
 @section Footer{
@@ -57,7 +59,6 @@
         </div>
     </footer>
 }
-
 @{
     List<SelectListItem> priorityList = new List<SelectListItem>();
     priorityList.Add(new SelectListItem()
@@ -82,52 +83,61 @@
         Value = "D"
     });
 }
+
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+
 <section class="row">
     <div class="col-md-12 col-sm-12 col-xs-12" id="container">
         <h6>.</h6>
         <div id="table_header">
             Your task table
         </div>
-        <div class="col-md-12 col-sm-12 col-xs-12" id="table_navbar">
+        <div class="row" id="table_navbar">
             <a href="#" onclick="SingleTableMode()"><span class="glyphicon glyphicon-align-justify"></span></a>
             <a href="#" onclick="MatrixMode()"><span class="glyphicon glyphicon-th-large"></span></a>
             <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>
         </div>
-        <div class="col-md-12 col-sm-12 col-xs-12 table-responsive" id="large_table_holder">
-            @ViewBag.IsLoggedIn
-            @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post))
+        @ViewBag.IsLoggedIn
+        @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post))
             {
-                @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })
-                @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль" })
-                <input type="submit" value="Войти">
-                <input type="submit" value="Выйти" href="@Url.Action("LogOutUser", "Auth")">
-                <input type="submit" value="Зарегистрироваться" href="@Url.Action("RedirectTo", "Home", new { view = "RegistrationPage" })">
-            }
+            @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })
+            @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль" })
+            <input type="submit" value="Войти">
+            <input type="submit" value="Выйти" href="@Url.Action("LogOutUser", "Auth")">
+            <input type="submit" value="Зарегистрироваться" href="@Url.Action("RedirectTo", "Home", new { view = "RegistrationPage" })">
+        }
+        <div class="row table-condensed table-responsive" id="large_table_holder">
             <table class="table-bordered">
                 <thead>
                     <tr>
-                        <th>Description @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                        <th>Data @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                        <th>Priority @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                        <th>Number @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                        <th>Completed @Html.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th>
+                            Description @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "tablebody" },
+                        new { @class = "glyphicon glyphicon-chevron-down" })
+                        </th>
+                        <th>Data @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th>Priority @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th>№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th><span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>@Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody id="tablebody">
-                  @Html.Action("GetTaskInPartialView")
+                    @Html.Action("GetTaskInPartialView")
                 </tbody>
             </table>
-            @using (Ajax.BeginForm("AddTask", new AjaxOptions { UpdateTargetId = "tablebody" }))
-            {
-                @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание" })
-                @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату" })
-                <label for="priotity">Приоритет:</label>
-                @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет" })
-                @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер" })
-                <input type="submit" value="Добавить">
-            }
         </div>
+        @using (Ajax.BeginForm("AddTask",new AjaxOptions { UpdateTargetId = "tablebody" }))
+        {
+            @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание" })
+            @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату" })
+            <label for="priotity">Приоритет:</label>
+                @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет" })
+                @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер", @size = "2" })
+                <input type="submit" value="Добавить">
+        }
     </div>
 </section>
+@Html.Partial("LoginWindow")

@@ -14,9 +14,15 @@
     <script src="~/scripts/formchecker.js"></script>
 </head>
 <body>
+    @if (IsSectionDefined("Header"))
+    {
     @RenderSection("Header")
+    }
     @RenderBody()
+    @if (IsSectionDefined("Footer"))
+    {
     @RenderSection("Footer")
+    }
     <script src="~/scripts/jquery.json-2.2.min.js"></script>
     <script src="~/scripts/formchecker.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>

@@ -1,0 +1,100 @@
+﻿@section Header{
+    <header class="row">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-brand">Task-manager</p>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "MoveToPage", "Home", new { page = "Home" }, new { })</li>
+                    <li>@Html.ActionLink("Tasks", "MoveToPage", "Home", new { page = "Tasks" }, new { })</li>
+                    <li>@Html.ActionLink("About", "MoveToPage", "Home", new { page = "About" }, new { })</li>
+                    <li>@Html.ActionLink("Contacts", "MoveToPage", "Home", new { page = "Contacts" }, new { })</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li data-toggle="modal" data-target="#myModal"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                    <li data-toggle="modal" data-target="#login_modal"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3">
+            <img src="#" id="logo" alt="logo" />
+        </div>
+        <div class="col-md-6 col-sm-4 col-xs-12 col-lg-6">
+            <h1>Lite task manager</h1>
+            <h3>Easily service to manage your tasks</h3>
+        </div>
+        <!--Social buttons
+            <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3" id="auth_box">
+            <a class="btn btn-social-icon btn-facebook">
+                <span class="fa fa-facebook"></span>
+            </a>
+            <a class="btn btn-social-icon btn-twitter">
+                <span class="fa fa-twitter"></span>
+            </a>
+            <a class="btn btn-social-icon btn-vk">
+                <span class="fa fa-vk"></span>
+            </a>
+            <a class="btn btn-social-icon btn-odnoklassniki">
+                <span class="fa fa-odnoklassniki"></span>
+            </a>
+            <a class="btn btn-social-icon btn-google">
+                <span class="fa fa-google"></span>
+            </a>
+            <p>Sign in by your favourite social network</p>
+        </div>
+        -->
+    </header>
+}
+@section Footer{
+    <footer class="row navbar-inverse">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 contact-info">
+            Contacts: 98sancho@ukr.net +380507773795
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 copyright">
+            © Created by Oleksandr Yaroshenko | CA "Step" 2016
+        </div>
+    </footer>
+}
+<section class="row" id="info-section">
+    <div id="slider">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img class="img-responsive" src="~/Content/images/task.jpg" alt="Chania">
+                </div>
+
+                <div class="item">
+                    <img class="img-responsive" src="~/Content/images/task.jpg" alt="Chania">
+                </div>
+
+                <div class="item">
+                    <img class="img-responsive" src="~/Content/images/task.jpg" alt="Flower">
+                </div>
+
+                <div class="item">
+                    <img class="img-responsive" src="~/Content/images/task.jpg" alt="Flower">
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>

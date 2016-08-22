@@ -1,25 +1,6 @@
 ﻿*{
     /*border: 1px solid blue;*/
 }
-
-body {
-    margin: 0px;
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
 #container{
     width: 900px;
 }
@@ -29,9 +10,16 @@ table{
 input{
     padding: 5px;
     margin: 5px;
+    font-size: 14px;
 }
 th{
     padding: 5px;
+}
+#table_navbar .glyphicon{
+    color: white;
+}
+#table_navbar .glyphicon:hover{
+    color: #313030;
 }
 td{
     padding: 5px;
@@ -48,17 +36,17 @@ input .edit{
     width: 100%;
     height: 100%;
 }
-* {
-	//border: 1px solid blue;
-}
 #auth_box{
 	font-size: 18px;
 	color: white;
 }
 body{
 	width:80%;
+    height: 100%;
 	margin-left:auto;
 	margin-right:auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 header {
 	border: 3px solid black;
@@ -104,7 +92,7 @@ h3{
 	text-align:center;
 }
 #logo{
-	height:120px;
+	height:80px;
 	width:180px;
 	border: 2px solid black;
 	margin-bottom: 10px;
@@ -130,7 +118,7 @@ li{
 }
 /*-------------------Carousel------------------*/
 .carousel-inner > .item > img {
-    margin: 0 auto;
+    margin: auto;
 }
 .carousel-indicators {
   bottom:-50px;
@@ -167,12 +155,11 @@ li{
 	font-size: 42px;
 	font-family: Verdana;
 }
-/*-----------------Calendar----------------------*/
-/*-----------------------------------------------*/
 #register_button{
 	background-color: #057cbe;
 	color: white;
 }
+/*-----------------Navigation--------------------*/
 .navbar{
 	background-color: #044a7b;
 }
@@ -219,12 +206,8 @@ li{
 	text-align: center;
 	margin-top: 10px;
 }
-.tableimg{
-	height:240px;
-}
 #table_holder{
 	font-size: 16px;
-	height:600px;
 	overflow: auto;
 }
 #large_table_holder{
@@ -233,7 +216,6 @@ li{
 	margin-bottom: 10px;
 	font-size: 20px;
 	font-family: Verdana;
-	height:600px;
 	overflow: auto;
 	overflow-x: auto;
 }
@@ -246,10 +228,6 @@ li{
 	margin-right: auto;
 	width:100%;
 	font-size: 22px;
-}
-.desc{
-	width: 100%;
-	overflow: scroll;
 }
 .time-table{
 	width: 100%;
@@ -264,7 +242,7 @@ li{
 	background-color:white;
 }
 .glyphicon{
-	color: white;
+	color: #057cbe;
 }
 .glyphicon:hover{
 		color: black;
@@ -285,10 +263,4 @@ li{
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-}
-label{
-	font-size: 18px;
-}
-hr{
-	color: #014373;
 }

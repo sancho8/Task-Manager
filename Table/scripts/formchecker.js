@@ -6,17 +6,14 @@ function SaveTask() {
     $('.save').hide();
     $('.edit').show();
 }
-function SortTasks() {
-    $.ajax({
-        url: "Task/OrderTasks",
-        method: "POST",
-        data: {prop: "Number" },
-        success: function () {
-            alert("Called");  // or any other indication if you want to show
-        },
-        statusCode: {
-            404: function (content) { alert('cannot find resource'); },
-            500: function (content) { alert('internal server error'); }
-        }
+$(function () {
+    $.ajaxSetup({ cache: false });
+    $("#login-button").click(function (e) {
+
+        e.preventDefault();
+        $.get(this.href, function (data) {
+            $('#dialogContent').html(data);
+            $('#modDialog').modal('show');
+        });
     });
-};
+});
