@@ -90,7 +90,6 @@
 
 <section class="row">
     <div class="col-md-12 col-sm-12 col-xs-12" id="container">
-        <h6>.</h6>
         <div id="table_header">
             Your task table
         </div>
@@ -100,8 +99,8 @@
             <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>
         </div>
         @ViewBag.IsLoggedIn
-        <div class="row table-condensed table-responsive" id="large_table_holder">
-            <table class="table-bordered">
+        <div class="table-condensed table-responsive" id="large_table_holder">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>
@@ -132,5 +131,3 @@
         }
     </div>
 </section>
-@Html.Partial("LoginWindow")
-@Html.Partial("RegistrationWindow")

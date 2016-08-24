@@ -24,15 +24,8 @@ th{
 td{
     padding: 5px;
 }
-table{
-    width: 100%;
-    margin: 5px;
-}
 form{
     margin: 5px;
-}
-.modal-body{
-    margin: 0 auto;
 }
 input .edit{
     width: 100%;
@@ -43,10 +36,9 @@ input .edit{
 	color: white;
 }
 body{
+    margin-left: 10%;
 	width:80%;
     height: 100%;
-	margin-left:auto;
-	margin-right:auto;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -210,35 +202,17 @@ li{
 }
 #table_holder{
 	font-size: 16px;
-	overflow: auto;
 }
 #large_table_holder{
-	margin-left:auto;
-	margin-right: auto;
 	margin-bottom: 10px;
 	font-size: 18px;
 	font-family: Verdana;
-	overflow: auto;
-	overflow-x: auto;
-}
-#calendar_holder{
-	height:600px;
-	overflow: auto;
 }
 .single-table{
 	margin-left:auto;
 	margin-right: auto;
 	width:100%;
 	font-size: 22px;
-}
-.time-table{
-	width: 100%;
-	border: 2px solid #048ecf;
-	margin: 20px;
-	font-size: 22px;
-}
-.time-table tr{
-	padding-top: 10px;
 }
 .table-stripped{
 	background-color:white;
