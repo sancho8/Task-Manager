@@ -30,5 +30,10 @@ namespace Table.Controllers
         {
             return PartialView("LoginWindow");
         }
+
+        public ActionResult SendFeedback(string name, string email, string feedback)
+        {
+            return RedirectToAction("Index", "Task");
+        }
     }
 }

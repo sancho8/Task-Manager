@@ -95,19 +95,11 @@ h3{
 	position:absolute;
 	bottom:0;
 }
-#slider{
-
-}
-ul
-{
-    list-style-type: none;
-}
 li span{
 	margin: 10px;
 	margin-top: 0px;
 }
 li{
-	color: white;
 	font-size: 24px;
 }
 /*-------------------Carousel------------------*/

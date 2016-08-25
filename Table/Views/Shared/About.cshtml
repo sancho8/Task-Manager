@@ -6,14 +6,14 @@
                     <p class="navbar-brand">Task-manager</p>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "MoveToPage", "Home", new { page = "Home" }, new { })</li>
-                    <li>@Html.ActionLink("Tasks", "MoveToPage", "Home", new { page = "Tasks" }, new { })</li>
-                    <li>@Html.ActionLink("About", "MoveToPage", "Home", new { page = "About" }, new { })</li>
-                    <li>@Html.ActionLink("Contacts", "MoveToPage", "Home", new { page = "Contacts" }, new { })</li>
+                    <li>@Html.ActionLink("Профиль", "MoveToPage", "Home", new { page = "Home" }, new { })</li>
+                    <li>@Html.ActionLink("Задачи", "MoveToPage", "Home", new { page = "Tasks" }, new { })</li>
+                    <li>@Html.ActionLink("О нас", "MoveToPage", "Home", new { page = "About" }, new { })</li>
+                    <li>@Html.ActionLink("Контакты", "MoveToPage", "Home", new { page = "Contacts" }, new { })</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li data-toggle="modal" data-target="#myModal"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-                    <li data-toggle="modal" data-target="#login_modal"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                    <li data-toggle="modal" data-target="#myModal"><a href="#"><span class="glyphicon glyphicon-user"></span>Регистрация</a></li>
+                    <li data-toggle="modal" data-target="#login_modal"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Войти</a></li>
                 </ul>
             </div>
         </nav>
@@ -21,8 +21,8 @@
             <img src="#" id="logo" alt="logo" />
         </div>
         <div class="col-md-6 col-sm-4 col-xs-12 col-lg-6">
-            <h1>Lite task manager</h1>
-            <h3>Easily service to manage your tasks</h3>
+            <h1>Менеджер задач</h1>
+            <h3>Простой и удобный инструмент управления временем</h3>
         </div>
         <!--Social buttons
             <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3" id="auth_box">
@@ -49,10 +49,10 @@
 @section Footer{
     <footer class="row navbar-inverse">
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 contact-info">
-            Contacts: 98sancho@ukr.net +380507773795
+            Контакты: 98sancho@ukr.net
         </div>
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 copyright">
-            © Created by Oleksandr Yaroshenko | CA "Step" 2016
+            © Александр Ярошенко | КА "ШАГ" 2016
         </div>
     </footer>
 }
