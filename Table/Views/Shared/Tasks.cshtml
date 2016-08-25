@@ -98,9 +98,8 @@
             <a href="#" onclick="MatrixMode()"><span class="glyphicon glyphicon-th-large"></span></a>
             <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>
         </div>
-        @ViewBag.IsLoggedIn
-        <div class="table-condensed table-responsive" id="large_table_holder">
-            <table class="table table-bordered">
+        <div class="table-responsive" id="large_table_holder">
+            <table class="table table-striped table-condensed table-bordered">
                 <thead>
                     <tr>
                         <th>
@@ -120,7 +119,7 @@
                 </tbody>
             </table>
         </div>
-        @using (Ajax.BeginForm("AddTask",new AjaxOptions { UpdateTargetId = "tablebody" }))
+        @using (Ajax.BeginForm("AddTask",new AjaxOptions {UpdateTargetId="tablebody"}))
         {
             @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание" })
             @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату" })

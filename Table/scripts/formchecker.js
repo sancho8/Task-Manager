@@ -24,7 +24,7 @@ function TaskStatusChanged(elem) {
     $.ajax({
         url: 'Task/UpdateTask")',
         type: 'POST',
-        data: { id: id, value: a },
+        data: { id: a, value: value },
         success: function () {
             alert("Success");
         }

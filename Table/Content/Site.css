@@ -1,5 +1,5 @@
 ﻿*{
-    /*border: 1px solid blue;*/
+    //border: 1px solid red;
 }
 #container{
     width: 900px;
@@ -208,12 +208,6 @@ li{
 	font-size: 18px;
 	font-family: Verdana;
 }
-.single-table{
-	margin-left:auto;
-	margin-right: auto;
-	width:100%;
-	font-size: 22px;
-}
 .table-stripped{
 	background-color:white;
 }
@@ -226,6 +220,12 @@ li{
 .modal-header{
 	background-color:#048ecf;
 	color: black;
+}
+.modal-dialog{
+    max-width: 600px;
+}
+.modal-body{
+    text-align: center;
 }
 #myModal{
 	border: 1px solid black;

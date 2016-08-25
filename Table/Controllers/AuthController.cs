@@ -45,6 +45,7 @@ namespace Table.Controllers
             authCookie["Password"] = password;
             authCookie["Id"] = Id;
             Response.Cookies.Add(authCookie);
+            ViewBag.IsLoggedIn = true;
             return RedirectToAction("Index", "Home");
         }
 
@@ -55,6 +56,7 @@ namespace Table.Controllers
             authCookie["Password"] = "";
             authCookie["Id"] = "";
             Response.Cookies.Add(authCookie);
+            ViewBag.IsLoggedIn = false;
             return RedirectToAction("Index", "Home");
         }
 

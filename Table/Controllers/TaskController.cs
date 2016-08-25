@@ -113,7 +113,6 @@ namespace Table.Controllers
                     ViewBag.ErrorMessage = ex.Message;
                     return View("Error");
                 }
-                ViewBag.Tasks = TaskList;
                 return GetTaskInPartialView();
             }
         }
