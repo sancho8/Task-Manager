@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title">Вход</h4>
             </div>
 @using (Html.BeginForm("LogInUser", "Auth", new AjaxOptions { UpdateTargetId="login-error" }))
 {
@@ -12,9 +12,9 @@
                     <div>Введите пароль: @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль" })</div>
                     <div id="login-error">@ViewBag.LoginErrorMessage</div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="modal-footer" style="text-align:center">
                 <button type="submit" class="btn btn-primary">Войти</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
             </div>
 }
         </div><!-- /.modal-content -->

@@ -22,11 +22,6 @@ namespace Table.Controllers
             return View("Tasks");
         }
 
-        public ActionResult RedirectToView(string view)
-        {
-            return View(view);
-        }
-
         public ActionResult DeleteTask(string id)
         {
             using (var conn = new SqlConnection(connection))
@@ -117,22 +112,6 @@ namespace Table.Controllers
             }
         }
 
-        public ActionResult GetTaskInPartialView()
-        {
-            try
-            {
-                HttpCookie cookie = Request.Cookies["Authorization"];
-                GetTasksFromDatabase(cookie["Id"]);
-            }
-            catch (Exception ex)
-            {
-                ViewBag.ErrorMessage = ex.Message;
-                return View("Error");
-            }
-            ViewBag.Tasks = TaskList;
-            return PartialView("TaskRows");
-        }
-
         public ActionResult OrderTasks(string prop)
         {
             switch (prop)
@@ -150,7 +129,7 @@ namespace Table.Controllers
         [HttpPost]
         public ActionResult UpdateTask(string id, string value)
         {
-           /* using (var conn = new SqlConnection(connection))
+            using (var conn = new SqlConnection(connection))
             {
                 string command = "UPDATE Tasks SET IsComplete = '" + value + "'WHERE Id = '" + id + "'";
 
@@ -160,8 +139,8 @@ namespace Table.Controllers
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
-            }*/
-            return RedirectToAction("Index");
+            }
+            return GetTaskInPartialView();
         }
 
         private void GetTasksFromDatabase(string UserID)
@@ -195,7 +174,22 @@ namespace Table.Controllers
                 bool IsCompleted = Boolean.Parse(row["IsComplete"].ToString());
                 TaskList.Add(new Task(Id, UserId, Description, Data, Priority, Number, IsCompleted));
             }
-            TaskList.OrderBy(o => o.Id).ThenBy(o => o.IsComplete);
+        }
+
+        public ActionResult GetTaskInPartialView()
+        {
+            try
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                GetTasksFromDatabase(cookie["Id"]);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
+            }
+            ViewBag.Tasks = TaskList;
+            return PartialView("TaskRows");
         }
 
         private void DbExecuteCommand(string command)

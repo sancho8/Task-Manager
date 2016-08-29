@@ -3,24 +3,22 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Registration</h4>
+                <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
             </div>
+@using (Html.BeginForm("RegisterUser", "Auth", FormMethod.Post))
+{
             <div class="modal-body">
-                @using (Html.BeginForm("RegisterUser", "Auth", FormMethod.Post))
-                {
-                <p>Введите логин:&nbsp;&nbsp;@Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })</p>
-                <p>Введите пароль:&nbsp;@Html.TextBox("password", "", new { @type = "password", @placeholder = "Введите пароль" })</p>
-                <p>Введите пароль:&nbsp;@Html.TextBox("confirmPassword", "", new { @type = "password", @placeholder = "Подтвердите пароль" })</p>
-                <p>Введите почту:&nbsp;&nbsp;@Html.TextBox("email", "", new { @type = "email", @placeholder = "введите пароль" })</p>
+                <p>Введите логин:@Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })</p>
+                <p>Введите пароль:@Html.TextBox("password", "", new { @type = "password", @placeholder = "Введите пароль" })</p>
+                <p>Введите пароль:@Html.TextBox("confirmPassword", "", new { @type = "password", @placeholder = "Подтвердите пароль" })</p>
+                <p>Введите почту:@Html.TextBox("email", "", new { @type = "email", @placeholder = "введите пароль" })</p>
                 <p>Получать рассылку задач на почту @Html.CheckBox("needDelivery", new { @checked = "checked" })</p>
-                <p>
-                    <input type="submit" value="Регистрация" class="btn btn-default">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                </p>
-                }
             </div>
             <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Регистрация</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
             </div>
+}
         </div>
     </div>
 </div>

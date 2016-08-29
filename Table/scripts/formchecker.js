@@ -17,12 +17,17 @@ $(function () {
         });
     });
 });
+
+function NumberChanged() {
+    alert($(this).val());
+}
+
 function TaskStatusChanged(elem) {
     var value = elem.checked;
     var a = elem.id;
     alert(value + " " + a);
     $.ajax({
-        url: 'Task/UpdateTask")',
+        url: 'Task/UpdateTask',
         type: 'POST',
         data: { id: a, value: value },
         success: function () {

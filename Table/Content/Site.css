@@ -1,9 +1,6 @@
 ﻿*{
     //border: 1px solid red;
 }
-#container{
-    width: 900px;
-}
 table{
     font-size: 18px;
 }
@@ -77,6 +74,7 @@ h3{
 #container{
 	margin-left: auto;
     margin-right: auto;
+    width: 90%;
 	background-image: url(images/container_bg.png);
 	background-repeat: repeat-y;
 }
@@ -195,11 +193,6 @@ li{
 #table_holder{
 	font-size: 16px;
 }
-#large_table_holder{
-	margin-bottom: 10px;
-	font-size: 18px;
-	font-family: Verdana;
-}
 .table-stripped{
 	background-color:white;
 }
@@ -218,6 +211,9 @@ li{
 }
 .modal-body{
     text-align: center;
+}
+#scrollable-div{
+    height: 800px;
 }
 #myModal{
 	border: 1px solid black;
