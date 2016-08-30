@@ -122,8 +122,7 @@ namespace Table.Controllers
                 case "Number": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Number).ToList(); break;
                 case "IsCompleted": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.IsComplete).ToList(); break;
             }
-            ViewBag.Tasks = TaskList;
-            return PartialView("TaskRows");
+            return PartialView("TaskRows", TaskList);
         }
 
         [HttpPost]
@@ -189,7 +188,7 @@ namespace Table.Controllers
                 return View("Error");
             }
             ViewBag.Tasks = TaskList;
-            return PartialView("TaskRows");
+            return PartialView("TaskRows", TaskList);
         }
 
         private void DbExecuteCommand(string command)

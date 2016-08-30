@@ -1,37 +1,44 @@
-﻿function EditTask() {
-    $('.edit').hide();
-    $('.save').show();
-};
-function SaveTask() {
-    $('.save').hide();
-    $('.edit').show();
-};
-$(function () {
-    $.ajaxSetup({ cache: false });
-    $("#login-button").click(function (e) {
+﻿$(document).ready(function () {
+    $('.edit-holder').hide();
+});
+    function EditTask() {
+        $('.edit').hide();
+        $('.save').show();
+        $(event.target).parents('tr').find('.value-holder').hide();
+        $(event.target).parents('tr').find('.edit-holder').show();
+    };
+    function SaveTask() {
+        $('.save').hide();
+        $('.edit').show();
+        $(event.target).parents('tr').find('.value-holder').show();
+        $(event.target).parents('tr').find('.edit-holder').hide();
+    };
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $("#login-button").click(function (e) {
 
-        e.preventDefault();
-        $.get(this.href, function (data) {
-            $('#dialogContent').html(data);
-            $('#modDialog').modal('show');
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal('show');
+            });
         });
     });
-});
 
-function NumberChanged() {
-    alert($(this).val());
-}
+    function NumberChanged() {
+        alert($(this).val());
+    }
 
-function TaskStatusChanged(elem) {
-    var value = elem.checked;
-    var a = elem.id;
-    alert(value + " " + a);
-    $.ajax({
-        url: 'Task/UpdateTask',
-        type: 'POST',
-        data: { id: a, value: value },
-        success: function () {
-            alert("Success");
-        }
-    });
-};
+    function TaskStatusChanged(elem) {
+        var value = elem.checked;
+        var a = elem.id;
+        alert(value + " " + a);
+        $.ajax({
+            url: 'Task/UpdateTask',
+            type: 'POST',
+            data: { id: a, value: value },
+            success: function () {
+                alert("Success");
+            }
+        });
+    };

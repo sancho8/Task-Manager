@@ -1,13 +1,23 @@
-﻿@foreach (var t in ViewBag.Tasks)
+﻿@model IEnumerable<Table.Models.Task>
+@foreach (var t in Model)
             {
     <tr>
-        <td class="redact">
-            @t.Description
-            <input type="text" style='display:none' class="change-desc-input">
+        <td>
+            <div class="value-holder">@Html.DisplayFor(item => t.Description)</div>
+            <div class="edit-holder">@Html.EditorFor(item => t.Description)</div>
         </td>
-        <td class="redact">@t.Data </td>
-        <td class="redact">@t.Priority </td>
-        <td class="redact">@t.Number</td>
+        <td>
+            <div class="value-holder">@Html.DisplayFor(item => t.Data)</div>
+            <div class="edit-holder">@Html.EditorFor(item => t.Data)</div>
+        </td>
+        <td>
+            <div class="value-holder">@Html.DisplayFor(item => t.Priority)</div>
+            <div class="edit-holder">@Html.EditorFor(item => t.Priority)</div>
+        </td>
+        <td>
+            <div class="value-holder">@Html.DisplayFor(item => t.Number)</div>
+            <div class="edit-holder">@Html.EditorFor(item => t.Number)</div>
+        </td>
         @if (t.IsComplete)
         {
             <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
@@ -17,9 +27,9 @@
             <td><input type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
         }
         <td>
-            <a href="#" onclick="EditTask(this)" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
-            <a href="#" onclick="SaveTask(this)" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+            <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
+            <a onclick="SaveTask()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
         </td>
-        <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "tablebody" } , new { @class = "glyphicon glyphicon-remove" })</td>
+        <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-remove" })</td>
     </tr>
 }
