@@ -1,0 +1,34 @@
+﻿@{
+    List<SelectListItem>
+    priorityList = new List<SelectListItem>
+        ();
+    priorityList.Add(new SelectListItem()
+    {
+        Text = "A",
+        Value = "A",
+        Selected = true
+    });
+    priorityList.Add(new SelectListItem()
+    {
+        Text = "B",
+        Value = "B",
+    });
+    priorityList.Add(new SelectListItem()
+    {
+        Text = "C",
+        Value = "C"
+    });
+    priorityList.Add(new SelectListItem()
+    {
+        Text = "D",
+        Value = "D"
+    });
+}
+@using (Ajax.BeginForm("AddTask", "Task", new AjaxOptions { UpdateTargetId = "tablebody" }, new { }))
+{
+    @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание" })
+    @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату" })
+    @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет" })
+    @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер", @size = "2", @onchange = "NumberChanged()" })
+    <input type="submit" value="Добавить">
+}

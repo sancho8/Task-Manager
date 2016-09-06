@@ -1,0 +1,189 @@
+﻿@model IEnumerable<Table.Models.Task>
+<table class="table matrix-table table-bordered table-condensed col-md-6 col-sm-6 col-xs-6">
+<thead>
+    <tr>
+        <th>
+            Description @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "tablebody" },
+                        new { @class = "glyphicon glyphicon-chevron-down" })
+        </th>
+        <th>Data @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+        <th>
+            <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
+            @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })
+        </th>
+        <th colspan="2"></th>
+    </tr>
+</thead>
+<tbody id="tablebody">
+    @foreach (var t in Model)
+    {
+        if (!t.Priority.Contains("A")) { continue; }
+        <tr>
+            <td>
+                <div class="value-holder">@Html.DisplayFor(item => t.Description)</div>
+                <div class="edit-holder" style="display: none">@Html.EditorFor(item => t.Description)</div>
+            </td>
+            <td>
+                <div class="value-holder">@Html.DisplayFor(item => t.Data)</div>
+                <div class="edit-holder" style="display: none">@Html.EditorFor(item => t.Data)</div>
+            </td>
+            @if (t.IsComplete)
+                {
+                <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
+            }
+            else
+            {
+                <td><input type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
+            }
+            <td>
+                <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
+                <a onclick="SaveTask()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+            </td>
+            <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-remove" })</td>
+        </tr>
+    }
+</tbody>
+</table>
+
+
+<table class="table matrix-table table-bordered table-condensed col-md-6 col-sm-6 col-xs-6">
+    <thead>
+        <tr>
+            <th>
+                Description @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "tablebody" },
+                        new { @class = "glyphicon glyphicon-chevron-down" })
+            </th>
+            <th>Data @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+            <th>
+                <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
+                @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })
+            </th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody id="tablebody">
+        @foreach (var t in Model)
+        {
+            if (!t.Priority.Contains("B")) { continue; }
+            <tr>
+                <td>
+                    <div class="value-holder">@Html.DisplayFor(item => t.Description)</div>
+                    <div class="edit-holder" style="display: none">@Html.EditorFor(item => t.Description)</div>
+                </td>
+                <td>
+                    <div class="value-holder">@Html.DisplayFor(item => t.Data)</div>
+                    <div class="edit-holder" style="display: none">@Html.EditorFor(item => t.Data)</div>
+                </td>
+                @if (t.IsComplete)
+                {
+                    <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
+                }
+                else
+                {
+                    <td><input type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
+                }
+                <td>
+                    <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a onclick="SaveTask()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+                </td>
+                <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-remove" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<table class="table matrix-table table-bordered table-condensed col-md-6 col-sm-6 col-xs-6">
+    <thead>
+        <tr>
+            <th>
+                Description @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "tablebody" },
+                        new { @class = "glyphicon glyphicon-chevron-down" })
+            </th>
+            <th>Data @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+            <th>
+                <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
+                @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })
+            </th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody id="tablebody">
+        @foreach (var t in Model)
+        {
+            if (!t.Priority.Contains("C")) { continue; }
+            <tr>
+                <td>
+                    <div class="value-holder">@Html.DisplayFor(item => t.Description)</div>
+                    <div class="edit-holder" style="display: none">@Html.EditorFor(item => t.Description)</div>
+                </td>
+                <td>
+                    <div class="value-holder">@Html.DisplayFor(item => t.Data)</div>
+                    <div class="edit-holder" style="display: none">@Html.EditorFor(item => t.Data)</div>
+                </td>
+                @if (t.IsComplete)
+                {
+                    <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
+                }
+                else
+                {
+                    <td><input type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
+                }
+                <td>
+                    <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a onclick="SaveTask()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+                </td>
+                <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-remove" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<table class="table matrix-table table-condensed table-bordered col-md-6 col-sm-6 col-xs-6">
+    <thead>
+        <tr>
+            <th>
+                Description @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "tablebody" },
+                        new { @class = "glyphicon glyphicon-chevron-down" })
+            </th>
+            <th>Data @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+            <th>
+                <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
+                @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-chevron-down" })
+            </th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody id="tablebody">
+        @foreach (var t in Model)
+        {
+            if (!t.Priority.Contains("D")) { continue; }
+            <tr>
+                <td>
+                    <div class="value-holder">@Html.DisplayFor(item => t.Description)</div>
+                    <div class="edit-holder" style="display: none">@Html.EditorFor(item => t.Description)</div>
+                </td>
+                <td>
+                    <div class="value-holder">@Html.DisplayFor(item => t.Data)</div>
+                    <div class="edit-holder" style="display: none">@Html.EditorFor(item => t.Data)</div>
+                </td>
+                @if (t.IsComplete)
+                {
+                    <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
+                }
+                else
+                {
+                    <td><input type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
+                }
+                <td>
+                    <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a onclick="SaveTask()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+                </td>
+                <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "tablebody" }, new { @class = "glyphicon glyphicon-remove" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
