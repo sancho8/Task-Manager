@@ -22,27 +22,27 @@
             <tr>
                 <td>
                     <div class="value-holder">@Html.DisplayFor(item => t.Description)</div>
-                    <div class="edit-holder">@Html.EditorFor(item => t.Description)</div>
+                    <div class="edit-holder description-edit">@Html.EditorFor(item => t.Description)</div>
                 </td>
                 <td>
                     <div class="value-holder">@Html.DisplayFor(item => t.Data)</div>
-                    <div class="edit-holder">@Html.EditorFor(item => t.Data)</div>
+                    <div class="edit-holder data-edit">@Html.EditorFor(item => t.Data)</div>
                 </td>
                 <td>
                     <div class="value-holder">@Html.DisplayFor(item => t.Priority)</div>
-                    <div class="edit-holder">@Html.EditorFor(item => t.Priority)</div>
+                    <div class="edit-holder priority-edit">@Html.EditorFor(item => t.Priority)</div>
                 </td>
                 <td>
                     <div class="value-holder">@Html.DisplayFor(item => t.Number)</div>
-                    <div class="edit-holder">@Html.EditorFor(item => t.Number)</div>
+                    <div class="edit-holder number-edit">@Html.EditorFor(item => t.Number)</div>
                 </td>
                 @if (t.IsComplete)
                 {
-                    <td><input type="checkbox" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
+                    <td><input type="checkbox" class="check" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
                 }
                 else
                 {
-                    <td><input type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
+                    <td><input class="check" type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
                 }
                 <td>
                     <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>

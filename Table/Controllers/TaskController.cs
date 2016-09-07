@@ -126,7 +126,30 @@ namespace Table.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateTask(string id, string value)
+        public ActionResult UpdateTask(string id, string description, string data, string priority, string number, string isComplete)
+        {
+            using (var conn = new SqlConnection(connection))
+            {
+                string command = @"UPDATE Tasks SET " + 
+                   "Description=' " + description + "'," +
+                   "Data = ' " + data + "'," +
+                   "Priority = ' " + priority + "'," +
+                   "Number = ' " + number + "'," +
+                   "IsComplete = ' " + isComplete + "'" +
+                   " WHERE Id = '" + id + "'";
+
+                using (var cmd = new SqlCommand(command, conn))
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            return GetTaskInPartialView();
+        }
+
+        [HttpPost]
+        public ActionResult ChangeTaskStatus(string id, string value)
         {
             using (var conn = new SqlConnection(connection))
             {
