@@ -83,16 +83,18 @@
             <a href="#" onclick="MatrixMode()"><span class="glyphicon glyphicon-th-large"></span></a>
             <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive" id="SingleTableHolder">
                     @Html.Action("GetTaskInPartialView")
         </div>
-        @using (Ajax.BeginForm("AddTask", "Task", new AjaxOptions { UpdateTargetId = "tablebody" }, new { }))
+        @using (Ajax.BeginForm("AddTask", "Task", new AjaxOptions { UpdateTargetId = "SingleTableHolder",
+            OnBegin = "return ValidateAddTaskForm();", OnSuccess ="ClearForm" }, new {@Id="AddTaskForm"}))
         {
-            @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание" })
-            @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату" })
-            @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет" })
-            @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер", @size = "2", @onchange = "NumberChanged()" })
+            @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание", @id="description-input"})
+            @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату", @id = "data-input" })
+            @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет", @id = "priority-input" })
+            @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер", @size = "2", @id = "number-input" })
             <input type="submit" value="Добавить">
+            <div id="Error-message-holder"></div>
         }
     </div>
 </section>

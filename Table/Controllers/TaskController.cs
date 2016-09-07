@@ -204,5 +204,10 @@ namespace Table.Controllers
                 }
             }
         }
+        [HttpPost]
+        public void SetValidationMessage(string msg)
+        {
+            ViewBag.ValidationMessage = msg;
+        }
     }
 }
