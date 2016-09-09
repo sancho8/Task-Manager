@@ -12,11 +12,11 @@ namespace Table.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public string Description { get; set; }
-        public string Data { get; set; }
+        public DateTime Data { get; set; }
         public string Priority { get; set; }
         public int Number { get; set; }
         public bool IsComplete { get; set; }
-        public Task(int id, int userid, string desc, string data, string priority, int number, bool iscomplete)
+        public Task(int id, int userid, string desc, DateTime data, string priority, int number, bool iscomplete)
         {
             this.Id = id;
             this.UserId = userid;

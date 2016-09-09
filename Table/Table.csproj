@@ -186,6 +186,8 @@
     <Content Include="Views\Shared\RegistrationWindow.cshtml" />
     <Content Include="Views\Shared\Home.cshtml" />
     <Content Include="Views\Shared\Contacts.cshtml" />
+    <Content Include="Views\Shared\MatrixMode.cshtml" />
+    <Content Include="Views\Shared\CalendarMode.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

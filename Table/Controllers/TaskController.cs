@@ -114,6 +114,16 @@ namespace Table.Controllers
 
         public ActionResult OrderTasks(string prop)
         {
+            try
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                GetTasksFromDatabase(cookie["Id"]);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
+            }
             switch (prop)
             {
                 case "Description": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Description).ToList(); break;
@@ -194,7 +204,7 @@ namespace Table.Controllers
                 string Priority = row["Priority"].ToString();
                 int Number = Int32.Parse(row["Number"].ToString());
                 bool IsCompleted = Boolean.Parse(row["IsComplete"].ToString());
-                TaskList.Add(new Task(Id, UserId, Description, Data, Priority, Number, IsCompleted));
+                TaskList.Add(new Task(Id, UserId, Description, Convert.ToDateTime(Data), Priority, Number, IsCompleted));
             }
         }
 
@@ -214,6 +224,37 @@ namespace Table.Controllers
             return PartialView("TaskRows", TaskList);
         }
 
+        public ActionResult GetTaskInPartialViewByMode(string partialViewName)
+        {
+            try
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                GetTasksFromDatabase(cookie["Id"]);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
+            }
+            ViewBag.Tasks = TaskList;
+            return PartialView(partialViewName, TaskList);
+        }
+
+        public ActionResult SingleTableMode()
+        {
+            return GetTaskInPartialViewByMode("TaskRows");
+        }
+
+        public ActionResult MatrixMode()
+        {
+            return GetTaskInPartialViewByMode("MatrixMode");
+        }
+
+        public ActionResult CalendarMode()
+        {
+            return GetTaskInPartialViewByMode("CalendarMode");
+        }
+
         private void DbExecuteCommand(string command)
         {
             using (var conn = new SqlConnection(connection))
@@ -226,11 +267,6 @@ namespace Table.Controllers
                     conn.Close();
                 }
             }
-        }
-        [HttpPost]
-        public void SetValidationMessage(string msg)
-        {
-            ViewBag.ValidationMessage = msg;
         }
     }
 }

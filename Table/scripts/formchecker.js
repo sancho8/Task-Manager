@@ -2,19 +2,19 @@
     $('.edit-holder').hide();
 });
 function EditTask() {
-    $('.edit').hide();
-    $('.save').show();
+    $(event.target).parents('tr').find('.edit').hide();
+    $(event.target).parents('tr').find('.save').show();
     $(event.target).parents('tr').find('.value-holder').hide();
     $(event.target).parents('tr').find('.edit-holder').show();
 };
 function SaveTask() {
-    $('.save').hide();
-    $('.edit').show();
+    $(event.target).parents('tr').find('.save').hide();
+    $(event.target).parents('tr').find('.edit').show();
     $(event.target).parents('tr').find('.value-holder').show();
     $(event.target).parents('tr').find('.edit-holder').hide();
-    var a = $(event.target).parents('tr').find('.description-edit').find('input').val();
+    var a = $.trim($(event.target).parents('tr').find('.description-edit').find('input').val());
     var b = $(event.target).parents('tr').find('.data-edit').find('input').val();
-    var c = $(event.target).parents('tr').find('.priority-edit').find('input').val();
+    var c = $(event.target).parents('tr').find('.priority-edit').val(); //this is 'select' element
     var d = $(event.target).parents('tr').find('.number-edit').find('input').val();
     var e = $(event.target).parents('tr').find(':checkbox').attr('checked');
     if (!e) {
@@ -23,7 +23,6 @@ function SaveTask() {
     else {
         e = "true";
     }
-    alert($(event.target).parents('tr').find(':checkbox').attr('id'));
     $.ajax({
         url: 'Task/UpdateTask',
         type: 'POST',
@@ -37,9 +36,13 @@ function SaveTask() {
             isComplete: e
         },
         success: function () {
-            alert($(event.target).parents('tr').find(':checkbox').attr('id'));
+            //alert($(event.target).parents('tr').find(':checkbox').attr('id'));
         }
     });
+    $(event.target).parents('tr').find('.description-value').text(a);
+    $(event.target).parents('tr').find('.data-value').text(b);
+    $(event.target).parents('tr').find('.priority-value').text(c);
+    $(event.target).parents('tr').find('.number-value').text(d);
 };
 
 function ClearForm() {
@@ -80,13 +83,13 @@ function NumberChanged() {
 function TaskStatusChanged(elem) {
     var value = elem.checked;
     var a = elem.id;
-    alert(value + " " + a);
+    //alert(value + " " + a);
     $.ajax({
         url: 'Task/ChangeTaskStatus',
         type: 'POST',
         data: { id: a, value: value },
         success: function () {
-            alert("Success");
+            //alert("Success");
         }
     });
 };

@@ -79,14 +79,18 @@
             Ваша таблица задач
         </div>
         <div class="row" id="table_navbar">
-            <a href="#" onclick="SingleTableMode()"><span class="glyphicon glyphicon-align-justify"></span></a>
+            @Ajax.ActionLink(" ","SingleTableMode", "Task", new AjaxOptions{ UpdateTargetId= "TaskTableHolder" }, new { @class = "glyphicon glyphicon-th-large" })
+            @Ajax.ActionLink(" ", "MatrixMode", "Task", new AjaxOptions{ UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-th-large" })
+            @Ajax.ActionLink(" ", "CalendarMode", "Task", new AjaxOptions {UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-calendar" })
+
+            <!--<a href="#" onclick="SingleTableMode()"><span class="glyphicon glyphicon-align-justify"></span></a>
             <a href="#" onclick="MatrixMode()"><span class="glyphicon glyphicon-th-large"></span></a>
-            <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>
+            <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>-->
         </div>
-        <div class="table-responsive" id="SingleTableHolder">
+        <div class="table-responsive" id="TaskTableHolder">
                     @Html.Action("GetTaskInPartialView")
         </div>
-        @using (Ajax.BeginForm("AddTask", "Task", new AjaxOptions { UpdateTargetId = "SingleTableHolder",
+        @using (Ajax.BeginForm("AddTask", "Task", new AjaxOptions { UpdateTargetId = "TaskTableHolder",
             OnBegin = "return ValidateAddTaskForm();", OnSuccess ="ClearForm" }, new {@Id="AddTaskForm"}))
         {
             @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание", @id="description-input"})
