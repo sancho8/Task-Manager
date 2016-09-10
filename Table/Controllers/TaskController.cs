@@ -9,11 +9,21 @@ using Table.Models;
 
 namespace Table.Controllers
 {
+
     public class TaskController : Controller
     {
         string connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectToDatabase"].ToString();
         // @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True;";
         public static List<Task> TaskList = new List<Task>();
+
+        enum TaskMode
+        {
+            SingleTableMode,
+            MatrixMode,
+            CalendarMode
+        }
+
+        private TaskMode taskMode = TaskMode.SingleTableMode;
 
         // GET: Task
         public ActionResult Index()
@@ -126,13 +136,19 @@ namespace Table.Controllers
             }
             switch (prop)
             {
-                case "Description": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Description).ToList(); break;
-                case "Data": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Data).ToList(); break;
-                case "Priority": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Priority).ToList(); break;
-                case "Number": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.Number).ToList(); break;
-                case "IsCompleted": TaskList = TaskList.OrderBy(o => o.IsComplete).ThenBy(o => o.IsComplete).ToList(); break;
+                case "Description": TaskList = TaskList.OrderBy(o => o.Description).ToList(); break;
+                case "Data": TaskList = TaskList.OrderBy(o => o.Data).ToList(); break;
+                case "Priority": TaskList = TaskList.OrderBy(o => o.Priority).ToList(); break;
+                case "Number": TaskList = TaskList.OrderBy(o => o.Number).ToList(); break;
+                case "IsCompleted": TaskList = TaskList.OrderBy(o => o.IsComplete).ToList(); break;
             }
-            return PartialView("TaskRows", TaskList);
+            switch (taskMode)
+            {
+                case TaskMode.SingleTableMode: return PartialView("TaskRows", TaskList);
+                case TaskMode.MatrixMode: return PartialView("MatrixMode", TaskList);
+                case TaskMode.CalendarMode: return PartialView("CalendarMode", TaskList);
+                default: return Index();
+            }
         }
 
         [HttpPost]
@@ -220,8 +236,13 @@ namespace Table.Controllers
                 ViewBag.ErrorMessage = ex.Message;
                 return View("Error");
             }
-            ViewBag.Tasks = TaskList;
-            return PartialView("TaskRows", TaskList);
+            switch (taskMode)
+            {
+                case TaskMode.SingleTableMode: return PartialView("TaskRows", TaskList);
+                case TaskMode.MatrixMode: return PartialView("MatrixMode", TaskList);
+                case TaskMode.CalendarMode: return PartialView("CalendarMode", TaskList);
+                default: return Index();
+            }
         }
 
         public ActionResult GetTaskInPartialViewByMode(string partialViewName)
@@ -242,17 +263,20 @@ namespace Table.Controllers
 
         public ActionResult SingleTableMode()
         {
-            return GetTaskInPartialViewByMode("TaskRows");
+            taskMode = TaskMode.SingleTableMode;
+            return GetTaskInPartialView();
         }
 
         public ActionResult MatrixMode()
         {
-            return GetTaskInPartialViewByMode("MatrixMode");
+            taskMode = TaskMode.MatrixMode;
+            return GetTaskInPartialView();
         }
 
         public ActionResult CalendarMode()
         {
-            return GetTaskInPartialViewByMode("CalendarMode");
+            taskMode = TaskMode.CalendarMode;
+            return GetTaskInPartialView();
         }
 
         private void DbExecuteCommand(string command)

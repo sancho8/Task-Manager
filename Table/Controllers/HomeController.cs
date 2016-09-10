@@ -14,6 +14,7 @@ namespace Table.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.Partial = "TaskRows";
                 return RedirectToAction("Index", "Task");
         }
 

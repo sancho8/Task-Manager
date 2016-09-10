@@ -31,11 +31,11 @@
                 <thead>
                     <tr>
                         <th>
-                            Description @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" },
+                            Описание @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" },
                         new { @class = "glyphicon glyphicon-chevron-down" })
                         </th>
-                        <th>Data @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                        <th>Priority @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th>Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                        <th>Приоритет @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
                         <th>№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
                         <th>
                             <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
@@ -95,4 +95,8 @@
     </div>
     <script>
         $(".edit-holder").hide();
+        $("table:eq(0) td").css("background-color", "#F794D8");
+        $("table:eq(1) td").css("background-color", "#94A6F7");
+        $("table:eq(2) td").css("background-color", "#F7E594")
+        $("table:eq(3) td").css("background-color", "#94F7B4")
     </script>

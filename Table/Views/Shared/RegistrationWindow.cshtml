@@ -5,20 +5,25 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
             </div>
-@using (Html.BeginForm("RegisterUser", "Auth", FormMethod.Post))
-{
-            <div class="modal-body">
-                <p>Введите логин:@Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })</p>
-                <p>Введите пароль:@Html.TextBox("password", "", new { @type = "password", @placeholder = "Введите пароль" })</p>
-                <p>Введите пароль:@Html.TextBox("confirmPassword", "", new { @type = "password", @placeholder = "Подтвердите пароль" })</p>
-                <p>Введите почту:@Html.TextBox("email", "", new { @type = "email", @placeholder = "введите пароль" })</p>
-                <p>Получать рассылку задач на почту @Html.CheckBox("needDelivery", new { @checked = "checked" })</p>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Регистрация</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            </div>
-}
+            @using (Html.BeginForm("RegisterUser", "Auth", FormMethod.Post))
+            {
+                <div class="modal-body row" style="text-align:center">
+                    <div>Введите логин:&nbsp;
+                    @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })</div>
+                    <div>Введите пароль:
+                    @Html.TextBox("password", "", new { @type = "password", @placeholder = "Введите пароль" })</div>
+                    <div>Введите пароль:
+                    @Html.TextBox("confirmPassword", "", new { @type = "password", @placeholder = "Подтвердите пароль" })</div>
+                    <div>Введите почту:&nbsp;
+                    @Html.TextBox("email", "", new { @type = "email", @placeholder = "введите пароль" })</div>
+                    <div>Получать рассылку задач на почту
+                    @Html.CheckBox("needDelivery", new { @checked = "checked" })</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Регистрация</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                </div>
+            }
         </div>
     </div>
 </div>

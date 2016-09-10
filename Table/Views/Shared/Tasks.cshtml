@@ -79,7 +79,7 @@
             Ваша таблица задач
         </div>
         <div class="row" id="table_navbar">
-            @Ajax.ActionLink(" ","SingleTableMode", "Task", new AjaxOptions{ UpdateTargetId= "TaskTableHolder" }, new { @class = "glyphicon glyphicon-th-large" })
+            @Ajax.ActionLink(" ","SingleTableMode", "Task", new AjaxOptions{ UpdateTargetId= "TaskTableHolder" }, new { @class = "glyphicon glyphicon-align-justify" })
             @Ajax.ActionLink(" ", "MatrixMode", "Task", new AjaxOptions{ UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-th-large" })
             @Ajax.ActionLink(" ", "CalendarMode", "Task", new AjaxOptions {UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-calendar" })
 
@@ -88,7 +88,7 @@
             <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>-->
         </div>
         <div class="table-responsive" id="TaskTableHolder">
-                    @Html.Action("GetTaskInPartialView")
+                   @Html.Action("GetTaskInPartialView", "Task")
         </div>
         @using (Ajax.BeginForm("AddTask", "Task", new AjaxOptions { UpdateTargetId = "TaskTableHolder",
             OnBegin = "return ValidateAddTaskForm();", OnSuccess ="ClearForm" }, new {@Id="AddTaskForm"}))

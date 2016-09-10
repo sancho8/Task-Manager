@@ -37,6 +37,7 @@ namespace Table.Controllers
                     catch (Exception ex)
                     {
                         Id = "";
+                        return PartialView("Error");
                     }
                 }
             }

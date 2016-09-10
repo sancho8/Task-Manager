@@ -45,9 +45,9 @@ function SaveTask() {
     $(event.target).parents('tr').find('.number-value').text(d);
 };
 
-function ClearForm() {
+/*function ClearForm() {
     document.getElementById("AddTaskForm").reset();
-}
+}*/
 
 function ValidateAddTaskForm() {
     $('#Error-message-holder').css('color', "#FF0000");
