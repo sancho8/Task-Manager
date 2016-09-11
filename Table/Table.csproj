@@ -87,6 +87,8 @@
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\..\..\..\..\Desktop\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -139,10 +141,27 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\AppContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AppContext.edmx</DependentUpon>
+      <LastGenOutput>AppContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AppContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AppContext.edmx</DependentUpon>
+      <LastGenOutput>AppContext.cs</LastGenOutput>
+    </Content>
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\AppContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AppContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\AppContext.edmx.diagram">
+      <DependentUpon>AppContext.edmx</DependentUpon>
+    </Content>
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\formchecker.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
@@ -161,8 +180,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Task.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\AppContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Task.cs">
+      <DependentUpon>AppContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>AppContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +237,9 @@
     <Folder Include="Views\Auth\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Task\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

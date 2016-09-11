@@ -73,7 +73,7 @@
                             <div class="value-holder number-value">@Html.DisplayFor(item => t.Number)</div>
                             <div class="edit-holder number-edit">@Html.EditorFor(item => t.Number)</div>
                         </td>
-                        @if (t.IsComplete)
+                        @if (t.IsComplete == true)
                         {
                             <td><input type="checkbox" class="check" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
                         }
