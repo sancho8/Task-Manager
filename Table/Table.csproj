@@ -226,6 +226,7 @@
     <Content Include="Views\Shared\Contacts.cshtml" />
     <Content Include="Views\Shared\MatrixMode.cshtml" />
     <Content Include="Views\Shared\CalendarMode.cshtml" />
+    <Content Include="Views\Shared\ExitWindow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -37,6 +37,7 @@ namespace Table.Controllers
                     catch (Exception ex)
                     {
                         Id = "";
+                        ViewBag.ErrorMessage = ex.Message;
                         return PartialView("Error");
                     }
                 }
@@ -58,7 +59,7 @@ namespace Table.Controllers
             authCookie["Id"] = "";
             Response.Cookies.Add(authCookie);
             ViewBag.IsLoggedIn = false;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("MoveToPage","Home",new { page="About" });
         }
 
         public ActionResult RegisterUser(string login, string email, string password, string confirmPassword, string needDelivery)

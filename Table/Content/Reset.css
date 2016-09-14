@@ -15,8 +15,7 @@ fieldset, form, label, legend {
 	background: transparent;
 }
  
-table, caption, tbody, tfoot, thead, tr, th, td
-
+table, caption, tbody, tfoot, thead, tr, th, td,
 body {
 	line-height: 1;
 }

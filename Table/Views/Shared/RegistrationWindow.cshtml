@@ -5,22 +5,23 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
             </div>
-            @using (Html.BeginForm("RegisterUser", "Auth", FormMethod.Post))
+            @using (Html.BeginForm("RegisterUser", "Auth", FormMethod.Post, new { }))
             {
                 <div class="modal-body row" style="text-align:center">
                     <div>Введите логин:&nbsp;
-                    @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })</div>
+                    @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин", @id="RegLogin" })</div>
                     <div>Введите пароль:
-                    @Html.TextBox("password", "", new { @type = "password", @placeholder = "Введите пароль" })</div>
+                    @Html.TextBox("password", "", new { @type = "password", @placeholder = "Введите пароль", @id="RegPassword"})</div>
                     <div>Введите пароль:
-                    @Html.TextBox("confirmPassword", "", new { @type = "password", @placeholder = "Подтвердите пароль" })</div>
+                    @Html.TextBox("confirmPassword", "", new { @type = "password", @placeholder = "Подтвердите пароль", @id="RegConfirmPassword"})</div>
                     <div>Введите почту:&nbsp;
-                    @Html.TextBox("email", "", new { @type = "email", @placeholder = "введите пароль" })</div>
+                    @Html.TextBox("email", "", new { @type = "email", @placeholder = "введите email", @id="RegEmail" })</div>
                     <div>Получать рассылку задач на почту
                     @Html.CheckBox("needDelivery", new { @checked = "checked" })</div>
+                    <div id="RegError"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Регистрация</button>
+                    <button type="submit" class="btn btn-primary" onclick="return ValidateRegistrationForm()">Регистрация</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                 </div>
             }

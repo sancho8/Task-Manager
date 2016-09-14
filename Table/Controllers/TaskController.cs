@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Table.Models;
+using System.Data.Entity;
 
 namespace Table.Controllers
 {
@@ -29,11 +30,32 @@ namespace Table.Controllers
         public ActionResult Index()
         {
             GetTaskInPartialView();
+            try
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                ViewBag.UserLogin = cookie["Login"];
+            }
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
+            }
             return View("Tasks");
         }
 
         public ActionResult DeleteTask(string id)
         {
+            /*TaskContext context = new TaskContext();
+            int ID = Int32.Parse(id);
+            var itemToRemove = (from s1 in context.Tasks
+                                where s1.Id == ID
+                                select s1).First(); //returns a single item.
+
+            if (itemToRemove != null)
+            {
+                context.Tasks.Remove(itemToRemove);
+                context.SaveChanges();
+            }*/
             using (var conn = new SqlConnection(connection))
             {
                 using (var cmd = new SqlCommand("DELETE FROM Tasks WHERE Id='" + id + "'", conn))
@@ -63,7 +85,6 @@ namespace Table.Controllers
                 ViewBag.ErrorMessage = ex.Message;
                 return View("Error");
             }
-            ViewBag.Tasks = TaskList;
             return GetTaskInPartialView();
         }
 
@@ -72,19 +93,10 @@ namespace Table.Controllers
         {
             using (SqlConnection con = new SqlConnection(connection))
             {
-                string command =
-                    "INSERT INTO Tasks (Id, UserId, Description, Data, Priority, Number, IsComplete) VALUES (@Id, @UserId, @Description, @Data, @Priority, @Number, @IsComplete)";
+                //string command =
+                //  "INSERT INTO Tasks (Id, UserId, Description, Data, Priority, Number, IsComplete) VALUES (@Id, @UserId, @Description, @Data, @Priority, @Number, @IsComplete)";
 
                 //getting number of new id for added tak
-                int newId;
-                using (SqlConnection thisConnection = new SqlConnection(connection))
-                {
-                    using (SqlCommand cmdCount = new SqlCommand("SELECT TOP 1 Id FROM Tasks ORDER BY Id DESC", thisConnection))
-                    {
-                        thisConnection.Open();
-                        newId = (int)(cmdCount.ExecuteScalar()) + 1;
-                    }
-                }
                 int Id = 0;
                 try
                 {
@@ -96,7 +108,20 @@ namespace Table.Controllers
                     ViewBag.ErrorMessage = ex.Message;
                     return View("Error");
                 }
-                SqlCommand cmd = new SqlCommand(command);
+                int newId;
+                using (SqlConnection thisConnection = new SqlConnection(connection))
+                {
+                    using (SqlCommand cmdCount = new SqlCommand("SELECT TOP 1 Id FROM Tasks ORDER BY Id DESC", thisConnection))
+                    {
+                        thisConnection.Open();
+                        newId = (int)(cmdCount.ExecuteScalar()) + 1;
+                        TaskContext db = new TaskContext();
+                        db.Tasks.Add(new Task(newId, Id, description, DateTime.Parse(data), priority.ToString(), number, false));
+                        db.SaveChanges();
+                    }
+                }
+                return GetTaskInPartialView();
+                /*SqlCommand cmd = new SqlCommand(command);
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = con;
                 cmd.Parameters.AddWithValue("@Id", newId);
@@ -118,7 +143,7 @@ namespace Table.Controllers
                     ViewBag.ErrorMessage = ex.Message;
                     return View("Error");
                 }
-                return GetTaskInPartialView();
+                return GetTaskInPartialView();*/
             }
         }
 
@@ -277,6 +302,20 @@ namespace Table.Controllers
         {
             taskMode = TaskMode.CalendarMode;
             return GetTaskInPartialView();
+        }
+
+        [HttpPost]
+        public bool IsValueExist(string param, string value)
+        {
+            if (param == "Login")
+            {
+                TaskContext context = new TaskContext();
+                if (context.Users.Any(t => t.Login == value))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void DbExecuteCommand(string command)

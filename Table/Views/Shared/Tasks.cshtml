@@ -14,10 +14,20 @@
                     <li>@Html.ActionLink("О нас", "MoveToPage", "Home", new { page = "About" }, new { })</li>
                     <li>@Html.ActionLink("Контакты", "MoveToPage", "Home", new { page = "Contacts" }, new { })</li>
                 </ul>
+                @if (ViewBag.UserLogin == "")
+                {
                 <ul class="nav navbar-nav navbar-right">
                     <li data-toggle="modal" data-target="#myModal"><a href="#"><span class="glyphicon glyphicon-user"></span>Регистрация</a></li>
                     <li data-toggle="modal" data-target="#login_modal"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Войти</a></li>
                 </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>@ViewBag.UserLogin</a></li>
+                        <li data-toggle="modal" data-target="#exit_modal"><a href="#"><span class="glyphicon glyphicon-log-out"></span>Выйти</a></li>
+                    </ul>
+                }
             </div>
         </nav>
         <div class="row">
@@ -27,6 +37,7 @@
         <div class="col-md-6 col-sm-4 col-xs-12 col-lg-6">
             <h1>Менеджер задач</h1>
             <h3>Простой и удобный инструмент управления временем</h3>
+            <h4>@ViewBag.UserLogin</h4>
         </div>
         <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3">
             
@@ -82,10 +93,6 @@
             @Ajax.ActionLink(" ","SingleTableMode", "Task", new AjaxOptions{ UpdateTargetId= "TaskTableHolder" }, new { @class = "glyphicon glyphicon-align-justify" })
             @Ajax.ActionLink(" ", "MatrixMode", "Task", new AjaxOptions{ UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-th-large" })
             @Ajax.ActionLink(" ", "CalendarMode", "Task", new AjaxOptions {UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-calendar" })
-
-            <!--<a href="#" onclick="SingleTableMode()"><span class="glyphicon glyphicon-align-justify"></span></a>
-            <a href="#" onclick="MatrixMode()"><span class="glyphicon glyphicon-th-large"></span></a>
-            <a href="#" onclick="CalendarMode()"><span class="glyphicon glyphicon-calendar"></span></a>-->
         </div>
         <div class="table-responsive" id="TaskTableHolder">
                    @Html.Action("GetTaskInPartialView", "Task")

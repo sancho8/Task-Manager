@@ -14,8 +14,24 @@ namespace Table.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            ViewBag.Partial = "TaskRows";
+            HttpCookie cookie = new HttpCookie("");
+            try
+            {
+                cookie = Request.Cookies["Authorization"];
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
+            }
+            if (cookie.Name != "")
+            {
                 return RedirectToAction("Index", "Task");
+            }
+            else
+            {
+                return MoveToPage("About");
+            }
         }
 
         public ActionResult MoveToPage(string page)

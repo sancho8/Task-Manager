@@ -45,9 +45,44 @@ function SaveTask() {
     $(event.target).parents('tr').find('.number-value').text(d);
 };
 
-/*function ClearForm() {
+function ClearForm() {
     document.getElementById("AddTaskForm").reset();
-}*/
+}
+
+$('#myModal').focusout(function () {
+    $('#RegError').text("");
+});
+
+function ValidateRegistrationForm() {
+    $('#RegError').text("");
+    $('#RegError').css('color', "#FF0000");
+    var a = $('#RegLogin').val();
+    if (a.length < 5) {
+        $('#RegError').text("Логин должен быть длиннее 5 символов");
+        return false;
+    }
+    var b = $('#RegPassword').val();
+    if (!(b.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/))) {
+        $('#RegError').text("Введите корректный пароль");
+        return false;
+    }
+    var c = $('#RegConfirmPassword').val();
+    if (!(c == b)) {
+        $('#RegError').text("Пароли не совпадают");
+        return false;
+    }
+    var d = $('#RegEmail').val();
+    var mailValidateRegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!d.match(mailValidateRegExp)) {
+        $('#RegError').text("Введите корректный почтовый адресс");
+        return false;
+    }
+    return true;
+};
+
+function ValidateLoginForm() {
+
+};
 
 function ValidateAddTaskForm() {
     $('#Error-message-holder').css('color', "#FF0000");
