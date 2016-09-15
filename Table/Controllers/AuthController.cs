@@ -44,7 +44,6 @@ namespace Table.Controllers
             }
             HttpCookie authCookie = new HttpCookie("Authorization");
             authCookie["Login"] = login;
-            authCookie["Password"] = password;
             authCookie["Id"] = Id;
             Response.Cookies.Add(authCookie);
             ViewBag.UserLogin = login;
@@ -55,7 +54,6 @@ namespace Table.Controllers
         {
             HttpCookie authCookie = new HttpCookie("Authorization");
             authCookie["Login"] = "";
-            authCookie["Password"] = "";
             authCookie["Id"] = "";
             Response.Cookies.Add(authCookie);
             return RedirectToAction("MoveToPage","Home",new { page="About" });

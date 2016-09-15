@@ -1,233 +1,288 @@
-﻿*{
+﻿* {
     //border: 1px solid red;
 }
-table{
+
+table {
     font-size: 18px;
 }
-input{
+
+input {
     padding: 5px;
     margin: 5px;
     font-size: 14px;
 }
-th{
+
+th {
     padding: 5px;
 }
-#table_navbar .glyphicon{
+
+#table_navbar .glyphicon {
     color: white;
 }
-#table_navbar .glyphicon:hover{
-    color: #313030;
-}
-td{
+
+    #table_navbar .glyphicon:hover {
+        color: #313030;
+    }
+
+td {
     padding: 5px;
 }
-form{
+
+form {
     margin: 5px;
 }
-input .edit{
+
+input .edit {
     width: 100%;
     height: 100%;
 }
-#auth_box{
-	font-size: 18px;
-	color: white;
+
+#auth_box {
+    font-size: 18px;
+    color: white;
 }
-body{
+
+body {
     margin-left: 10%;
-	width:80%;
+    width: 80%;
     height: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+body.modal-open {
+    overflow: auto;
+}
+
 header {
-	border: 3px solid black;
-	border-radius: 10px;
-	background-image: url(images/bg1.jpg);
-	background-repeat: repeat;
-	color: black;
-	font-size:18px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-image: url(images/bg1.jpg);
+    background-repeat: repeat;
+    color: black;
+    font-size: 18px;
 }
+
 footer {
-	border: 3px solid black;
-	border-radius: 7px;
-	margin-top: 10px;
-	padding: 10px;
+    border: 3px solid black;
+    border-radius: 7px;
+    margin-top: 10px;
+    padding: 10px;
 }
+
 section {
-	border-radius: 10px;
-	border: 3px solid black;
-	margin-top: 10px;
-	background-image: url(images/container_bg.png);
-	background-repeat: repeat-x;
+    border-radius: 10px;
+    border: 3px solid black;
+    margin-top: 10px;
+    background-image: url(images/container_bg.png);
+    background-repeat: repeat-x;
 }
+
 nav {
-	font-size:16px;
+    font-size: 16px;
 }
-h1{
-	color: white;
-	font-family: Verdana;
+
+h1 {
+    color: white;
+    font-family: Verdana;
 }
-h3{
-	color: white;
-	font-family: Verdana;
+
+h3 {
+    color: white;
+    font-family: Verdana;
 }
-#container{
-	margin-left: auto;
+
+#container {
+    margin-left: auto;
     margin-right: auto;
     width: 90%;
-	background-image: url(images/container_bg.png);
-	background-repeat: repeat-y;
+    background-image: url(images/container_bg.png);
+    background-repeat: repeat-y;
 }
+
 #navbar {
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	text-align:center;
+    text-align: center;
 }
-#logo{
-	height:80px;
-	width:180px;
-	border: 2px solid black;
-	margin-bottom: 10px;
+
+#logo {
+    height: 80px;
+    width: 180px;
+    border: 2px solid black;
+    margin-bottom: 10px;
 }
-.footer{
-	position:absolute;
-	bottom:0;
+
+.footer {
+    position: absolute;
+    bottom: 0;
 }
-li span{
-	margin: 10px;
-	margin-top: 0px;
+
+li span {
+    margin: 10px;
+    margin-top: 0px;
 }
-li{
-	font-size: 24px;
+
+li {
+    font-size: 24px;
 }
 /*-------------------Carousel------------------*/
 .carousel-inner > .item > img {
     margin: auto;
 }
+
 .carousel-indicators {
-  bottom:-50px;
+    bottom: -50px;
 }
+
 .carousel-inner {
-   margin-bottom:50px;
+    margin-bottom: 50px;
 }
+
 .carousel .item {
-  background-color: #048fc8;
+    background-color: #048fc8;
 }
-.carousel-indicators li{
-	height: 20px;
-	width:20px;
-	background-color: #048fc8;
+
+.carousel-indicators li {
+    height: 20px;
+    width: 20px;
+    background-color: #048fc8;
 }
-.carousel-indicators li.active{
-	height: 20px;
-	width:20px;
-	background-color: black;
-}
+
+    .carousel-indicators li.active {
+        height: 20px;
+        width: 20px;
+        background-color: black;
+    }
 /*---------------------------------------------*/
-.image{
-	margin-left: auto;
-	margin-right: auto;
+.image {
+    margin-left: auto;
+    margin-right: auto;
 }
-#contact_form{
-	margin-left: auto;
-	margin-right: auto;
-	font-size: 24px;
+
+#contact_form {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 24px;
 }
-#contact_form_header{
-	margin: 10px;
-	text-align: center;
-	font-size: 42px;
-	font-family: Verdana;
+
+#contact_form_header {
+    margin: 10px;
+    text-align: center;
+    font-size: 42px;
+    font-family: Verdana;
 }
-#register_button{
-	background-color: #057cbe;
-	color: white;
+
+#register_button {
+    background-color: #057cbe;
+    color: white;
 }
 /*-----------------Navigation--------------------*/
-.navbar{
-	background-color: #044a7b;
+.navbar {
+    background-color: #044a7b;
 }
-.nav.navbar-nav li{
-	border-radius: 10px;
+
+.nav.navbar-nav li {
+    border-radius: 10px;
 }
-.nav.navbar-nav li a{
-	color: white;
-	border-radius: 10px;
+
+    .nav.navbar-nav li a {
+        color: white;
+        border-radius: 10px;
+    }
+
+        .nav.navbar-nav li a:hover {
+            color: #057cbe;
+        }
+
+.navbar-header p {
+    color: white;
 }
-.nav.navbar-nav li a:hover{
-	color: #057cbe;
+
+.nav.navbar-nav.navbar-right span {
+    color: white;
 }
-.navbar-header p{
-	color: white;
-}
-.nav.navbar-nav.navbar-right span{
-	color:white;
-}
-.nav.navbar-nav.navbar-right span:hover{
-	color: #057cbe;
-}
-.navbar-inverse{
-	background-image: url(images/bg.jpg);
-	background-repeat: repeat;
+
+    .nav.navbar-nav.navbar-right span:hover {
+        color: #057cbe;
+    }
+
+.navbar-inverse {
+    background-image: url(images/bg.jpg);
+    background-repeat: repeat;
 }
 /*-----------------------------------------------*/
-.copyright{
-	margin-top: 5px;
-	text-align:center;
-	color: white;
-	font-size: 24px;
+.copyright {
+    margin-top: 5px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
 }
-.contact-info{
-	margin-top: 5px;
-	text-align:center;
-	color: white;
-	font-size: 24px;
+
+.contact-info {
+    margin-top: 5px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
 }
-#table_header{
-	font-size: 32px;
-	font-family: Verdana;
-	color:white;
-	text-align: center;
-	margin-top: 10px;
+
+#table_header {
+    font-size: 32px;
+    font-family: Verdana;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
 }
-#table_holder{
-	font-size: 16px;
+
+#table_holder {
+    font-size: 16px;
 }
-.table-stripped{
-	background-color:white;
+
+.table-stripped {
+    background-color: white;
 }
-.glyphicon{
-	color: #057cbe;
+
+.glyphicon {
+    color: #057cbe;
 }
-.glyphicon:hover{
-		color: black;
+
+    .glyphicon:hover {
+        color: black;
+    }
+
+.modal-header {
+    background-color: #048ecf;
+    color: black;
 }
-.modal-header{
-	background-color:#048ecf;
-	color: black;
-}
-.modal-dialog{
+
+.modal-dialog {
     max-width: 600px;
 }
-.modal-body{
+
+.modal-body {
     text-align: center;
 }
-#scrollable-div{
+
+#scrollable-div {
     height: 800px;
 }
-#myModal{
-	border: 1px solid black;
-	border-radius: 20px;
+
+#myModal {
+    border: 1px solid black;
+    border-radius: 20px;
 }
-#table_navbar{
-	text-align: right;
-	font-size: 22px;
+
+#table_navbar {
+    text-align: right;
+    font-size: 22px;
 }
-#myCarousel{
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
+
+#myCarousel {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
-#RegError{
+
+#RegError {
     margin-top: 10px;
 }

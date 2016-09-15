@@ -34,7 +34,7 @@
             <th>№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
             <th>
                 <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
-                @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
+                @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsComplete" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
             </th>
             <th colspan="2"></th>
         </tr>

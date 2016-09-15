@@ -21,11 +21,6 @@ namespace Table.Controllers
             }
             catch (Exception ex)
             {
-                cookie = new HttpCookie("Authorization");
-                cookie["Login"] = "";
-                cookie["Password"] = "";
-                cookie["Id"] = "";
-                Response.Cookies.Add(cookie);
                 ViewBag.ErrorMessage = ex.Message;
                 return View("Error");
             }
@@ -45,6 +40,8 @@ namespace Table.Controllers
             {
                 return RedirectToAction("Index", "Task");
             }
+            HttpCookie cookie = Request.Cookies["Authorization"];
+            ViewBag.UserLogin = cookie["Login"];
             return View(page);
         }
 

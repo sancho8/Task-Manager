@@ -34,5 +34,7 @@ namespace Table.Models
             this.Number = number;
             this.IsComplete = iscomplete;
         }
+        [Obsolete("Only needed for serialization and materialization", true)]
+        public Task() { }
     }
 }
