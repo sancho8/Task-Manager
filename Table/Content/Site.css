@@ -20,9 +20,13 @@ th {
     color: white;
 }
 
-    #table_navbar .glyphicon:hover {
-        color: #313030;
-    }
+#table_navbar .glyphicon:hover {
+    color: #313030;
+}
+
+#table_navbar{
+    margin-bottom: 5px;
+}
 
 td {
     padding: 5px;
@@ -149,11 +153,11 @@ li {
     background-color: #048fc8;
 }
 
-    .carousel-indicators li.active {
-        height: 20px;
-        width: 20px;
-        background-color: black;
-    }
+.carousel-indicators li.active {
+    height: 20px;
+    width: 20px;
+    background-color: black;
+}
 /*---------------------------------------------*/
 .image {
     margin-left: auto;
@@ -186,14 +190,14 @@ li {
     border-radius: 10px;
 }
 
-    .nav.navbar-nav li a {
-        color: white;
-        border-radius: 10px;
-    }
+.nav.navbar-nav li a {
+    color: white;
+    border-radius: 10px;
+}
 
-        .nav.navbar-nav li a:hover {
-            color: #057cbe;
-        }
+.nav.navbar-nav li a:hover {
+    color: #057cbe;
+}
 
 .navbar-header p {
     color: white;
@@ -203,9 +207,9 @@ li {
     color: white;
 }
 
-    .nav.navbar-nav.navbar-right span:hover {
-        color: #057cbe;
-    }
+.nav.navbar-nav.navbar-right span:hover {
+    color: #057cbe;
+}
 
 .navbar-inverse {
     background-image: url(images/bg.jpg);
@@ -246,9 +250,9 @@ li {
     color: #057cbe;
 }
 
-    .glyphicon:hover {
-        color: black;
-    }
+.glyphicon:hover {
+    color: black;
+}
 
 .modal-header {
     background-color: #048ecf;

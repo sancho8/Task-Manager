@@ -24,6 +24,13 @@ namespace Table.Controllers
                 ViewBag.ErrorMessage = ex.Message;
                 return View("Error");
             }
+            if (cookie == null)
+            {
+                cookie = new HttpCookie("Authorization");
+                cookie["Login"] = "";
+                Response.Cookies.Add(cookie);
+                return MoveToPage("About");
+            }
             if (cookie["Login"] != "")
             {
                 return RedirectToAction("Index", "Task");

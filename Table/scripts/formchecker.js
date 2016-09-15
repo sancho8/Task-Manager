@@ -6,7 +6,16 @@ function EditTask() {
     $(event.target).parents('tr').find('.save').show();
     $(event.target).parents('tr').find('.value-holder').hide();
     $(event.target).parents('tr').find('.edit-holder').show();
+    onEditing = true;
 };
+var onEditing = false;
+$(document).keypress(function (e) {
+    if ((e.which == 13) && (onEditing==true)) {
+        $('.edit').filter(function () {
+        }
+    )
+    }
+});
 function SaveTask() {
     $(event.target).parents('tr').find('.save').hide();
     $(event.target).parents('tr').find('.edit').show();
@@ -23,6 +32,9 @@ function SaveTask() {
     else {
         e = "true";
     }
+    if (a.length > 50) {
+        return;
+    }
     $.ajax({
         url: 'Task/UpdateTask',
         type: 'POST',
@@ -36,7 +48,7 @@ function SaveTask() {
             isComplete: e
         },
         success: function () {
-            //alert($(event.target).parents('tr').find(':checkbox').attr('id'));
+            onEditing = false;
         }
     });
     $(event.target).parents('tr').find('.description-value').text(a);
@@ -48,6 +60,10 @@ function SaveTask() {
 function ClearForm() {
     document.getElementById("AddTaskForm").reset();
 }
+
+$('#AddTaskForm').focusout((function () {
+    $('#Error-message-holder').text("");
+}));
 
 $('#myModal').focusout(function () {
     $('#RegError').text("");
@@ -87,29 +103,42 @@ function ValidateLoginForm() {
 function ValidateAddTaskForm() {
     $('#Error-message-holder').css('color', "#FF0000");
     var isValid = true;
+    /*if (!$('#data-input').val()) {
+        isValid = false;
+        $('#Error-message-holder').text("Введите дату");
+    }*/
+    if (!$('#number-input').val()) {
+        
+    }
+    else {
+        if ($('#number-input').val() < 1) {
+            isValid = false;
+            $('#Error-message-holder').text("Приоритет не может быть меньше нуля");
+        }
+    }
     if (!$('#description-input').val()) {
         isValid = false;
         $('#Error-message-holder').text("Введите описание задания");
-    }
-    if (!$('#data-input').val()) {
-        isValid = false;
-        $('#Error-message-holder').text("Введите дату");
-    }
-    if (!$('#number-input').val()) {
-        isValid = false;
-        $('#Error-message-holder').text("Введите номер задания");
-    }
-    if ($('#number-input').val() < 1) {
-        isValid = false;
-        $('#Error-message-holder').text("Приоритет не может быть меньше 0!");
     }
     if (isValid) { 
         return true;
         $('#Error-message-holder').text("");
     } else {
         return false;
+    }
 }
-}
+
+$('#number-input').change(function () {
+    if (!$(event.target).val()) {
+        return;
+    }
+    if ($(event.target).val() <= 0) {
+        $(event.target).val(1);
+    }
+    if ($(event.target).val() > 99) {
+        $(event.target).val(99);
+    }
+});
 
 function NumberChanged() {
     alert($(this).val());

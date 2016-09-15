@@ -73,9 +73,14 @@
     List<SelectListItem> priorityList = new List<SelectListItem>();
     priorityList.Add(new SelectListItem()
     {
+        Text = "",
+        Value = "",
+        Selected = true
+    });
+    priorityList.Add(new SelectListItem()
+    {
         Text = "A",
         Value = "A",
-        Selected = true
     });
     priorityList.Add(new SelectListItem()
     {
@@ -117,7 +122,7 @@
             @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание", @id="description-input"})
             @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату", @id = "data-input" })
             @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет", @id = "priority-input" })
-            @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер", @size = "2", @id = "number-input" })
+            @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер", @id = "number-input" })
             <input type="submit" value="Добавить">
             <div id="Error-message-holder"></div>
         }

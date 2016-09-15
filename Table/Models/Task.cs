@@ -24,7 +24,7 @@ namespace Table.Models
     
         public virtual User User { get; set; }
 
-        public Task(int id, int userid, string desc, DateTime data, string priority, int number, bool iscomplete)
+        public Task(int id, int userid, string desc, DateTime? data, string priority, int? number, bool? iscomplete)
         {
             this.Id = id;
             this.UserId = userid;
