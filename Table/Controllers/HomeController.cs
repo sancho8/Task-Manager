@@ -21,10 +21,15 @@ namespace Table.Controllers
             }
             catch (Exception ex)
             {
+                cookie = new HttpCookie("Authorization");
+                cookie["Login"] = "";
+                cookie["Password"] = "";
+                cookie["Id"] = "";
+                Response.Cookies.Add(cookie);
                 ViewBag.ErrorMessage = ex.Message;
                 return View("Error");
             }
-            if (cookie.Name != "")
+            if (cookie["Login"] != "")
             {
                 return RedirectToAction("Index", "Task");
             }
