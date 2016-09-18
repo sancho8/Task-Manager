@@ -116,8 +116,8 @@ namespace Table.Controllers
                 switch (prop)
                 {
                     case "Description": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Description));
-                    case "Data": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Data));
-                    case "Priority": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Priority));
+                    case "Data": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Data).ThenByDescending(o => o.Data.HasValue));
+                    case "Priority": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Priority).ThenBy(o => o.Number));
                     case "Number": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Number));
                     case "IsComplete": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.IsComplete));
                     default: return GetTaskInPartialView();
