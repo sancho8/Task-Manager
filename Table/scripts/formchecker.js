@@ -1,6 +1,48 @@
 ﻿$(document).ready(function () {
     $('.edit-holder').hide();
 });
+$('#RegLogin').focusout(event, function () {
+    //alert("focusout");
+    var a = $('#RegLogin').val(); 
+    if(a)
+    $.ajax ({
+        url: '/Auth/CheckFormInput',
+        type: 'POST',
+        data: {
+            field: "login",
+            value: a
+        },
+        success: function (used) {
+            if (used=="False") {
+                $('#RegLogin').css("border", "1px solid red");
+            }
+            else {
+                $('#RegLogin').css("border", "1px solid grey");
+            }
+        }
+    });
+});
+$('#RegEmail').focusout(event, function () {
+    //alert("focusout");
+    var a = $('#RegEmail').val();
+    if (a)
+        $.ajax({
+            url: '/Auth/CheckFormInput',
+            type: 'POST',
+            data: {
+                field: "email",
+                value: a
+            },
+            success: function (used) {
+                if (used == "False") {
+                    $('#RegEmail').css("border", "1px solid red");
+                }
+                else {
+                    $('#RegEmail').css("border", "1px solid grey");
+                }
+            }
+        });
+});
 function EditTask() {
     $(event.target).parents('tr').find('.edit').hide();
     $(event.target).parents('tr').find('.save').show();
@@ -72,6 +114,14 @@ $('#myModal').focusout(function () {
 function ValidateRegistrationForm() {
     $('#RegError').text("");
     $('#RegError').css('color', "#FF0000");
+    if ($('#RegLogin').css("border") == "1px solid red") {
+        $('#RegError').text("Логин уже используется");
+        return false;
+    }
+    if ($('#RegEmail').css("border") == "1px solid red") {
+        $('#RegEmail').text("Почтовый ящик уже используется");
+        return false;
+    }
     var a = $('#RegLogin').val();
     if (a.length < 5) {
         $('#RegError').text("Логин должен быть длиннее 5 символов");

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Table.Models;
 
 namespace Table.Controllers
 {
@@ -57,6 +58,36 @@ namespace Table.Controllers
             authCookie["Id"] = "";
             Response.Cookies.Add(authCookie);
             return RedirectToAction("MoveToPage","Home",new { page="About" });
+        }
+
+        [HttpPost]
+        public bool CheckFormInput(string field, string value)
+        {
+            using (TaskContext context = new TaskContext())
+            {
+                switch (field)
+                {
+                    case "login":
+                        if (context.Users.Any(o => o.Login == value))
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    case "email":
+                        if (context.Users.Any(o => o.Email == value))
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    default: return true;
+                }
+            }
         }
 
         public ActionResult RegisterUser(string login, string email, string password, string confirmPassword, string needDelivery)
