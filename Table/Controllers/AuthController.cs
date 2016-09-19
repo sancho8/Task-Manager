@@ -134,7 +134,7 @@ namespace Table.Controllers
                     ViewBag.ErrorMessage = ex.Message;
                     return View("Error");
                 }
-                return RedirectToAction("Index", "Task");
+                return LogInUser(login, password);
             }
         }
     }
