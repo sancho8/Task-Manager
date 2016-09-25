@@ -25,6 +25,15 @@ namespace Table.Models
         public string Password { get; set; }
         public string Email { get; set; }
         public Nullable<bool> NeedDelivery { get; set; }
+
+        public User(int id, string login, string password, string email, Nullable<bool> needDelivery)
+        {
+            this.Id = id;
+            this.Login = login;
+            this.Password = password;
+            this.Email = email;
+            this.NeedDelivery = NeedDelivery;
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }

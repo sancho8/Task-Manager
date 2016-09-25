@@ -45,25 +45,6 @@ namespace Table.Controllers
 
         public ActionResult DeleteTask(string id)
         {
-            /*using (var conn = new SqlConnection(connection))
-            {
-                using (var cmd = new SqlCommand("DELETE FROM Tasks WHERE Id='" + id + "'", conn))
-                {
-                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-            }
-            using (var conn = new SqlConnection(connection))
-            {
-                using (var cmd = new SqlCommand("UPDATE Tasks SET Id = Id - 1 WHERE Id > '" + id + "'", conn))
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-            }*/
             using (TaskContext context = new TaskContext())
             {
                 int taskToDeleteId = Int32.Parse(id);
@@ -80,9 +61,6 @@ namespace Table.Controllers
         [HttpPost]
         public ActionResult AddTask(string description, string data, char? priority, int? number)
         {
-                //string command =
-                //  "INSERT INTO Tasks (Id, UserId, Description, Data, Priority, Number, IsComplete) VALUES (@Id, @UserId, @Description, @Data, @Priority, @Number, @IsComplete)";
-
                 //getting number of new id for added tak
                 using (TaskContext context = new TaskContext())
                 {
@@ -128,29 +106,18 @@ namespace Table.Controllers
         [HttpPost]
         public ActionResult UpdateTask(string id, string description, string data, string priority, string number, string isComplete)
         {
-           /* using (var conn = new SqlConnection(connection))
-            {
-                string command = @"UPDATE Tasks SET " + 
-                   "Description=' " + description + "'," +
-                   "Data = ' " + data + "'," +
-                   "Priority = ' " + priority + "'," +
-                   "Number = ' " + number + "'," +
-                   "IsComplete = ' " + isComplete + "'" +
-                   " WHERE Id = '" + id + "'";
-
-                using (var cmd = new SqlCommand(command, conn))
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-            }*/
             using(TaskContext context = new TaskContext())
             {
                 HttpCookie cookie = Request.Cookies["Authorization"];
                 int userId = Int32.Parse(cookie["Id"]);
+                int x;
+                int? num = null;
+                if (Int32.TryParse(number, out x))
+                {
+                    num = x;
+                }
                 var taskToUpdate = context.Tasks.Find(Int32.Parse(id));
-                var updateTask = new Task(Int32.Parse(id), userId, description, ParseData(data), priority, Int32.Parse(number), Boolean.Parse(isComplete));
+                var updateTask = new Task(Int32.Parse(id), userId, description, ParseData(data), priority, num, Boolean.Parse(isComplete));
                 if(taskToUpdate != null)
                 {
                     context.Entry(taskToUpdate).CurrentValues.SetValues(updateTask);
@@ -176,39 +143,6 @@ namespace Table.Controllers
             }
             return GetTaskInPartialView();
         }
-
-        /*private void GetTasksFromDatabase(string UserID)
-        {
-            TaskList.Clear();
-
-            if (UserID == "") { return; }
-
-            DataTable table = new DataTable();
-
-            using (var conn = new SqlConnection(connection))
-            {
-                string command = "SELECT * FROM Tasks WHERE UserId = " + UserID;
-
-                using (var cmd = new SqlCommand(command, conn))
-                {
-                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
-                    conn.Open();
-                    adapt.Fill(table);
-                    conn.Close();
-                }
-            }
-            foreach (DataRow row in table.Rows)
-            {
-                int Id = Int32.Parse(row["Id"].ToString());
-                int UserId = Int32.Parse(row["UserId"].ToString());
-                string Description = row["Description"].ToString();
-                string Data = row["Data"].ToString();
-                string Priority = row["Priority"].ToString();
-                int Number = Int32.Parse(row["Number"].ToString());
-                bool IsCompleted = Boolean.Parse(row["IsComplete"].ToString());
-                TaskList.Add(new Task(Id, UserId, Description, Convert.ToDateTime(Data), Priority, Number, IsCompleted));
-            }
-        }*/
 
         public ActionResult GetTaskInPartialView()
         {
@@ -247,22 +181,6 @@ namespace Table.Controllers
                 }
             }
         }
-
-        /* public ActionResult GetTaskInPartialViewByMode(string partialViewName)
-         {
-             try
-             {
-                 HttpCookie cookie = Request.Cookies["Authorization"];
-                 //GetTasksFromDatabase(cookie["Id"]);
-             }
-             catch (Exception ex)
-             {
-                 ViewBag.ErrorMessage = ex.Message;
-                 return View("Error");
-             }
-             ViewBag.Tasks = TaskList;
-             return PartialView(partialViewName, TaskList);
-         }*/
 
         public ActionResult SingleTableMode()
         {

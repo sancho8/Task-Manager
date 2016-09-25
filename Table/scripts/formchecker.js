@@ -1,26 +1,37 @@
 ﻿$(document).ready(function () {
     $('.edit-holder').hide();
 });
+
+$(".edit-holder").keypress(function (e) {
+    if (e.keyCode == 13) {
+        $(event.target).parents("tr").find(".save").click();
+    }
+});
+
+function checkSize() {
+    var a = 0;
+};
+
 $('#RegLogin').focusout(event, function () {
     //alert("focusout");
-    var a = $('#RegLogin').val(); 
-    if(a)
-    $.ajax ({
-        url: '/Auth/CheckFormInput',
-        type: 'POST',
-        data: {
-            field: "login",
-            value: a
-        },
-        success: function (used) {
-            if (used=="False") {
-                $('#RegLogin').css("border", "1px solid red");
+    var a = $('#RegLogin').val();
+    if (a)
+        $.ajax({
+            url: '/Auth/CheckFormInput',
+            type: 'POST',
+            data: {
+                field: "login",
+                value: a
+            },
+            success: function (used) {
+                if (used == "False") {
+                    $('#RegLogin').css("border", "1px solid red");
+                }
+                else {
+                    $('#RegLogin').css("border", "1px solid grey");
+                }
             }
-            else {
-                $('#RegLogin').css("border", "1px solid grey");
-            }
-        }
-    });
+        });
 });
 $('#RegEmail').focusout(event, function () {
     //alert("focusout");
@@ -43,16 +54,25 @@ $('#RegEmail').focusout(event, function () {
             }
         });
 });
+
+var onEditing = false;
+
 function EditTask() {
     $(event.target).parents('tr').find('.edit').hide();
     $(event.target).parents('tr').find('.save').show();
     $(event.target).parents('tr').find('.value-holder').hide();
     $(event.target).parents('tr').find('.edit-holder').show();
+    switch ($(event.target).parents('tr').find('.priority-value').text().charAt(0)) {
+        case "A": $("#priority-select option[value='A']").attr("selected", "selected"); break;
+        case "B": $("#priority-select option[value='B']").attr("selected", "selected"); break;
+        case "C": $("#priority-select option[value='C']").attr("selected", "selected"); break;
+        case "D": $("#priority-select option[value='D']").attr("selected", "selected"); break;
+        default: $("#priority-select option[value=' ']").attr("selected", "selected");
+    };
     onEditing = true;
 };
-var onEditing = false;
 $(document).keypress(function (e) {
-    if ((e.which == 13) && (onEditing==true)) {
+    if ((e.which == 13) && (onEditing == true)) {
         $('.edit').filter(function () {
         }
     )
@@ -158,7 +178,7 @@ function ValidateAddTaskForm() {
         $('#Error-message-holder').text("Введите дату");
     }*/
     if (!$('#number-input').val()) {
-        
+
     }
     else {
         if ($('#number-input').val() < 1) {
@@ -170,7 +190,11 @@ function ValidateAddTaskForm() {
         isValid = false;
         $('#Error-message-holder').text("Введите описание задания");
     }
-    if (isValid) { 
+    if ($('#description-input').val().length > 50) {
+        isValid = false;
+        $('#Error-message-holder').text("Слишком длинное описание");
+    }
+    if (isValid) {
         return true;
         $('#Error-message-holder').text("");
     } else {

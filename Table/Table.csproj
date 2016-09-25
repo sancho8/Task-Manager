@@ -134,9 +134,38 @@
     <Content Include="App_Data\Task_Database_log.ldf">
       <DependentUpon>Task_Database.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\calendar-widget\css\responsive-calendar.css" />
+    <Content Include="Content\calendar-widget\js\jquery.js" />
+    <Content Include="Content\calendar-widget\js\responsive-calendar.js" />
+    <Content Include="Content\calendar-widget\js\responsive-calendar.min.js" />
     <Content Include="Content\favicon.ico" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bg1.jpg" />
+    <Content Include="Content\images\container_bg.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\task.jpg" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\AUTHORS.txt" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\external\jquery\jquery.js" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\index.html" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.js" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.min.js" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.structure.min.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.min.css" />
+    <Content Include="Content\jquery-ui-1.12.1.custom\LICENSE.txt" />
     <Content Include="Content\Reset.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -153,6 +182,7 @@
     </Content>
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\AppContext.edmx">
@@ -162,6 +192,9 @@
     <Content Include="Models\AppContext.edmx.diagram">
       <DependentUpon>AppContext.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\jquery-ui-1.12.1.custom\package.json" />
+    <Content Include="Content\calendar-widget\css\less\responsive-calendar.less" />
+    <Content Include="Content\calendar-widget\js\coffee\responsive-calendar.coffee" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\formchecker.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
@@ -170,6 +203,7 @@
     <Content Include="scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\wow.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

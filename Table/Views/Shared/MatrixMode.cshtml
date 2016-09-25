@@ -5,7 +5,6 @@
     {
         Text = "A",
         Value = "A",
-        Selected = true
     });
     priorityList.Add(new SelectListItem()
     {
@@ -24,27 +23,28 @@
     });
 }
 <div id="MatrixHolder" class="row">
-    @foreach (var p in priorityList)
-    {
-        <table class="col-md-6 col-sm-6 col-xs-6 table-bordered table-condensed task_table bg-danger" id="first_table">
-            <thead>
-                <tr>
-                    <th>
-                        Описание @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" },
+        @foreach (var p in priorityList)
+        {
+            <div onresize="alert('resize')">
+                <table class="col-md-6 col-sm-6 col-xs-6 table-bordered table-condensed task_table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Описание @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" },
                         new { @class = "glyphicon glyphicon-chevron-down" })
-                    </th>
-                    <th>Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                    <th>Приоритет @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                    <th>№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                    <th>
-                        <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
-                        @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
-                    </th>
-                    <th colspan="2"></th>
-                </tr>
-            </thead>
-            <tbody id="tablebody">
-                @foreach (var t in Model)
+                            </th>
+                            <th>Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th>Приоритет @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th>№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th>
+                                <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
+                                @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
+                            </th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablebody">
+                        @foreach (var t in Model)
                 {
                     if (!t.Priority.Contains(p.Value))
                     {
@@ -61,7 +61,8 @@
                         </td>
                         <td>
                             <div class="value-holder priority-value">@Html.DisplayFor(item => t.Priority)</div>
-                            <select class="edit-holder priority-edit">
+                            <select class="edit-holder priority-edit" id="priority-select">
+                                <option value=" "> </option>
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -86,10 +87,11 @@
                         </td>
                         <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-remove" })</td>
                     </tr>
+                        }
+                    </tbody>
+                </table>
+                </div>
                 }
-            </tbody>
-        </table>
-    }
     </div>
     <script>
         $(".edit-holder").hide();

@@ -5,7 +5,6 @@
     {
         Text = "A",
         Value = "A",
-        Selected = true
     });
     priorityList.Add(new SelectListItem()
     {
@@ -26,7 +25,7 @@
 <div class="row">
     <table class="table table-striped table-condensed table-bordered">
         <thead>
-            <tr>
+            <tr class="row">
                 <th>
                     Описание @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
                 </th>
@@ -43,18 +42,19 @@
         <tbody id="tablebody">
             @foreach (var t in Model)
             {
-                <tr>
+                <tr class="row">
                     <td>
                         <div class="value-holder description-value">@Html.DisplayFor(item => t.Description)</div>
-                        <div class="edit-holder description-edit"><input type="text" value="@t.Description"></div>
+                        <div class="edit-holder description-edit">@Html.EditorFor(item => t.Description)</div>
                     </td>
                     <td>
                         <div class="value-holder data-value">@Html.DisplayFor(item => t.Data)</div>
-                        <div class="edit-holder data-edit">@Html.EditorFor(item => t.Data)</div>
+                        <div class='edit-holder data-edit'>@Html.EditorFor(item => t.Data, new { @type="datetime-local"})</div>
                     </td>
                     <td>
                         <div class="value-holder priority-value">@Html.DisplayFor(item => t.Priority)</div>
-                        <select class="edit-holder priority-edit">
+                        <select class="edit-holder priority-edit" id="priority-select">
+                            <option value=" "> </option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>

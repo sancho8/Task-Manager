@@ -16,6 +16,19 @@ th {
     padding: 5px;
 }
 
+#priority-input{
+    height: 30px;
+}
+
+select{
+    height: 30px;
+    margin-top: 5px;
+}
+
+#data-input{
+    height: 30px;
+}
+
 #table_navbar .glyphicon {
     color: white;
 }
@@ -110,11 +123,21 @@ h3 {
     text-align: center;
 }
 
+#slogan-holder h1{
+    font-family: Calibri;
+    font-size: 30px;
+}
+#slogan-holder h3{
+    font-family: Calibri;
+    font-size: 24px;
+}
+
+#logo-holder{
+}
 #logo {
-    height: 80px;
-    width: 180px;
-    border: 2px solid black;
-    margin-bottom: 10px;
+    height: 120px;
+    width: 160px;
+    margin-left: 100px;
 }
 
 .footer {
@@ -289,4 +312,63 @@ li {
 
 #RegError {
     margin-top: 10px;
+}
+#TaskTableHolder{
+    padding-left: 10px;
+    max-height: 600px;
+}
+.desc-box{
+    min-height: 300px;
+    padding: 10px;
+    background-color: white;
+    font-size: 24px;
+    font-family: Tahoma;
+}
+.desc-box-inverse{
+        min-height: 300px;
+    padding: 10px;
+    background-color: #057cbe;
+    font-size: 24px;
+    font-family: Tahoma;
+}
+.desc-box img{
+    width: 500px;
+    height: 250px;
+}
+.desc-box-inverse span{
+    color: white;
+}
+.desc-button-holder{
+    color: black;
+    font-size: 24px;
+    font-family: Tahoma;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+.desc-header{
+    color: black;
+    margin: 10px;
+    text-align: center;
+}
+.responsive-calendar{
+    background-color: white;
+}
+.responsive-calendar h4{
+    font-family: Arial;
+    font-size: 24px;
+}
+.controls a{
+    border: 2px solid red;
+    width: 80px;
+    height: 40px;
+    background-color: blue;
+}
+.days{
+    border: 1px solid blue;
+}
+.task_table{
+    max-width: 50%;
+    min-width: 50%;
+    width: 50%;
 }
