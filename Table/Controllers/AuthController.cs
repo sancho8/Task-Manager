@@ -43,6 +43,10 @@ namespace Table.Controllers
                     }
                 }
             }
+            if((Id == null)||(Id==""))
+            {
+                return View("About");
+            }
             HttpCookie authCookie = new HttpCookie("Authorization");
             authCookie["Login"] = login;
             authCookie["Id"] = Id;
@@ -59,7 +63,7 @@ namespace Table.Controllers
             Response.Cookies.Add(authCookie);
             return RedirectToAction("MoveToPage","Home",new { page="About" });
         }
-
+        
         [HttpPost]
         public bool CheckFormInput(string field, string value)
         {
@@ -89,10 +93,29 @@ namespace Table.Controllers
                 }
             }
         }
+        /*
+        [HttpPost]
+        public bool ValidateLoginForm(string login, string password)
+        {
+            using (TaskContext context = new TaskContext())
+            {
+                var existUser = from e in context.Users
+                                where (e.Login == login && e.Password == password)
+                                select e;
+                if(existUser == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }*/
 
         public ActionResult RegisterUser(string login, string email, string password, string confirmPassword, string needDelivery)
         {
-            string connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectToDatabase"].ToString();
+                string connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectToDatabase"].ToString();
             using (SqlConnection con = new SqlConnection(connection))
             {
                 string command =

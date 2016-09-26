@@ -8,12 +8,12 @@
 @using (Html.BeginForm("LogInUser", "Auth", new AjaxOptions { UpdateTargetId="login-error" }))
 {
             <div class="modal-body">
-                    <div>Введите логин:&nbsp;&nbsp; @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин" })</div>
-                    <div>Введите пароль: @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль" })</div>
+                    <div>Введите логин:&nbsp;&nbsp; @Html.TextBox("login", "", new { @type = "text", @placeholder = "введите логин",  @id = "login-input" })</div>
+                    <div>Введите пароль: @Html.TextBox("password", "", new { @type = "password", @placeholder = "введите пароль", @id="password-input" })</div>
                     <div id="login-error">@ViewBag.LoginErrorMessage</div>
             </div>
             <div class="modal-footer" style="text-align:center">
-                <button type="submit" class="btn btn-primary">Войти</button>
+                <button type="submit" class="btn btn-primary" onclick="return ValidateLoginForm()">Войти</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
             </div>
 }

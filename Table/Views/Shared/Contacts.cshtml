@@ -70,7 +70,7 @@
     </footer>
 }
 <section class="row">
-    @using (Html.BeginForm("SendFeedback","Home",FormMethod.Post,new { @class="form-horizontal", @id = "contact_form" })){ 
+    @using (Html.BeginForm("SendFeedback","Home",FormMethod.Post,new { @class="form-horizontal", @id = "contact_form", @onsubmit="alert('Ваше сообщение отправлено')"})){
         <h4 id="contact_form_header">Оставьте ваш отзыв</h4>
         <div class="form-group">
             <label class="control-label col-sm-4">Ваше имя:</label>

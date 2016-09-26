@@ -372,3 +372,42 @@ li {
     min-width: 50%;
     width: 50%;
 }
+.desc-column{
+    width: 35%;
+    min-width: 35%;
+    max-width: 35%;
+    overflow: auto;
+}
+.data-column{
+    width: 25%;
+    min-width: 25%;
+    max-width: 25%;
+    overflow: auto;
+}
+.priority-column{
+    width: 10%;
+    min-width: 10%;
+    max-width: 10%;
+    overflow: auto;
+}
+.number-column{
+    width: 10%;
+    min-width: 10%;
+    max-width: 10%;
+    overflow: auto;
+}
+.complete-column{
+    width: 10%;
+    min-width: 10%;
+    max-width: 10%;
+    overflow: auto;
+}
+.control-column{
+    width: 10%;
+    min-width: 10%;
+    max-width: 10%;
+    overflow: auto;
+}
+#number-edit-holder input {
+    max-width: 50px;
+}

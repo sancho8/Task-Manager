@@ -15,7 +15,7 @@ function checkSize() {
 $('#RegLogin').focusout(event, function () {
     //alert("focusout");
     var a = $('#RegLogin').val();
-    if (a)
+    if (a) {
         $.ajax({
             url: '/Auth/CheckFormInput',
             type: 'POST',
@@ -32,6 +32,7 @@ $('#RegLogin').focusout(event, function () {
                 }
             }
         });
+    }
 });
 $('#RegEmail').focusout(event, function () {
     //alert("focusout");
@@ -166,17 +167,9 @@ function ValidateRegistrationForm() {
     return true;
 };
 
-function ValidateLoginForm() {
-
-};
-
 function ValidateAddTaskForm() {
     $('#Error-message-holder').css('color', "#FF0000");
     var isValid = true;
-    /*if (!$('#data-input').val()) {
-        isValid = false;
-        $('#Error-message-holder').text("Введите дату");
-    }*/
     if (!$('#number-input').val()) {
 
     }
