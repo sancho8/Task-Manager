@@ -19,40 +19,29 @@ namespace Table.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogInUser(string login, string password)
+        public bool LogInUser(string login, string password)
         {
-            string command =
-                   "SELECT Id FROM USERS WHERE Login = '" + login + "' AND Password = '" + password + "'";
-
-            string Id;
-
-            using (SqlConnection thisConnection = new SqlConnection(connection))
+            using (TaskContext context = new TaskContext())
             {
-                using (SqlCommand cmd = new SqlCommand(command, thisConnection))
+                try
                 {
-                    thisConnection.Open();
-                    try
-                    {
-                        Id = cmd.ExecuteScalar().ToString();
-                    }
-                    catch (Exception ex)
-                    {
-                        Id = "";
-                        ViewBag.ErrorMessage = ex.Message;
-                        return PartialView("Error");
-                    }
+                    var a = (from e in context.Users
+                             where e.Login == login && e.Password == password
+                             select e).Single();
+
+                    HttpCookie authCookie = new HttpCookie("Authorization");
+                    authCookie["Login"] = login;
+                    authCookie["Id"] = a.Id.ToString();
+                    Response.Cookies.Add(authCookie);
+                    ViewBag.UserLogin = login;
+                    RedirectToAction("Index", "Tasks");
+                    return true;    //correct user data
+                }
+                catch(Exception ex)
+                {
+                    return false;
                 }
             }
-            if((Id == null)||(Id==""))
-            {
-                return View("About");
-            }
-            HttpCookie authCookie = new HttpCookie("Authorization");
-            authCookie["Login"] = login;
-            authCookie["Id"] = Id;
-            Response.Cookies.Add(authCookie);
-            ViewBag.UserLogin = login;
-            return RedirectToAction("Index", "Task");
         }
 
         public ActionResult LogOutUser()
@@ -93,25 +82,6 @@ namespace Table.Controllers
                 }
             }
         }
-        /*
-        [HttpPost]
-        public bool ValidateLoginForm(string login, string password)
-        {
-            using (TaskContext context = new TaskContext())
-            {
-                var existUser = from e in context.Users
-                                where (e.Login == login && e.Password == password)
-                                select e;
-                if(existUser == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-        }*/
 
         public ActionResult RegisterUser(string login, string email, string password, string confirmPassword, string needDelivery)
         {
@@ -157,7 +127,7 @@ namespace Table.Controllers
                     ViewBag.ErrorMessage = ex.Message;
                     return View("Error");
                 }
-                return LogInUser(login, password);
+                return RedirectToAction("Index","Home");
             }
         }
     }

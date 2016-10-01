@@ -25,22 +25,22 @@
 <div id="MatrixHolder" class="row">
         @foreach (var p in priorityList)
         {
-            <div onresize="alert('resize')">
-                <table class="col-md-6 col-sm-6 col-xs-6 table-bordered table-condensed task_table">
+            <div class="matrix-task-table-holder">
+                <table class="col-md-6 col-sm-12 col-xs-12 table-bordered table-condensed task_table">
                     <thead>
                         <tr>
-                            <th>
+                            <th class="desc-column">
                                 Описание @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" },
                         new { @class = "glyphicon glyphicon-chevron-down" })
                             </th>
-                            <th>Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                            <th>Приоритет @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                            <th>№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                            <th>
+                            <th class="data-column">Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="priority-column">Приоритет @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="number-column">№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="complete-column">
                                 <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
                                 @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
                             </th>
-                            <th colspan="2"></th>
+                            <th class="control-column" colspan="2"></th>
                         </tr>
                     </thead>
                     <tbody id="tablebody">
@@ -51,15 +51,15 @@
                         continue;
                     }
                     <tr>
-                        <td>
+                        <td class="desc-column">
                             <div class="value-holder description-value">@Html.DisplayFor(item => t.Description)</div>
-                            <div class="edit-holder description-edit"><input type="text" value="@t.Description"></div>
+                            <div class="edit-holder description-edit" id="desc-edit-holder"><input type="text" value="@t.Description"></div>
                         </td>
-                        <td>
+                        <td class="data-column">
                             <div class="value-holder data-value">@Html.DisplayFor(item => t.Data)</div>
-                            <div class="edit-holder data-edit">@Html.EditorFor(item => t.Data)</div>
+                            <div class="edit-holder data-edit" id="data-edit-holder">@Html.EditorFor(item => t.Data)</div>
                         </td>
-                        <td>
+                        <td class="priority-column">
                             <div class="value-holder priority-value">@Html.DisplayFor(item => t.Priority)</div>
                             <select class="edit-holder priority-edit" id="priority-select">
                                 <option value=" "> </option>
@@ -69,17 +69,17 @@
                                 <option value="D">D</option>
                             </select>
                         </td>
-                        <td>
+                        <td class="number-column">
                             <div class="value-holder number-value">@Html.DisplayFor(item => t.Number)</div>
-                            <div class="edit-holder number-edit">@Html.EditorFor(item => t.Number)</div>
+                            <div class="edit-holder number-edit" id="number-edit-holder">@Html.EditorFor(item => t.Number)</div>
                         </td>
                         @if (t.IsComplete == true)
                         {
-                            <td><input type="checkbox" class="check" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
+                            <td class="complete-column"><input type="checkbox" class="check" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
                         }
                         else
                         {
-                            <td><input class="check" type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
+                            <td class="complete-column"><input class="check" type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
                         }
                         <td>
                             <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>

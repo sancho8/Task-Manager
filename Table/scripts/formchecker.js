@@ -7,13 +7,17 @@ $(".edit-holder").keypress(function (e) {
         $(event.target).parents("tr").find(".save").click();
     }
 });
+$('#login_modal').keypress(function (e) {
+    if (e.keyCode == 13) {
+        OnLogin();
+    }
+});
 
 function checkSize() {
     var a = 0;
 };
 
 $('#RegLogin').focusout(event, function () {
-    //alert("focusout");
     var a = $('#RegLogin').val();
     if (a) {
         $.ajax({
@@ -123,6 +127,27 @@ function SaveTask() {
 function ClearForm() {
     document.getElementById("AddTaskForm").reset();
 }
+
+function OnLogin() {
+    $('#login-error').text("");
+        $.ajax({
+            type: "POST",
+            async: false,
+            url: '/Auth/LogInUser',
+            data:{
+                login: $("#login-input").val(),
+                password: $("#password-input").val()
+            },
+            success: function (data) {
+                if (data == "True") {
+                    $('#login-form').submit();
+                }
+                else {
+                    $('#login-error').text("Неверно веденные данные!");
+                }
+            }
+        });
+};
 
 $('#AddTaskForm').focusout((function () {
     $('#Error-message-holder').text("");

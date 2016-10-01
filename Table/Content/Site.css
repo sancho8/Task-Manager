@@ -190,14 +190,17 @@ li {
 #contact_form {
     margin-left: auto;
     margin-right: auto;
-    font-size: 24px;
+    padding-right: 10px;
+    font-size: 22px;
+    font-family: Calibri;
+    text-align:left;
 }
 
 #contact_form_header {
     margin: 10px;
     text-align: center;
     font-size: 42px;
-    font-family: Verdana;
+    font-family: Calibri;
 }
 
 #register_button {
@@ -323,13 +326,15 @@ li {
     background-color: white;
     font-size: 24px;
     font-family: Tahoma;
+    border-bottom: 2px solid black;
 }
 .desc-box-inverse{
-        min-height: 300px;
+    min-height: 300px;
     padding: 10px;
     background-color: #057cbe;
     font-size: 24px;
     font-family: Tahoma;
+    border-bottom: 2px solid black;
 }
 .desc-box img{
     width: 500px;
@@ -368,9 +373,19 @@ li {
     border: 1px solid blue;
 }
 .task_table{
-    max-width: 50%;
+            max-width: 50%;
     min-width: 50%;
     width: 50%;
+}
+.matrix-task-table-holder{
+    height: 50%;
+    min-height: 50%;
+    max-height: 50%;
+    overflow: no-content;
+}
+.task_table select{
+    padding: 0px;
+    margin: 0px;
 }
 .desc-column{
     width: 35%;
@@ -409,5 +424,23 @@ li {
     overflow: auto;
 }
 #number-edit-holder input {
-    max-width: 50px;
+    max-width: 30px;
+}
+#data-edit-holder input {
+    max-width: 70px;
+}
+#desc-edit-holder input {
+    max-width: 100px;
+}
+.task_table td{
+    height: 40px;
+    max-height: 40px;
+    margin: 0px;
+    padding: 0px;
+}
+.task_table input{
+    height: 30px;
+    max-height: 30px;
+    padding: 0px;
+    margin: 0px;
 }
