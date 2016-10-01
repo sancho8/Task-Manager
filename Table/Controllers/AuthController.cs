@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Table.Models;
+using System.Text.RegularExpressions;
 
 namespace Table.Controllers
 {
@@ -37,7 +38,7 @@ namespace Table.Controllers
                     RedirectToAction("Index", "Tasks");
                     return true;    //correct user data
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return false;
                 }
@@ -50,9 +51,9 @@ namespace Table.Controllers
             authCookie["Login"] = "";
             authCookie["Id"] = "";
             Response.Cookies.Add(authCookie);
-            return RedirectToAction("MoveToPage","Home",new { page="About" });
+            return RedirectToAction("MoveToPage", "Home", new { page = "About" });
         }
-        
+
         [HttpPost]
         public bool CheckFormInput(string field, string value)
         {
@@ -83,51 +84,49 @@ namespace Table.Controllers
             }
         }
 
-        public ActionResult RegisterUser(string login, string email, string password, string confirmPassword, string needDelivery)
+        [HttpPost]
+        public string RegisterUser(string login, string email, string password, string confirmPassword, bool needDelivery)
         {
-                string connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectToDatabase"].ToString();
-            using (SqlConnection con = new SqlConnection(connection))
+            using (TaskContext context = new TaskContext())
             {
-                string command =
-                    "INSERT INTO Users (Id, Login, Password, Email, NeedDelivery) VALUES (@Id, @Login, @Password, @Email, @NeedDelivery)";
-
                 if (password != confirmPassword)
                 {
-                    ViewBag.ErrorMessage = "Passwords not match";
-                    return View("Error");
+                    return "Пароли не свопадают";
                 }
-
-                //getting number of new id for added user
-                int newId;
-                using (SqlConnection thisConnection = new SqlConnection(connection))
+                if (context.Users.Any(o => o.Login == login))
                 {
-                    using (SqlCommand cmdCount = new SqlCommand("SELECT TOP 1 Id FROM Users ORDER BY Id DESC", thisConnection))
-                    {
-                        thisConnection.Open();
-                        newId = (int)(cmdCount.ExecuteScalar()) + 1;
-                    }
+                    return "Пользователь с таким логином уже существует";
                 }
-                SqlCommand cmd = new SqlCommand(command);
-                cmd.CommandType = CommandType.Text;
-                cmd.Connection = con;
-                cmd.Parameters.AddWithValue("@Id", newId);
-                cmd.Parameters.AddWithValue("@Login", login);
-                cmd.Parameters.AddWithValue("@Password", password);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@NeedDelivery", needDelivery);
-                con.Open();
-                cmd.ExecuteNonQuery();
+                if (context.Users.Any(o => o.Email == email))
+                {
+                    return "Пользователь с таким почтовым ящиком уже существует";
+                }
+                if (login.Length < 5)
+                {
+                    return "Логин должен иметь длинну более 5 символов";
+                }
+                Regex valPassword = new Regex(@"(?!^[0-9]*$)(?!^[a-zA-Z]*$)^(.{8,15})$");
+                if(!valPassword.IsMatch(password))
+                {
+                    return "Введите корректный пароль";
+                }
+                Regex valEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!valEmail.IsMatch(email))
+                {
+                    return "Введите корректный email";
+                }
                 try
                 {
-                    HttpCookie cookie = Request.Cookies["Authorization"];
-
+                    var command = "SELECT TOP 1 Id FROM Users ORDER BY Id DESC";
+                    int id = context.Database.SqlQuery<int>(command).Single() + 1;
+                    context.Users.Add(new Models.User(id, login, password, email, needDelivery));
+                    context.SaveChanges();
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.ErrorMessage = ex.Message;
-                    return View("Error");
+                    return ex.Message;
                 }
-                return RedirectToAction("Index","Home");
+                return "True";
             }
         }
     }

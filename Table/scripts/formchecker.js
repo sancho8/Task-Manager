@@ -7,9 +7,15 @@ $(".edit-holder").keypress(function (e) {
         $(event.target).parents("tr").find(".save").click();
     }
 });
+
 $('#login_modal').keypress(function (e) {
     if (e.keyCode == 13) {
         OnLogin();
+    }
+});
+$('#myModal').keypress(function (e) {
+    if (e.keyCode == 13) {
+        OnRegistration();
     }
 });
 
@@ -126,7 +132,7 @@ function SaveTask() {
 
 function ClearForm() {
     document.getElementById("AddTaskForm").reset();
-}
+};
 
 function OnLogin() {
     $('#login-error').text("");
@@ -157,39 +163,38 @@ $('#myModal').focusout(function () {
     $('#RegError').text("");
 });
 
-function ValidateRegistrationForm() {
-    $('#RegError').text("");
-    $('#RegError').css('color', "#FF0000");
-    if ($('#RegLogin').css("border") == "1px solid red") {
-        $('#RegError').text("Логин уже используется");
-        return false;
-    }
-    if ($('#RegEmail').css("border") == "1px solid red") {
-        $('#RegEmail').text("Почтовый ящик уже используется");
-        return false;
-    }
-    var a = $('#RegLogin').val();
-    if (a.length < 5) {
-        $('#RegError').text("Логин должен быть длиннее 5 символов");
-        return false;
-    }
-    var b = $('#RegPassword').val();
-    if (!(b.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/))) {
-        $('#RegError').text("Введите корректный пароль");
-        return false;
-    }
-    var c = $('#RegConfirmPassword').val();
-    if (!(c == b)) {
-        $('#RegError').text("Пароли не совпадают");
-        return false;
-    }
-    var d = $('#RegEmail').val();
-    var mailValidateRegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!d.match(mailValidateRegExp)) {
-        $('#RegError').text("Введите корректный почтовый адресс");
-        return false;
-    }
-    return true;
+function OnRegistration() {
+    $("#RegError").text("");
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: '/Auth/RegisterUser',
+        data: {
+            login: $('#RegLogin').val(),
+            password:  $('#RegPassword').val(),
+            confirmPassword: $("#RegConfirmPassword").val(),
+            email: $("#RegEmail").val(),
+            needDelivery: $("#RegNeedDelivery").val()
+        },
+        success: function (data) {
+            if (data == "True") {
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    url: '/Auth/LogInUser',
+                    data: {
+                        login: $('#RegLogin').val(),
+                        password: $('#RegPassword').val()
+                    },
+                    sucess: alert("loggined")
+                });
+                $("#registration-form").submit();
+            }
+            else {
+                $("#RegError").text(data);
+            }
+        }
+    });
 };
 
 function ValidateAddTaskForm() {
