@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Table.Models;
 using System.Data.Entity;
+using System.Globalization;
 
 namespace Table.Controllers
 {
@@ -15,7 +16,7 @@ namespace Table.Controllers
     {
         string connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectToDatabase"].ToString();
         // @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True;";
-       // public static List<Task> TaskList = new List<Task>();
+        // public static List<Task> TaskList = new List<Task>();
 
         enum TaskMode
         {
@@ -35,7 +36,7 @@ namespace Table.Controllers
                 HttpCookie cookie = Request.Cookies["Authorization"];
                 ViewBag.UserLogin = cookie["Login"];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
                 return View("Error");
@@ -49,7 +50,7 @@ namespace Table.Controllers
             {
                 int taskToDeleteId = Int32.Parse(id);
                 var taskToRemove = context.Tasks.FirstOrDefault(x => x.Id == taskToDeleteId);
-                if(taskToRemove != null)
+                if (taskToRemove != null)
                 {
                     context.Tasks.Remove(taskToRemove);
                     context.SaveChanges();
@@ -61,18 +62,18 @@ namespace Table.Controllers
         [HttpPost]
         public ActionResult AddTask(string description, string data, char? priority, int? number)
         {
-                //getting number of new id for added tak
-                using (TaskContext context = new TaskContext())
-                {
-                    HttpCookie cookie = Request.Cookies["Authorization"];
-                    int userId = Int32.Parse(cookie["Id"]);
-                    var command = "SELECT TOP 1 Id FROM Tasks ORDER BY Id DESC";
-                    int newId = context.Database.SqlQuery<int>(command).Single() + 1;
-                    var taskToAdd = new Task(newId, userId, description, ParseData(data) , priority.ToString(), number, false);
-                    context.Tasks.Add(taskToAdd);
-                    context.SaveChanges();
-                }
-                return GetTaskInPartialView();
+            //getting number of new id for added tak
+            using (TaskContext context = new TaskContext())
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                int userId = Int32.Parse(cookie["Id"]);
+                var command = "SELECT TOP 1 Id FROM Tasks ORDER BY Id DESC";
+                int newId = context.Database.SqlQuery<int>(command).Single() + 1;
+                var taskToAdd = new Task(newId, userId, description, ParseData(data), priority.ToString(), number, false);
+                context.Tasks.Add(taskToAdd);
+                context.SaveChanges();
+            }
+            return GetTaskInPartialView();
         }
 
         private Nullable<DateTime> ParseData(string str)
@@ -94,9 +95,9 @@ namespace Table.Controllers
                 switch (prop)
                 {
                     case "Description": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Description));
-                    case "Data": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Data).ThenByDescending(o => o.Data.HasValue));
-                    case "Priority": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Priority).ThenBy(o => o.Number));
-                    case "Number": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Number));
+                    case "Data": return GetTaskInPartialViewWithList(tasks.ToList().OrderByDescending(o => o.Data.HasValue).ThenBy(o => o.Data));
+                    case "Priority": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => String.IsNullOrWhiteSpace(o.Priority)).ThenBy(o => o.Priority).ThenBy(o => o.Number));
+                    case "Number": return GetTaskInPartialViewWithList(tasks.ToList().OrderByDescending(o => o.Number.HasValue).ThenBy(o => o.Number));
                     case "IsComplete": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.IsComplete));
                     default: return GetTaskInPartialView();
                 }
@@ -106,7 +107,7 @@ namespace Table.Controllers
         [HttpPost]
         public ActionResult UpdateTask(string id, string description, string data, string priority, string number, string isComplete)
         {
-            using(TaskContext context = new TaskContext())
+            using (TaskContext context = new TaskContext())
             {
                 HttpCookie cookie = Request.Cookies["Authorization"];
                 int userId = Int32.Parse(cookie["Id"]);
@@ -118,7 +119,7 @@ namespace Table.Controllers
                 }
                 var taskToUpdate = context.Tasks.Find(Int32.Parse(id));
                 var updateTask = new Task(Int32.Parse(id), userId, description, ParseData(data), priority, num, Boolean.Parse(isComplete));
-                if(taskToUpdate != null)
+                if (taskToUpdate != null)
                 {
                     context.Entry(taskToUpdate).CurrentValues.SetValues(updateTask);
                     context.SaveChanges();
@@ -157,7 +158,7 @@ namespace Table.Controllers
                 {
                     case TaskMode.SingleTableMode: return PartialView("TaskRows", tasks.ToList());
                     case TaskMode.MatrixMode: return PartialView("MatrixMode", tasks.ToList());
-                    case TaskMode.CalendarMode: return PartialView("CalendarMode", tasks.ToList());
+                    case TaskMode.CalendarMode: return UpdateTaskByDate();
                     default: return Index();
                 }
             }
@@ -169,17 +170,45 @@ namespace Table.Controllers
             {
                 HttpCookie cookie = Request.Cookies["Authorization"];
                 string UserID = cookie["Id"];
-                var tasks = from e in context.Tasks
+                /*var tasks = from e in context.Tasks
                             where e.UserId.Value.ToString() == UserID
-                            select e;
+                            select e;*/
                 switch (taskMode)
                 {
                     case TaskMode.SingleTableMode: return PartialView("TaskRows", list);
                     case TaskMode.MatrixMode: return PartialView("MatrixMode", list);
-                    case TaskMode.CalendarMode: return PartialView("CalendarMode", list);
+                    case TaskMode.CalendarMode:
+                        ViewBag.SelectedDate = DateTime.Now.Date;
+                        return PartialView("CalendarMode", list);
                     default: return Index();
                 }
             }
+        }
+
+        public static DateTime dt = DateTime.Now;
+
+        public ActionResult UpdateTaskByDate()
+        {
+            using (TaskContext context = new TaskContext())
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                int UserID = Int32.Parse(cookie["Id"]);
+                var a = from e in context.Tasks
+                        where (e.UserId == UserID
+                            && e.Data.Value.Day == dt.Day
+                            && e.Data.Value.Month == dt.Month
+                            && e.Data.Value.Year == dt.Year)
+                        select e;
+                return PartialView("CalendarMode", a.ToList());
+            }
+        }
+
+        [HttpPost]
+        public void ChangeDate(string date)
+        {
+            dt = DateTime.ParseExact(date.Substring(0, 24),
+                  "ddd MMM d yyyy HH:mm:ss",
+                  CultureInfo.InvariantCulture);
         }
 
         public ActionResult SingleTableMode()

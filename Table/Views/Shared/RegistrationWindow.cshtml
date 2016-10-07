@@ -8,7 +8,7 @@
             @using (Html.BeginForm("Index", "Task", FormMethod.Get, new { @Id = "registration-form"}))
             {
                 <div class="modal-body">
-                    <div>Введите логин:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.TextBox("reglogin", "", new { @type = "text", @placeholder = "введите логин", @id = "RegLogin", @autocomplete ="off"})</div>
+                    <div>Введите логин:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.TextBox("reglogin", "", new { @type = "text", @placeholder = "введите логин", @id = "RegLogin", @autocomplete ="off"})</div>
                     <div>Введите пароль:&nbsp;&nbsp;&nbsp;&nbsp; @Html.TextBox("regpassword", "", new { @type = "password", @placeholder = "Введите пароль", @id = "RegPassword", @autocomplete = "off"})</div>
                     <div>Повторите пароль: @Html.TextBox("confirmPassword", "", new { @type = "password", @placeholder = "Подтвердите пароль", @id = "RegConfirmPassword", @autocomplete = "off"})</div>
                     <div>Введите почту:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.TextBox("email", "", new { @type = "email", @placeholder = "введите email", @id = "RegEmail", @autocomplete = "off"})</div>

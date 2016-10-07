@@ -142,6 +142,26 @@
     <Content Include="Content\calendar-widget\js\jquery.js" />
     <Content Include="Content\calendar-widget\js\responsive-calendar.js" />
     <Content Include="Content\calendar-widget\js\responsive-calendar.min.js" />
+    <Content Include="Content\datetimepicker-master\.gitignore" />
+    <Content Include="Content\datetimepicker-master\build\jquery.datetimepicker.full.js" />
+    <Content Include="Content\datetimepicker-master\build\jquery.datetimepicker.full.min.js" />
+    <Content Include="Content\datetimepicker-master\build\jquery.datetimepicker.min.css" />
+    <Content Include="Content\datetimepicker-master\build\jquery.datetimepicker.min.js" />
+    <Content Include="Content\datetimepicker-master\index.html" />
+    <Content Include="Content\datetimepicker-master\jquery.datetimepicker.css" />
+    <Content Include="Content\datetimepicker-master\jquery.datetimepicker.js" />
+    <Content Include="Content\datetimepicker-master\jquery.datetimepicker.min.js" />
+    <Content Include="Content\datetimepicker-master\jquery.js" />
+    <Content Include="Content\datetimepicker-master\MIT-LICENSE.txt" />
+    <Content Include="Content\datetimepicker-master\screen\1.png" />
+    <Content Include="Content\datetimepicker-master\screen\2.png" />
+    <Content Include="Content\datetimepicker-master\screen\3.1.png" />
+    <Content Include="Content\datetimepicker-master\screen\3.png" />
+    <Content Include="Content\datetimepicker-master\screen\4.png" />
+    <Content Include="Content\datetimepicker-master\screen\5.png" />
+    <Content Include="Content\datetimepicker-master\screen\6.png" />
+    <Content Include="Content\datetimepicker-master\tests\input_in_container_fixed_to_bottom_of_viewport.html" />
+    <Content Include="Content\datetimepicker-master\tests\input_in_container_fixed_to_top_of_viewport.html" />
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\bg1.jpg" />
@@ -195,6 +215,11 @@
     <Content Include="Content\jquery-ui-1.12.1.custom\package.json" />
     <Content Include="Content\calendar-widget\css\less\responsive-calendar.less" />
     <Content Include="Content\calendar-widget\js\coffee\responsive-calendar.coffee" />
+    <Content Include="Content\datetimepicker-master\bower.json" />
+    <Content Include="Content\datetimepicker-master\datetimepicker.jquery.json" />
+    <Content Include="Content\datetimepicker-master\doc.tpl" />
+    <Content Include="Content\datetimepicker-master\package.json" />
+    <Content Include="Content\datetimepicker-master\README.md" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\formchecker.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
@@ -210,6 +235,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -271,6 +297,7 @@
   <ItemGroup>
     <Folder Include="Views\Auth\" />
     <Folder Include="Views\Home\" />
+    <Folder Include="Views\Profile\" />
     <Folder Include="Views\Task\" />
   </ItemGroup>
   <ItemGroup>

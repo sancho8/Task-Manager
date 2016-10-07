@@ -24,16 +24,16 @@
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>@ViewBag.UserLogin</a></li>
+                        <li onclick="MoveToHomePage()"><a href="#"><span class="glyphicon glyphicon-user"></span>@ViewBag.UserLogin</a></li>
                         <li data-toggle="modal" data-target="#exit_modal"><a href="#"><span class="glyphicon glyphicon-log-out"></span>Выйти</a></li>
                     </ul>
                 }
             </div>
         </nav>
-        <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3">
-            <img src="#" id="logo" alt="logo" />
+        <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4" id="logo-holder">
+            <img src="~/Content/images/logo.png" id="logo" alt="logo" />
         </div>
-        <div class="col-md-6 col-sm-4 col-xs-12 col-lg-6">
+        <div class="col-md-6 col-sm-4 col-xs-12 col-lg-6" id="slogan-holder">
             <h1>Менеджер задач</h1>
             <h3>Простой и удобный инструмент управления временем</h3>
         </div>

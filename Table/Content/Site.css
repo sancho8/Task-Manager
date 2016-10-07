@@ -1,8 +1,4 @@
-﻿* {
-    //border: 1px solid red;
-}
-
-table {
+﻿table {
     font-size: 18px;
 }
 
@@ -24,6 +20,7 @@ select{
     height: 30px;
     margin-top: 5px;
 }
+
 
 #data-input{
     height: 30px;
@@ -124,19 +121,23 @@ h3 {
 }
 
 #slogan-holder h1{
+    margin-right: -10px;
+    text-align:center;
     font-family: Calibri;
     font-size: 30px;
 }
 #slogan-holder h3{
     font-family: Calibri;
     font-size: 24px;
+    text-align: center;
 }
 
 #logo-holder{
 }
 #logo {
+    padding-top: -20px;
     height: 120px;
-    width: 160px;
+    width: 120px;
     margin-left: 100px;
 }
 
@@ -180,6 +181,9 @@ li {
     height: 20px;
     width: 20px;
     background-color: black;
+    margin-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
 }
 /*---------------------------------------------*/
 .image {
@@ -317,8 +321,10 @@ li {
     margin-top: 10px;
 }
 #TaskTableHolder{
-    padding-left: 10px;
+    padding: 20px; 
     max-height: 600px;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 .desc-box{
     min-height: 300px;
@@ -372,16 +378,27 @@ li {
 .days{
     border: 1px solid blue;
 }
+.desc-text{
+    text-overflow: ellipsis;
+}
 .task_table{
-            max-width: 50%;
+    table-layout: fixed;
+    text-overflow:ellipsis;
+    /*max-width: 50%;
     min-width: 50%;
-    width: 50%;
+    width: 50%;*/
+}
+.task_table td{
+   /*     max-width: 0;
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space:pre-line;*/
 }
 .matrix-task-table-holder{
     height: 50%;
     min-height: 50%;
     max-height: 50%;
-    overflow: no-content;
+    /*overflow: no-content;*/
 }
 .task_table select{
     padding: 0px;
@@ -391,56 +408,105 @@ li {
     width: 35%;
     min-width: 35%;
     max-width: 35%;
-    overflow: auto;
 }
 .data-column{
     width: 25%;
     min-width: 25%;
     max-width: 25%;
-    overflow: auto;
 }
 .priority-column{
-    width: 10%;
-    min-width: 10%;
-    max-width: 10%;
-    overflow: auto;
+    width: 30%;
+    min-width: 30%;
+    max-width: 30%;
 }
 .number-column{
     width: 10%;
     min-width: 10%;
     max-width: 10%;
-    overflow: auto;
 }
 .complete-column{
     width: 10%;
     min-width: 10%;
     max-width: 10%;
-    overflow: auto;
 }
 .control-column{
-    width: 10%;
-    min-width: 10%;
-    max-width: 10%;
-    overflow: auto;
+    width: 15%;
+    min-width: 15%;
+    max-width: 15%;
 }
 #number-edit-holder input {
-    max-width: 30px;
+    max-width: 35px;
+    max-height: 30px;
 }
 #data-edit-holder input {
-    max-width: 70px;
+    max-width: 100px;
+    max-height: 30px;
 }
 #desc-edit-holder input {
-    max-width: 100px;
+    width: 300px;
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 30px;
 }
 .task_table td{
     height: 40px;
     max-height: 40px;
+    min-height: 40px;
     margin: 0px;
     padding: 0px;
+    overflow-y: auto;
 }
 .task_table input{
     height: 30px;
     max-height: 30px;
     padding: 0px;
     margin: 0px;
+}
+.inform-box{
+    font-size: 24px;
+    margin:10px;
+    color: black;
+}
+.field-redact-button span{
+    color: white;
+}
+.field-redact-button:hover span{
+    color:black;
+}
+.field-redact-holder{
+    display: none;
+    margin-left:10px;
+    font-size: 20px;
+    font-family: Arial;
+    color: black;
+}
+.profile-inform-header{
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 36px;
+    font-family: Arial;
+    color: black;
+}
+#change-password-button{
+    width: 180px;
+    margin: 5px;
+}
+#save-changes-button{
+    margin: 5px;
+    display: none;
+    width: 180px;
+}
+#reset-changes-button{
+    display: none;
+    margin: 5px;
+    width: 180px;
+}
+.redact-button-holder{
+    margin: 5px;
+}
+#change-profile-error-message-holder{
+    color: red;
+    font-size: 20px;
+    padding-left: 10px;
 }

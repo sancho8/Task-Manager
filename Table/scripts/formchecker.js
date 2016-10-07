@@ -1,6 +1,35 @@
 ﻿$(document).ready(function () {
     $('.edit-holder').hide();
+    date = new Date().toJSON().slice(0, 10);
+    LoadCalendar();
 });
+
+$(document).ajaxComplete(LoadCalendar);
+
+function LoadCalendar() {
+    jQuery('#datetimepicker').datetimepicker({
+        timepicker: false,
+        format: 'd.m.Y H:i',
+        inline: true,
+        lang: 'ru',
+        startDate: date,
+        onSelectDate: function (ct, $i) {
+            $.ajax({
+                type: "POST",
+                url: "/Task/ChangeDate",
+                data: {
+                    date: ct.toString()
+                },
+                success: function (used) {
+                    //alert(ct);
+                    date = ct;
+                    $('#actionlink').click();
+                }
+            });
+        }
+    });
+    $.datetimepicker.setLocale('ru');
+}
 
 $(".edit-holder").keypress(function (e) {
     if (e.keyCode == 13) {
@@ -89,6 +118,13 @@ $(document).keypress(function (e) {
     )
     }
 });
+
+function SaveTaskWithReload(){
+    SaveTask();
+    $("#matrix-button").click(this);
+    //.click();
+}
+
 function SaveTask() {
     $(event.target).parents('tr').find('.save').hide();
     $(event.target).parents('tr').find('.edit').show();
@@ -254,3 +290,61 @@ function TaskStatusChanged(elem) {
         }
     });
 };
+
+$('#change-password-button').on('click', function () {
+    $('.inform-box p').hide();
+    $('.field-redact-holder').css("display", "inline");
+    $('#change-password-button').css("display", "none");
+    $('#save-changes-button').css("display", "inline");
+    $('#reset-changes-button').css("display", "inline");
+});
+function ValidateUpdateProfileDataForm (){
+    var changeLogin = $('#change-login-field').find('input').val();
+    var changeEmail = $('#change-email-field').find('input').val();
+    var oldPassword = $('#old-password-field').find('input').val();
+    var newPassword = $('#new-password-field').find('input').val();
+    var confirmPassword = $('#confirm-password-field').find('input').val();
+    $.ajax({
+        url: '/Profile/UpdateProfileData',
+        method: 'POST',
+        async: false,
+        data:{
+            login: changeLogin,
+            email: changeEmail,
+            oldPassword: oldPassword,
+            newPassword: newPassword,
+            confirmPassword: confirmPassword,
+            //needDelivery: $('#needDelivety-field').attr('checked')
+        },
+        success: function (result) {
+            /*if (result == "Success") {
+                alert("success");
+            }
+            else {
+                $('#change-profile-error-message-holder').text(result);
+            }*/
+            alert(result);
+        }
+    });
+};
+
+$('.field-redact-holder input').on('change', function () {
+    alert($(event.target).parents('div').attr("id"));
+});
+
+var fieldChanges = {
+    "login": false,
+    "email": false,
+    "oldPassword": false,
+    "newPassword": false,
+    "confirmPassword": false
+}
+
+$('#reset-changes-button').on('click', function () {
+    $('.inform-box p').show();
+    $('#change-profile-error-message-holder').text("");
+    $('.field-redact-holder').css("display", "none");
+    $('#save-changes-button').css("display", "none");
+    $('#reset-changes-button').css("display", "none");
+    $('#change-password-button').css("display", "block");
+});

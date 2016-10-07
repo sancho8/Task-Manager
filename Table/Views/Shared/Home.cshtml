@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Table.Models.User
+@{
     ViewBag.Title = "Home";
 }
 @section Header{
@@ -70,6 +71,66 @@
     </footer>
 }
 <section class="row">
-    <h2>Login: @ViewBag.UserLogin</h2>
+    <div id="container">
+        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+            @using (Html.BeginForm("ChangeProfileData", "Profile", FormMethod.Post, new { @id = "ChangeProfileDataForm" }))
+            {
+            <div class="profile-inform-header">Информация профиля:</div>
+            <div class="inform-box">Логин: 
+                <div class="field-value-holder"  style="display:inline">
+                    <p  style="display:inline">@ViewBag.UserLogin</p>
+                </div>
+                <div class="field-redact-holder" id="change-login-field">
+                    @Html.EditorFor(x => Model.Login)
+                </div>
+            </div>
+            <div class="inform-box">Почта: 
+                <div class="field-value-holder" style="display:inline">
+                    <p style="display:inline">@ViewBag.UserEmail</p>
+                </div>
+                <div class="field-redact-holder" id="change-email-field">
+                    @Html.EditorFor(x => Model.Email)
+                </div>
+            </div>
+            <div class="field-redact-holder" id="old-password-field">
+                Введите старый пароль:&nbsp;&nbsp;
+                <input type="password" autocomplete="off">
+            </div>
+            <div class="field-redact-holder" id="new-password-field">
+                Введите новый пароль:&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="password" autocomplete="off">
+            </div>
+            <div class="field-redact-holder" id="confirm-password-field">
+                Повторите новый пароль:
+                <input type="password" autocomplete="off">
+            </div>
+            <div class="inform-box">Получать уведомления: 
+                    @if (ViewBag.UserNeedDelivery == "true")
+                {
+                        <input type="checkbox" checked="checked" onclick="return false" id="needDelivety-field"/>
+                    }
+                    else
+                    {
+                        <input type="checkbox"  onclick="return false" id="needDelivety-field"/>
+                    }
+            </div>
+
+            <div id="change-profile-error-message-holder"></div>
+
+            <div class="redact-button-holder">
+                <button type="button" class="btn btn-primary" id="change-password-button">Редактировать профиль</button>
+            </div>
+            <div class="redact-button-holder">
+                <button type="button" class="btn btn-warning"  id="save-changes-button" onclick="ValidateUpdateProfileDataForm()">Сохранить изменения</button>
+                <button type="button" class="btn btn-default" id="reset-changes-button">Отменить изменения</button>
+            </div>
+            }
+        </div>
+        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+            <div class="profile-inform-header">Cтатистика профиля:</div>
+            <div class="inform-box">Выполненые задачи: @ViewBag.CompletedStat</div>
+            <div class="inform-box">Просроченые задачи: @ViewBag.UncompletedStats</div>
+        </div>
+    </div>
 </section>
 

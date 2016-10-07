@@ -30,15 +30,15 @@
                     <thead>
                         <tr>
                             <th class="desc-column">
-                                Описание @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" },
+                                Описание @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" },
                         new { @class = "glyphicon glyphicon-chevron-down" })
                             </th>
-                            <th class="data-column">Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                            <th class="priority-column">Приоритет @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                            <th class="number-column">№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="data-column">Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="priority-column">Приоритет @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="number-column">№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
                             <th class="complete-column">
                                 <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
-                                @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "MatrixHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
+                                @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
                             </th>
                             <th class="control-column" colspan="2"></th>
                         </tr>
@@ -52,7 +52,7 @@
                     }
                     <tr>
                         <td class="desc-column">
-                            <div class="value-holder description-value">@Html.DisplayFor(item => t.Description)</div>
+                            <div class="value-holder description-value desc-text">@Html.DisplayFor(item => t.Description)</div>
                             <div class="edit-holder description-edit" id="desc-edit-holder"><input type="text" value="@t.Description"></div>
                         </td>
                         <td class="data-column">
@@ -83,7 +83,7 @@
                         }
                         <td>
                             <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a onclick="SaveTask()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+                            <a onclick="SaveTaskWithReload()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
                         </td>
                         <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-remove" })</td>
                     </tr>

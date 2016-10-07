@@ -51,7 +51,7 @@ namespace Table.Controllers
             authCookie["Login"] = "";
             authCookie["Id"] = "";
             Response.Cookies.Add(authCookie);
-            return RedirectToAction("MoveToPage", "Home", new { page = "About" });
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

@@ -110,7 +110,7 @@
         </div>
         <div class="row" id="table_navbar">
             @Ajax.ActionLink(" ","SingleTableMode", "Task", new AjaxOptions{ UpdateTargetId= "TaskTableHolder" }, new { @class = "glyphicon glyphicon-align-justify" })
-            @Ajax.ActionLink(" ", "MatrixMode", "Task", new AjaxOptions{ UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-th-large" })
+            @Ajax.ActionLink(" ", "MatrixMode", "Task", new AjaxOptions{ UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-th-large", @id="matrix-button"})
             @Ajax.ActionLink(" ", "CalendarMode", "Task", new AjaxOptions {UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-calendar" })
         </div>
         <div class="table-responsive" id="TaskTableHolder">

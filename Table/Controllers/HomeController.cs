@@ -47,6 +47,10 @@ namespace Table.Controllers
             {
                 return RedirectToAction("Index", "Task");
             }
+            if (page == "Home")
+            {
+                return RedirectToAction("Index", "Profile");
+            }
             HttpCookie cookie = Request.Cookies["Authorization"];
             ViewBag.UserLogin = cookie["Login"];
             return View(page);
