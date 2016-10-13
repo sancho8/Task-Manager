@@ -510,3 +510,14 @@ li {
     font-size: 20px;
     padding-left: 10px;
 }
+#TaskStatsDiagramHolder{
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 200px;
+}
+canvas{
+        border: 2px solid;
+        width: 100% !important;
+        max-width: 300px;
+        height: auto !important;
+}

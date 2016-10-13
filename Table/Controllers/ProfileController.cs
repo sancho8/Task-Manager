@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Table.Models;
 
 namespace Table.Controllers
 {
+    [RequireHttps]
     public class ProfileController : Controller
     {
         // GET: Profile
@@ -15,7 +17,7 @@ namespace Table.Controllers
             using (TaskContext context = new TaskContext())
             {
                 HttpCookie cookie = Request.Cookies["Authorization"];
-                if (cookie["Id"] == null)
+                if (String.IsNullOrWhiteSpace(cookie["Id"].ToString()))
                 {
                     return RedirectToAction("Index", "Home");
                 }
@@ -43,22 +45,93 @@ namespace Table.Controllers
         }
 
         [HttpPost]
-        public string UpdateProfileData(string login, string email, string oldPassword,
+        public ActionResult UpdateProfile(string login, string email, string oldPassword,
                                         string newPassword, string confirmPassword)
         {
             using (TaskContext context = new TaskContext())
             {
-                if (context.Users.Any(o => o.Login == login))
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                int id = Int32.Parse(cookie["id"]);
+                var currentUser = (from e in context.Users
+                                   where e.Id == id
+                                   select e).Single();
+                if (!String.IsNullOrWhiteSpace(login)&&(currentUser.Login!=login))
                 {
-                    return "Пользоавтель с таким логином уже есть";
+                    if (login.Length < 5)
+                    {
+                        ViewBag.ValidateErrorMessage = "Логин должен быть длиннее 5 символов";
+                        return Index();
+                    }
+                    if(context.Users.Any(o => o.Login ==login))
+                    {
+                        ViewBag.ValidateErrorMessage = "Логин уже используется";
+                        return Index();
+                    }
+                    currentUser.Login = login;
+                    context.SaveChanges();
+                    cookie["Login"] = login;
+                    Response.Cookies.Add(cookie);
                 }
-                if (context.Users.Any(o => o.Email == email))
+                if (!String.IsNullOrWhiteSpace(email)&&(currentUser.Email!=email))
                 {
-                    return "Пользоавтель с таким почтовым адрессом уже есть";
+                    Regex valEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                    if (!valEmail.IsMatch(email))
+                    {
+                        ViewBag.ValidateErrorMessage = "Введите корректный почтовый ящик";
+                        return Index();
+                    }
+                    if (context.Users.Any(o => o.Email == email))
+                    {
+                        ViewBag.ValidateErrorMessage = "Почтовый ящик уже используется";
+                        return Index();
+                    }
+                    currentUser.Email = email;
+                    context.SaveChanges();
                 }
-                else
+                if(!String.IsNullOrWhiteSpace(oldPassword) || !String.IsNullOrWhiteSpace(newPassword) || !String.IsNullOrWhiteSpace(confirmPassword))
                 {
-                    return "Success";
+                    if(oldPassword != currentUser.Password)
+                    {
+                        ViewBag.ValidateErrorMessage = "Введите корректный текущий пароль";
+                        return Index();
+                    }
+                    Regex valPassword = new Regex(@"(?!^[0-9]*$)(?!^[a-zA-Z]*$)^(.{8,15})$");
+                    if (!valPassword.IsMatch(newPassword))
+                    {
+                        ViewBag.ValidateErrorMessage = "Введите корректный пароль";
+                        return Index();
+                    }
+                    if (newPassword != confirmPassword)
+                    {
+                        ViewBag.ValidateErrorMessage = "Пароли не совпадают";
+                        return Index();
+                    }
+                    currentUser.Password = newPassword;
+                    context.SaveChanges();
+                }
+            }
+            return Index();
+        }
+
+        [HttpGet]
+        public int getTaskStats(string param)
+        {
+            using (TaskContext context = new TaskContext())
+            {
+                HttpCookie cookie = Request.Cookies["Authorization"];
+                int id = Int32.Parse(cookie["Id"]);
+                switch (param)
+                {
+                    case "all": return (from e in context.Tasks
+                                where e.UserId == id
+                                select e).Count();
+                    case "completed": return (from e in context.Tasks
+                                where e.UserId == id && e.IsComplete == true
+                                select e).Count();
+                    case "uncompleted": return (from e in context.Tasks
+                                where e.UserId == id && e.Data < DateTime.Now 
+                                select e).Count();
+                    default: return 0;
                 }
             }
         }

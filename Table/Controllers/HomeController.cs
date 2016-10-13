@@ -9,6 +9,7 @@ using Table.Models;
 
 namespace Table.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         // GET: Home

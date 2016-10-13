@@ -17,7 +17,7 @@
     <AssemblyName>Table</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44360</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -221,6 +221,7 @@
     <Content Include="Content\datetimepicker-master\package.json" />
     <Content Include="Content\datetimepicker-master\README.md" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\Chart.min.js" />
     <Content Include="scripts\formchecker.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -287,6 +288,7 @@
     <Content Include="Views\Shared\MatrixMode.cshtml" />
     <Content Include="Views\Shared\CalendarMode.cshtml" />
     <Content Include="Views\Shared\ExitWindow.cshtml" />
+    <Content Include="Views\Shared\CalendarTaskTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -318,7 +320,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55466</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55466/</IISUrl>
+          <IISUrl>https://localhost:44360/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

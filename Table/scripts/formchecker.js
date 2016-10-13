@@ -298,14 +298,16 @@ $('#change-password-button').on('click', function () {
     $('#save-changes-button').css("display", "inline");
     $('#reset-changes-button').css("display", "inline");
 });
-function ValidateUpdateProfileDataForm (){
+
+
+/*function ValidateUpdateProfileDataForm (){
     var changeLogin = $('#change-login-field').find('input').val();
     var changeEmail = $('#change-email-field').find('input').val();
     var oldPassword = $('#old-password-field').find('input').val();
     var newPassword = $('#new-password-field').find('input').val();
     var confirmPassword = $('#confirm-password-field').find('input').val();
     $.ajax({
-        url: '/Profile/UpdateProfileData',
+        url: '/Profile/ValidateUpdateProfileForm',
         method: 'POST',
         async: false,
         data:{
@@ -314,30 +316,37 @@ function ValidateUpdateProfileDataForm (){
             oldPassword: oldPassword,
             newPassword: newPassword,
             confirmPassword: confirmPassword,
+            loginChanged: fieldChanges.login,
+            emailChanged: fieldChanges.email,
+            passwordChanged: fieldChanges.password
             //needDelivery: $('#needDelivety-field').attr('checked')
         },
         success: function (result) {
-            /*if (result == "Success") {
+            if (result == "Success") {
+                    $('#loginChanged').prop('checked', true);
+                $('#emailChanged').val(fieldChanges.login);
+                $('#passwordChanged').val(fieldChanges.login);
+                $("#ChangeProfileDataForm").submit();
                 alert("success");
             }
             else {
                 $('#change-profile-error-message-holder').text(result);
-            }*/
-            alert(result);
+            }
+            fieldChanges.login = false;
+            fieldChanges.email = false;
+            fieldChanges.password = false;
+            $('#change-login-field').find('input').val("");
+            $('#change-email-field').find('input').val("");
+            $('#old-password-field').find('input').val("");
+            $('#new-password-field').find('input').val("");
         }
     });
-};
-
-$('.field-redact-holder input').on('change', function () {
-    alert($(event.target).parents('div').attr("id"));
-});
+};*/
 
 var fieldChanges = {
     "login": false,
     "email": false,
-    "oldPassword": false,
-    "newPassword": false,
-    "confirmPassword": false
+    "password": false,
 }
 
 $('#reset-changes-button').on('click', function () {

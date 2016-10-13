@@ -70,67 +70,134 @@
         </div>
     </footer>
 }
+<script src="~/scripts/Chart.min.js"></script>
 <section class="row">
     <div id="container">
         <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-            @using (Html.BeginForm("ChangeProfileData", "Profile", FormMethod.Post, new { @id = "ChangeProfileDataForm" }))
+            @using (Html.BeginForm("UpdateProfile", "Profile", FormMethod.Post, new { @id = "ChangeProfileDataForm" }))
             {
-            <div class="profile-inform-header">Информация профиля:</div>
-            <div class="inform-box">Логин: 
-                <div class="field-value-holder"  style="display:inline">
-                    <p  style="display:inline">@ViewBag.UserLogin</p>
+                <div class="profile-inform-header">Информация профиля:</div>
+                <div class="inform-box">
+                    Логин:
+                    <div class="field-value-holder" style="display:inline">
+                        <p style="display:inline">@ViewBag.UserLogin</p>
+                    </div>
+                    <div class="field-redact-holder" id="change-login-field">
+                        @Html.EditorFor(x => Model.Login, "", "login")
+                    </div>
                 </div>
-                <div class="field-redact-holder" id="change-login-field">
-                    @Html.EditorFor(x => Model.Login)
+                <div class="inform-box">
+                    Почта:
+                    <div class="field-value-holder" style="display:inline">
+                        <p style="display:inline">@ViewBag.UserEmail</p>
+                    </div>
+                    <div class="field-redact-holder" id="change-email-field">
+                        @Html.EditorFor(x => Model.Email, "", "email")
+                    </div>
                 </div>
-            </div>
-            <div class="inform-box">Почта: 
-                <div class="field-value-holder" style="display:inline">
-                    <p style="display:inline">@ViewBag.UserEmail</p>
+                <div class="field-redact-holder" id="old-password-field">
+                    Введите старый пароль:&nbsp;&nbsp;
+                    <input type="password" name="oldPassword" autocomplete="off">
                 </div>
-                <div class="field-redact-holder" id="change-email-field">
-                    @Html.EditorFor(x => Model.Email)
+                <div class="field-redact-holder" id="new-password-field">
+                    Введите новый пароль:&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="password" name="newPassword" autocomplete="off">
                 </div>
-            </div>
-            <div class="field-redact-holder" id="old-password-field">
-                Введите старый пароль:&nbsp;&nbsp;
-                <input type="password" autocomplete="off">
-            </div>
-            <div class="field-redact-holder" id="new-password-field">
-                Введите новый пароль:&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="password" autocomplete="off">
-            </div>
-            <div class="field-redact-holder" id="confirm-password-field">
-                Повторите новый пароль:
-                <input type="password" autocomplete="off">
-            </div>
-            <div class="inform-box">Получать уведомления: 
+                <div class="field-redact-holder" id="confirm-password-field">
+                    Повторите новый пароль:
+                    <input type="password" name="confirmPassword" autocomplete="off" >
+                </div>
+                <div class="inform-box">
+                    Получать уведомления:
                     @if (ViewBag.UserNeedDelivery == "true")
                 {
-                        <input type="checkbox" checked="checked" onclick="return false" id="needDelivety-field"/>
+                        <input type="checkbox" name="needDelivery" checked="checked" id="needDelivety-field" />
                     }
                     else
                     {
-                        <input type="checkbox"  onclick="return false" id="needDelivety-field"/>
+                        <input type="checkbox" name="needDelivery" id="needDelivety-field" />
                     }
-            </div>
+                </div>
 
-            <div id="change-profile-error-message-holder"></div>
+                <div id="change-profile-error-message-holder">@ViewBag.ValidateErrorMessage</div>
 
-            <div class="redact-button-holder">
-                <button type="button" class="btn btn-primary" id="change-password-button">Редактировать профиль</button>
-            </div>
-            <div class="redact-button-holder">
-                <button type="button" class="btn btn-warning"  id="save-changes-button" onclick="ValidateUpdateProfileDataForm()">Сохранить изменения</button>
-                <button type="button" class="btn btn-default" id="reset-changes-button">Отменить изменения</button>
-            </div>
+                <div class="redact-button-holder">
+                    <button type="button" class="btn btn-primary" id="change-password-button">Редактировать профиль</button>
+                </div>
+                <div class="redact-button-holder">
+                    <button type="submit" class="btn btn-warning" id="save-changes-button" onclick="ValidateUpdateProfileDataForm()">Сохранить изменения</button>
+                    <button type="button" class="btn btn-default" id="reset-changes-button">Отменить изменения</button>
+                </div>
             }
         </div>
         <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
             <div class="profile-inform-header">Cтатистика профиля:</div>
-            <div class="inform-box">Выполненые задачи: @ViewBag.CompletedStat</div>
+            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" id="TaskStatsDiagramHolder">
+                <canvas id="TaskStatsDiagram" width="200" height="200" style="background-color:white"></canvas>
+            </div>
+            <script>
+                var all, completed, uncompleted;
+                $.ajax({
+                    type: "Get",
+                    url: "/Profile/getTaskStats",
+                    data: { param: "all" },
+                    async: false,
+                    success: function (used) {
+                        all = used;
+                    }
+                });
+                $.ajax({
+                    type: "Get",
+                    url: "/Profile/getTaskStats",
+                    data: { param: "completed" },
+                    async: false,
+                    success: function (used) {
+                        completed = used;
+                    }
+                });
+                $.ajax({
+                    type: "Get",
+                    async: false,
+                    url: "/Profile/getTaskStats",
+                    data: { param: "uncompleted" },
+                    success: function (used) {;
+                        uncompleted = used;
+                    }
+                });
+                var stat = [parseInt(completed), parseInt(uncompleted), parseInt(all - completed), ];
+                var ctx = document.getElementById("TaskStatsDiagram").getContext("2d");;
+                ctx.canvas.width = 100;
+                ctx.canvas.height = 100;
+                var myData = {
+                    datasets: [{
+                        data: stat,
+                        backgroundColor: [
+                            "#36A2EB",
+                            "#FF6384",
+                            "#FFCE56"
+                        ],
+                        label: 'My dataset' // for legend
+                    }],
+                    labels: [
+                        "Выполненые",
+                        "Просроченные",
+                         "Выполняются"
+                    ]
+                };
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: myData,
+                    options: {
+                        responsive: true,
+                        rotation: -0.5 * Math.PI
+                    },
+                    title: {
+                        display: true,
+                        text: 'Статистика задач'
+                    }
+                });
+            </script>
             <div class="inform-box">Просроченые задачи: @ViewBag.UncompletedStats</div>
         </div>
     </div>
 </section>
-

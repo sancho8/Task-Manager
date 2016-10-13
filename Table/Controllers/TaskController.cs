@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace Table.Controllers
 {
-
+    [RequireHttps]
     public class TaskController : Controller
     {
         string connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectToDatabase"].ToString();
