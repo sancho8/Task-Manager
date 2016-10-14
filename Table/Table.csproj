@@ -168,6 +168,7 @@
     <Content Include="Content\images\container_bg.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\task.jpg" />
+    <Content Include="Content\images\vk-button.jpg" />
     <Content Include="Content\jquery-ui-1.12.1.custom\AUTHORS.txt" />
     <Content Include="Content\jquery-ui-1.12.1.custom\external\jquery\jquery.js" />
     <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_444444_256x240.png" />
@@ -229,6 +230,7 @@
     <Content Include="scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\social-auth.js" />
     <Content Include="scripts\wow.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -7,7 +7,7 @@
         <nav class="navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <p class="navbar-brand">Task-manager</p>
+                    <p class="navbar-brand">Doer</p>
                 </div>
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Профиль", "MoveToPage", "Home", new { page = "Home" }, new { })</li>
@@ -25,7 +25,7 @@
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li onclick="MoveToHomePage()"><a href="#"><span class="glyphicon glyphicon-user"></span>@ViewBag.UserLogin</a></li>
+                        <li onclick="MoveToHomePage()"><a href="#"><span class="glyphicon glyphicon-user" id="user-login-holder"></span>@ViewBag.UserLogin</a></li>
                         <li data-toggle="modal" data-target="#exit_modal"><a href="#"><span class="glyphicon glyphicon-log-out"></span>Выйти</a></li>
                     </ul>
                 }
@@ -105,7 +105,7 @@
                 </div>
                 <div class="field-redact-holder" id="confirm-password-field">
                     Повторите новый пароль:
-                    <input type="password" name="confirmPassword" autocomplete="off" >
+                    <input type="password" name="confirmPassword" autocomplete="off">
                 </div>
                 <div class="inform-box">
                     Получать уведомления:
@@ -136,68 +136,69 @@
                 <canvas id="TaskStatsDiagram" width="200" height="200" style="background-color:white"></canvas>
             </div>
             <script>
-                var all, completed, uncompleted;
-                $.ajax({
-                    type: "Get",
-                    url: "/Profile/getTaskStats",
-                    data: { param: "all" },
-                    async: false,
-                    success: function (used) {
-                        all = used;
-                    }
-                });
-                $.ajax({
-                    type: "Get",
-                    url: "/Profile/getTaskStats",
-                    data: { param: "completed" },
-                    async: false,
-                    success: function (used) {
-                        completed = used;
-                    }
-                });
-                $.ajax({
-                    type: "Get",
-                    async: false,
-                    url: "/Profile/getTaskStats",
-                    data: { param: "uncompleted" },
-                    success: function (used) {;
-                        uncompleted = used;
-                    }
-                });
-                var stat = [parseInt(completed), parseInt(uncompleted), parseInt(all - completed), ];
-                var ctx = document.getElementById("TaskStatsDiagram").getContext("2d");;
-                ctx.canvas.width = 100;
-                ctx.canvas.height = 100;
-                var myData = {
-                    datasets: [{
-                        data: stat,
-                        backgroundColor: [
-                            "#36A2EB",
-                            "#FF6384",
-                            "#FFCE56"
-                        ],
-                        label: 'My dataset' // for legend
-                    }],
-                    labels: [
-                        "Выполненые",
-                        "Просроченные",
-                         "Выполняются"
-                    ]
+                var completed, uncompleted, up_to_date;
+                window.onload = function() {
+                    $.ajax({
+                        type: "Get",
+                        url: "/Profile/getTaskStats",
+                        data: { param: "uncompleted" },
+                        async: false,
+                        success: function (result) {
+                            uncompleted = result;
+                        }
+                    });
+                    $.ajax({
+                        type: "Get",
+                        url: "/Profile/getTaskStats",
+                        data: { param: "completed" },
+                        async: false,
+                        success: function (result) {
+                            completed = result;
+                        }
+                    });
+                    $.ajax({
+                        type: "Get",
+                        async: false,
+                        url: "/Profile/getTaskStats",
+                        data: { param: "up-to-date" },
+                        success: function (result) {;
+                            up_to_date = result;
+                        }
+                    });
+                    var stat = [parseInt(completed), parseInt(up_to_date), parseInt(uncompleted), ];
+                    var ctx = document.getElementById("TaskStatsDiagram").getContext("2d");;
+                    ctx.canvas.width = 100;
+                    ctx.canvas.height = 100;
+                    var myData = {
+                        datasets: [{
+                            data: stat,
+                            backgroundColor: [
+                                "#36A2EB",
+                                "#FF6384",
+                                "#FFCE56"
+                            ],
+                            label: 'My dataset' // for legend
+                        }],
+                        labels: [
+                            "Выполненые",
+                            "Просроченные",
+                            "Выполняются"
+                        ]
+                    };
+                    var myChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: myData,
+                        options: {
+                            responsive: true,
+                            rotation: -0.5 * Math.PI
+                        },
+                        title: {
+                            display: true,
+                            text: 'Статистика задач'
+                        }
+                    });
                 };
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: myData,
-                    options: {
-                        responsive: true,
-                        rotation: -0.5 * Math.PI
-                    },
-                    title: {
-                        display: true,
-                        text: 'Статистика задач'
-                    }
-                });
             </script>
-            <div class="inform-box">Просроченые задачи: @ViewBag.UncompletedStats</div>
         </div>
     </div>
 </section>

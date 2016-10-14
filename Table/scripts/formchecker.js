@@ -224,7 +224,7 @@ function OnRegistration() {
                     },
                     sucess: alert("loggined")
                 });
-                $("#registration-form").submit();
+                window.location.reload();
             }
             else {
                 $("#RegError").text(data);

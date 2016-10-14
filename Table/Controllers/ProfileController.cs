@@ -122,14 +122,14 @@ namespace Table.Controllers
                 int id = Int32.Parse(cookie["Id"]);
                 switch (param)
                 {
-                    case "all": return (from e in context.Tasks
-                                where e.UserId == id
+                    case "uncompleted": return (from e in context.Tasks
+                                where e.UserId == id && e.IsComplete == false
                                 select e).Count();
                     case "completed": return (from e in context.Tasks
                                 where e.UserId == id && e.IsComplete == true
                                 select e).Count();
-                    case "uncompleted": return (from e in context.Tasks
-                                where e.UserId == id && e.Data < DateTime.Now 
+                    case "up-to-date": return (from e in context.Tasks
+                                where e.UserId == id && e.Data < DateTime.Now &&e.IsComplete == false
                                 select e).Count();
                     default: return 0;
                 }

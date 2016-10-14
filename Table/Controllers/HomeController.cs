@@ -16,6 +16,7 @@ namespace Table.Controllers
         public ActionResult Index()
         {
             HttpCookie cookie = new HttpCookie("");
+            cookie.Expires = DateTime.MaxValue;
             try
             {
                 cookie = Request.Cookies["Authorization"];
