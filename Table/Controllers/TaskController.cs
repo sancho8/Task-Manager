@@ -29,18 +29,10 @@ namespace Table.Controllers
 
         // GET: Task
         public ActionResult Index()
-        {
+        { 
+            HttpCookie cookie = Request.Cookies["Authorization"];
+            ViewBag.UserLogin = HttpUtility.UrlDecode(cookie["Login"]);
             GetTaskInPartialView();
-            try
-            {
-                HttpCookie cookie = Request.Cookies["Authorization"];
-                ViewBag.UserLogin = cookie["Login"];
-            }
-            catch (Exception ex)
-            {
-                ViewBag.ErrorMessage = ex.Message;
-                return View("Error");
-            }
             return View("Tasks");
         }
 

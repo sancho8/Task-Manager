@@ -54,7 +54,7 @@ namespace Table.Controllers
                 return RedirectToAction("Index", "Profile");
             }
             HttpCookie cookie = Request.Cookies["Authorization"];
-            ViewBag.UserLogin = cookie["Login"];
+            ViewBag.UserLogin = HttpUtility.UrlDecode(cookie["Login"]);
             return View(page);
         }
 

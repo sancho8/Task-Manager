@@ -13,17 +13,15 @@
                     <div>Получать рассылку задач на почту: @Html.CheckBox("needDelivery", new { @checked = "checked", @id = "RegNeedDelivery" })</div>
                 <div style="color: red" id="RegError"></div>
                 <div id="social-buttons-holder">
-                    <fb:login-button scope="public_profile,email" onlogin="RegisterUsingFacebook();">
-                    </fb:login-button>
-                    <a href="#"><img src="~/Content/images/vk-button.jpg" width="80" height="30" id="vk-button" onclick="RegisterUsingVK()"/></a>
-                    <button onclick="LogOut()" class="btn btn-default">LogOut</button>
-                    <script>
-                        function LogOut() {
-                            FB.logout(function (response) {
-
-                            });
-                        }
-                    </script>
+                    <a class="btn btn-social-icon btn-facebook" onclick="RegisterUsingFacebook()">
+                        <span class="fa fa-facebook fa-2x"></span>
+                    </a>
+                    <a class="btn btn-social-icon btn-vk" onclick="RegisterUsingVK()">
+                        <span class="fa fa-vk fa-2x"></span>
+                    </a>
+                    <a class="btn btn-social-icon btn-google">
+                        <span class="fa fa-google fa-2x"></span>
+                    </a>
                 </div>
             </div>
             <div class="modal-footer" style="text-align:center">

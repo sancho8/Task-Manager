@@ -87,6 +87,8 @@
                     </div>
                 </div>
                 <div class="inform-box">
+                    @if (!String.IsNullOrWhiteSpace(ViewBag.UserEmail))
+                    {
                     Почта:
                     <div class="field-value-holder" style="display:inline">
                         <p style="display:inline">@ViewBag.UserEmail</p>
@@ -94,6 +96,7 @@
                     <div class="field-redact-holder" id="change-email-field">
                         @Html.EditorFor(x => Model.Email, "", "email")
                     </div>
+                    }
                 </div>
                 <div class="field-redact-holder" id="old-password-field">
                     Введите старый пароль:&nbsp;&nbsp;

@@ -34,9 +34,9 @@ namespace Table.Controllers
                 ViewBag.CompletedStat = completedTasks.ToString() + "/" + allTasks.ToString();
                 ViewBag.UncompletedStats = overduedTasks.ToString();
 
-                String login = cookie["Login"];
+                String login = HttpUtility.UrlDecode(cookie["Login"]);
+                ViewBag.UserLogin = login;
                 var currentUser = context.Users.Single(x => x.Login == login);
-                ViewBag.UserLogin = currentUser.Login.ToString();
                 ViewBag.UserEmail = currentUser.Email.ToString();
                 ViewBag.UserNeedDelivery = currentUser.NeedDelivery.ToString();
 
