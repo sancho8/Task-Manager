@@ -74,9 +74,10 @@ namespace Table.Controllers
             // создаем объект сообщения
             MailMessage m = new MailMessage(from, to);
             // тема письма
-            m.Subject = "Тест";
+            m.Subject = "Отзыв о проекте Doer task-manager";
             // текст письма
-            m.Body = "<h2>Письмо-тест работы smtp-клиента</h2>";
+            m.Body = "<h2>От: " + name + ", Email: " + email + "</h2><br />";
+            m.Body += "<h2>" + feedback + "</h2>";
             // письмо представляет код html
             m.IsBodyHtml = true;
             // адрес smtp-сервера и порт, с которого будем отправлять письмо
