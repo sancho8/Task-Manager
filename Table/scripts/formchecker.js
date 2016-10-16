@@ -121,7 +121,7 @@ $(document).keypress(function (e) {
 
 function SaveTaskWithReload(){
     SaveTask();
-    $("#matrix-button").click(this);
+    $("#matrix-button").click();
     //.click();
 }
 
@@ -157,6 +157,7 @@ function SaveTask() {
             isComplete: e
         },
         success: function () {
+            $("#matrix-button").click();
             onEditing = false;
         }
     });
@@ -222,7 +223,6 @@ function OnRegistration() {
                         login: $('#RegLogin').val(),
                         password: $('#RegPassword').val()
                     },
-                    sucess: alert("loggined")
                 });
                 window.location.reload();
             }

@@ -449,9 +449,10 @@ li {
 }
 
 .priority-column {
-    width: 25%;
-    min-width: 25%;
-    max-width: 25%;
+    width: 20%;
+    min-width: 20%;
+    max-width: 20%;
+    text-overflow: ellipsis;
 }
 
 .number-column {
@@ -467,9 +468,9 @@ li {
 }
 
 .control-column {
-    width: 15%;
-    min-width: 15%;
-    max-width: 15%;
+    width: 20%;
+    min-width: 20%;
+    max-width: 20%;
 }
 
 #number-edit-holder input {
@@ -593,4 +594,8 @@ canvas {
 }
 .feedback-form-input input{
     padding: 10px;
+}
+.buffer{
+    height: 45px;
+    visibility: hidden;
 }
