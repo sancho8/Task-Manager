@@ -34,7 +34,7 @@
                         new { @class = "glyphicon glyphicon-chevron-down" })
                             </th>
                             <th class="data-column">Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                            <th class="priority-column">Приоритет @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="priority-column"><span style="font-size:14px">Приоритет</span> @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
                             <th class="number-column">№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
                             <th class="complete-column">
                                 <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>

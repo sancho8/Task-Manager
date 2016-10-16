@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using Table.Models;
@@ -65,6 +67,25 @@ namespace Table.Controllers
 
         public ActionResult SendFeedback(string name, string email, string feedback)
         {
+            // отправитель - устанавливаем адрес и отображаемое в письме имя
+            MailAddress from = new MailAddress("yaroshenko.aleksandr8@gmail.com", "Task-Manager");
+            // кому отправляем
+            MailAddress to = new MailAddress("98sancho@ukr.net");
+            // создаем объект сообщения
+            MailMessage m = new MailMessage(from, to);
+            // тема письма
+            m.Subject = "Тест";
+            // текст письма
+            m.Body = "<h2>Письмо-тест работы smtp-клиента</h2>";
+            // письмо представляет код html
+            m.IsBodyHtml = true;
+            // адрес smtp-сервера и порт, с которого будем отправлять письмо
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            // логин и пароль
+            smtp.Credentials = new NetworkCredential("yaroshenko.aleksandr8@gmail.com", "assasin777");
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.EnableSsl = true;
+            smtp.Send(m);
             return RedirectToAction("Index","Home");
         }
     }

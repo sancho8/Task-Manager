@@ -7,7 +7,7 @@
         <nav class="navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <p class="navbar-brand">Doer</p>
+                    <p class="navbar-brand" id="title-holder">Doer</p>
                 </div>
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Профиль", "MoveToPage", "Home", new { page = "Home" }, new { })</li>
@@ -87,9 +87,9 @@
                     </div>
                 </div>
                 <div class="inform-box">
+                    Почта:
                     @if (!String.IsNullOrWhiteSpace(ViewBag.UserEmail))
                     {
-                    Почта:
                     <div class="field-value-holder" style="display:inline">
                         <p style="display:inline">@ViewBag.UserEmail</p>
                     </div>

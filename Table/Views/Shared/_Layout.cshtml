@@ -3,6 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="276446912366-jqp0p82qcl5rhh5omktuvgm63i7b3t67.apps.googleusercontent.com">
     <title>Doer Task-Manager</title>
 
     <link rel="icon" type="image/x-icon" href="~/Content/favicon.ico">
@@ -17,13 +19,14 @@
     <script src="~/Content/datetimepicker-master/jquery.js"></script>
     <script src="~/Content/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
 
-
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://vk.com/js/api/openapi.js?133" type="text/javascript"></script>
     <script type="text/javascript">
         VK.init({
             apiId: 5668380
         });
     </script>
+
 </head>
 <body>
 
@@ -40,11 +43,9 @@
             // Full docs on the response object can be found in the documentation
             // for FB.getLoginStatus().
             if (response.status != 'connected') {
-                $('#change-password-button').show();
             }
             if (response.status === 'connected') {
                 // Logged into your app and Facebook.
-                testAPI();
             } else if (response.status === 'not_authorized') {
                 // The person is logged into Facebook, but not your app.
             } else {
