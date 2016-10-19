@@ -98,3 +98,16 @@ C:\Users\Sancho\Desktop\Table\Table\bin\System.Web.Mvc.xml
 C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Table.csprojResolveAssemblyReference.cache
 C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Table.dll
 C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Table.pdb
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.Security.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Newtonsoft.Json.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Owin.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.Security.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Newtonsoft.Json.xml

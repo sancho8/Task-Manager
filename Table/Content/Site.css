@@ -292,11 +292,12 @@ li {
     width: 60px;
     margin-left: 5px;
     margin-right: 5px;
+    font-size: 16px;
 }
 
-    .btn-social-icon:hover {
-        background-color: #048FC8;
-    }
+.btn-social-icon:hover {
+   background-color: #048FC8;
+}
 
 .glyphicon:hover {
     color: black;
@@ -598,4 +599,10 @@ canvas {
 .buffer{
     height: 45px;
     visibility: hidden;
+}
+#contact-form-error-message{
+    font-size: 26px;
+    color: red;
+    margin-left: auto;
+    margin-right: auto;
 }

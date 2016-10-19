@@ -1,8 +1,27 @@
 ﻿$(document).ready(function () {
     $('.edit-holder').hide();
     date = new Date().toJSON().slice(0, 10);
-    LoadCalendar();
+    if ($("#datetimepicker").length > 0) {
+        LoadCalendar();
+    }
 });
+
+function validateContactForm() {
+    if(!$("#feedback-name").val()){
+        $('#contact-form-error-message').text("Введите имя");
+        return false;
+    }
+    if(!$("#feedback-message").val()){
+        $('#contact-form-error-message').text("Введите сообщение");
+        return false;
+    }
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test($("#feedback-email").val())) {
+        $('#contact-form-error-message').text("Введите почтовый адресс");
+        return false;
+    }
+    return true;
+}
 
 $(document).ajaxComplete(LoadCalendar);
 

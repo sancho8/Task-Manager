@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using Table.Hubs;
 using Table.Models;
 
 namespace Table.Controllers
@@ -43,6 +44,13 @@ namespace Table.Controllers
             {
                 return MoveToPage("About");
             }
+        }
+
+        public ActionResult MoveToHomePage()
+        {
+            HttpCookie cookie = Request.Cookies["Authorization"];
+            ViewBag.UserLogin = HttpUtility.UrlDecode(cookie["Login"]);
+            return View("Home");
         }
 
         public ActionResult MoveToPage(string page)

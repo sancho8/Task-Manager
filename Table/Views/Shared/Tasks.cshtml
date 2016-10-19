@@ -17,15 +17,33 @@
                 @if (ViewBag.UserLogin == "")
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li data-toggle="modal" data-target="#myModal"><a href="#"><span class="glyphicon glyphicon-user"></span>Регистрация</a></li>
-                        <li data-toggle="modal" data-target="#login_modal"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Войти</a></li>
+                        <li data-toggle="modal" data-target="#myModal">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"></span>Регистрация
+                            </a>
+                        </li>
+                        <li data-toggle="modal" data-target="#login_modal">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-log-in">
+                                </span>Войти
+                            </a>
+                        </li>
                     </ul>
                 }
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li onclick="MoveToHomePage()"><a href="#"><span class="glyphicon glyphicon-user"></span>@ViewBag.UserLogin</a></li>
-                        <li data-toggle="modal" data-target="#exit_modal"><a href="#"><span class="glyphicon glyphicon-log-out"></span>Выйти</a></li>
+                        <li onclick="location.href = $('#RedirectToProfilePage').val();">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"></span>@ViewBag.UserLogin
+                            </a>
+                        </li>
+                        <li data-toggle="modal" data-target="#exit_modal">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-log-out"></span>Выйти
+                            </a>
+                        </li>
+                        @Html.Hidden("RedirectToProfilePage", Url.Action("MoveToHomePage", "Home"));
                     </ul>
                 }
             </div>
@@ -37,26 +55,6 @@
             <h1>Менеджер задач</h1>
             <h3>Простой и удобный инструмент управления временем</h3>
         </div>
-        <!--Social buttons
-            <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3" id="auth_box">
-            <a class="btn btn-social-icon btn-facebook">
-                <span class="fa fa-facebook"></span>
-            </a>
-            <a class="btn btn-social-icon btn-twitter">
-                <span class="fa fa-twitter"></span>
-            </a>
-            <a class="btn btn-social-icon btn-vk">
-                <span class="fa fa-vk"></span>
-            </a>
-            <a class="btn btn-social-icon btn-odnoklassniki">
-                <span class="fa fa-odnoklassniki"></span>
-            </a>
-            <a class="btn btn-social-icon btn-google">
-                <span class="fa fa-google"></span>
-            </a>
-            <p>Sign in by your favourite social network</p>
-        </div>
-        -->
     </header>
 }
 @section Footer{

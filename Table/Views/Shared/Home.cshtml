@@ -18,15 +18,33 @@
                 @if (ViewBag.UserLogin == "")
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li data-toggle="modal" data-target="#myModal"><a href="#"><span class="glyphicon glyphicon-user"></span>Регистрация</a></li>
-                        <li data-toggle="modal" data-target="#login_modal"><a href="#"><span class="glyphicon glyphicon-log-in"></span>Войти</a></li>
+                        <li data-toggle="modal" data-target="#myModal">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"></span>Регистрация
+                            </a>
+                        </li>
+                        <li data-toggle="modal" data-target="#login_modal">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-log-in">
+                                </span>Войти
+                            </a>
+                        </li>
                     </ul>
                 }
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li onclick="MoveToHomePage()"><a href="#"><span class="glyphicon glyphicon-user" id="user-login-holder"></span>@ViewBag.UserLogin</a></li>
-                        <li data-toggle="modal" data-target="#exit_modal"><a href="#"><span class="glyphicon glyphicon-log-out"></span>Выйти</a></li>
+                        <li onclick="location.href = $('#RedirectToProfilePage').val();">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"></span>@ViewBag.UserLogin
+                            </a>
+                        </li>
+                        <li data-toggle="modal" data-target="#exit_modal">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-log-out"></span>Выйти
+                            </a>
+                        </li>
+                        @Html.Hidden("RedirectToProfilePage", Url.Action("MoveToHomePage", "Home"));
                     </ul>
                 }
             </div>

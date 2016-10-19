@@ -48,7 +48,17 @@ namespace Table.Controllers
                     context.SaveChanges();
                 }
             }
+            SendMessage("Добавлен новый объект");
             return GetTaskInPartialView();
+        }
+
+        private void SendMessage(string message)
+        {
+            // Получаем контекст хаба
+            var context =
+                Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<Hubs.NotificationHub>();
+            // отправляем сообщение
+            context.Clients.All.displayMessage(message);
         }
 
         [HttpPost]

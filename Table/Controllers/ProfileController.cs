@@ -55,6 +55,10 @@ namespace Table.Controllers
                 var currentUser = (from e in context.Users
                                    where e.Id == id
                                    select e).Single();
+                if(!currentUser.Password.Any(ch => ch < '0' || ch > '9')){
+                    ViewBag.ValidateErrorMessage = "Этот тип аккаунта нельзя редактировать";
+                    return Index();
+                }
                 if (!String.IsNullOrWhiteSpace(login)&&(currentUser.Login!=login))
                 {
                     if (login.Length < 5)

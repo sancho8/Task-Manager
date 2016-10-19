@@ -19,17 +19,24 @@
     <script src="~/Content/datetimepicker-master/jquery.js"></script>
     <script src="~/Content/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
 
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://vk.com/js/api/openapi.js?133" type="text/javascript"></script>
-    <script type="text/javascript">
-        VK.init({
-            apiId: 5668380
-        });
-    </script>
-
 </head>
 <body>
+    <div id="vk_api_transport"></div>
+    <script type="text/javascript">
+        window.vkAsyncInit = function () {
+            VK.init({
+                apiId: 5668380
+            });
+        };
 
+        setTimeout(function () {
+            var el = document.createElement("script");
+            el.type = "text/javascript";
+            el.src = "https://vk.com/js/api/openapi.js?133";
+            el.async = true;
+            document.getElementById("vk_api_transport").appendChild(el);
+        }, 0);
+    </script>
 
 
     <!------------------------------ Loading Facebook API -------------------------->
@@ -42,8 +49,6 @@
             // app know the current login status of the person.
             // Full docs on the response object can be found in the documentation
             // for FB.getLoginStatus().
-            if (response.status != 'connected') {
-            }
             if (response.status === 'connected') {
                 // Logged into your app and Facebook.
             } else if (response.status === 'not_authorized') {
@@ -74,18 +79,6 @@
                 version: 'v2.5' // use graph api version 2.5
             });
 
-            // Now that we've initialized the JavaScript SDK, we call
-            // FB.getLoginStatus().  This function gets the state of the
-            // person visiting this page and can return one of three states to
-            // the callback you provide.  They can be:
-            //
-            // 1. Logged into your app ('connected')
-            // 2. Logged into Facebook, but not your app ('not_authorized')
-            // 3. Not logged into Facebook and can't tell if they are logged into
-            //    your app or not.
-            //
-            // These three cases are handled in the callback function.
-
             FB.getLoginStatus(function (response) {
                 statusChangeCallback(response);
             });
@@ -103,11 +96,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        // Here we run a very simple test of the Graph API after login is
-        // successful.  See statusChangeCallback() for when this call is made.
-        function testAPI() {
-
-        }
     </script>
     <!------------------------------------------------------------------------------------>
 
@@ -119,6 +107,7 @@
         @RenderSection("Header")
     }
     @RenderBody()
+    <span id="notification">a</span>
     @if (IsSectionDefined("Footer"))
     {
         @RenderSection("Footer")
@@ -134,5 +123,22 @@
       the JavaScript SDK to present a graphical Login button that triggers
       the FB.login() function when clicked.
     -->
+    <script src="~/scripts/jquery.signalR-2.2.1.js"></script>
+    <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var notificationhub = $.connection.notificationHub;
+
+            notificationhub.client.displayMessage = function (message) {
+
+                $('#notification').html(message);
+            };
+
+            $.connection.hub.start();
+
+        });
+    </script>
 </body>
 </html>
