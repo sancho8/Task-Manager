@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="276446912366-jqp0p82qcl5rhh5omktuvgm63i7b3t67.apps.googleusercontent.com">
+    <title>Doer Task-Manager</title>
+
+    <link rel="icon" type="image/x-icon" href="~/Content/favicon.ico">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Reset.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/datetimepicker-master/jquery.datetimepicker.css" />
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+    <script src="~/Content/datetimepicker-master/jquery.js"></script>
+    <script src="~/Content/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+
+</head>
+<body>
+    <div id="vk_api_transport"></div>
+    <script type="text/javascript">
+        window.vkAsyncInit = function () {
+            VK.init({
+                apiId: 5668380
+            });
+        };
+
+        setTimeout(function () {
+            var el = document.createElement("script");
+            el.type = "text/javascript";
+            el.src = "https://vk.com/js/api/openapi.js?133";
+            el.async = true;
+            document.getElementById("vk_api_transport").appendChild(el);
+        }, 0);
+    </script>
+
+
+    <!------------------------------ Loading Facebook API -------------------------->
+    <script>
+        // This is called with the results from from FB.getLoginStatus().
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            // The response object is returned with a status field that lets the
+            // app know the current login status of the person.
+            // Full docs on the response object can be found in the documentation
+            // for FB.getLoginStatus().
+            if (response.status === 'connected') {
+                // Logged into your app and Facebook.
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+                document.getElementById('status').innerHTML = 'Please log ' +
+                  'into Facebook.';
+            }
+        }
+
+        // This function is called when someone finishes with the Login
+        // Button.  See the onlogin handler attached to it in the sample
+        // code below.
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1714467578875553',
+                cookie: true,  // enable cookies to allow the server to access
+                // the session
+                xfbml: true,  // parse social plugins on this page
+                version: 'v2.5' // use graph api version 2.5
+            });
+
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+
+            facebook = FB;
+
+        };
+
+        // Load the SDK asynchronously
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script>
+    <!------------------------------------------------------------------------------------>
+
+    @Html.Partial("LoginWindow")
+    @Html.Partial("RegistrationWindow")
+    @Html.Partial("ExitWindow")
+    @if (IsSectionDefined("Header"))
+    {
+        @RenderSection("Header")
+    }
+    @RenderBody()
+    @if (IsSectionDefined("Footer"))
+    {
+        @RenderSection("Footer")
+    }
+
+    <script src="~/scripts/jquery.json-2.2.min.js"></script>
+    <script src="~/scripts/formchecker.js"></script>
+    <script src="~/scripts/social-auth.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+    <!--
+      Below we include the Login Button social plugin. This button uses
+      the JavaScript SDK to present a graphical Login button that triggers
+      the FB.login() function when clicked.
+    -->
+    <script src="~/scripts/jquery.signalR-2.2.1.js"></script>
+    <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var notificationhub = $.connection.notificationHub;
+
+            notificationhub.client.displayMessage = function (message) {
+
+                $('#notification').html(message);
+            };
+
+            $.connection.hub.start();
+
+        });
+    </script>
+</body>
+</html>

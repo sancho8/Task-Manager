@@ -348,7 +348,7 @@ li {
 }
 
 .desc-box {
-    min-height: 400px;
+    min-height: 500px;
     padding: 30px;
     background-color: white;
     font-size: 26px;
@@ -357,7 +357,7 @@ li {
 }
 
 .desc-box-inverse {
-    min-height: 400px;
+    min-height: 500px;
     padding: 30px;
     background-color: #057cbe;
     font-size: 26px;
@@ -367,7 +367,7 @@ li {
 
 .desc-img {
     width: 500px;
-    height: 250px;
+    height: 400px;
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
@@ -605,4 +605,24 @@ canvas {
     color: red;
     margin-left: auto;
     margin-right: auto;
+}
+.desc-list li{
+    font-size: 48px;
+    padding: 10px;
+}
+#register-button-holder{
+    margin-left:auto;
+    margin-right: auto;
+}
+#register-button-holder a{
+    height: 40px;
+    color: white;
+    font-size: 16px;
+    background-color: #428bca;
+    margin: 5px;
+}
+#register-button-holder span{
+    color: white;
+    font-size: 16px;
+    background-color: #428bca;
 }

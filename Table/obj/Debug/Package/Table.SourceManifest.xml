@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <DbDacFx path="C:\Users\Sancho\Desktop\Table\Table\obj\Debug\AutoScripts\ConnectToDatabase_IncrementalSchemaOnly.dacpac" dacpacAction="Deploy" />
+  <IisApp path="C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Package\PackageTmp" />
+  <setAcl path="C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Package\PackageTmp\App_Data" setAclResourceType="Directory" setAclAccess="Write" />
+</sitemanifest>

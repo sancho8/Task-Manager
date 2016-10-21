@@ -1,0 +1,30 @@
+﻿<div class="modal fade" tabindex="-1" role="dialog" id="myModal" onload="ClearRegForm()">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Регистрация</h4>
+            </div>
+            <div class="modal-body">
+                    <div>Введите логин:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.TextBox("reglogin", "", new { @type = "text", @placeholder = "введите логин", @id = "RegLogin", @autocomplete = "off" })</div>
+                    <div>Введите пароль:&nbsp;&nbsp;&nbsp;&nbsp; @Html.TextBox("regpassword", "", new { @type = "password", @placeholder = "Введите пароль", @id = "RegPassword", @autocomplete = "off" })</div>
+                    <div>Повторите пароль: @Html.TextBox("confirmPassword", "", new { @type = "password", @placeholder = "Подтвердите пароль", @id = "RegConfirmPassword", @autocomplete = "off" })</div>
+                    <div>Введите почту:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.TextBox("email", "", new { @type = "email", @placeholder = "введите email", @id = "RegEmail", @autocomplete = "off" })</div>
+                    <div>Получать рассылку задач на почту: @Html.CheckBox("needDelivery", new { @checked = "checked", @id = "RegNeedDelivery" })</div>
+                <div style="color: red" id="RegError"></div>
+                <div id="social-buttons-holder">
+                    <a class="btn btn-social-icon btn-facebook" onclick="RegisterUsingFacebook()">
+                        <span class="fa fa-facebook fa-2x"></span>
+                    </a>
+                    <a class="btn btn-social-icon btn-vk " onclick="RegisterUsingVK()">
+                        <span class="fa fa-vk fa-2x"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer" style="text-align:center">
+                <button type="button" class="btn btn-primary" onclick="OnRegistration()">Регистрация</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

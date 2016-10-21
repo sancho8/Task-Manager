@@ -19,7 +19,8 @@ namespace Table.Controllers
         public ActionResult Index()
         {
             HttpCookie cookie = new HttpCookie("");
-            cookie.Expires = DateTime.MaxValue;
+            cookie.Expires = DateTime.MaxValue; //users always stay rememered
+            //check if user is logged in
             try
             {
                 cookie = Request.Cookies["Authorization"];
@@ -36,16 +37,19 @@ namespace Table.Controllers
                 Response.Cookies.Add(cookie);
                 return MoveToPage("About");
             }
+            //if loginned -> redirect to task table page
             if (cookie["Login"] != "")
             {
                 return RedirectToAction("Index", "Task");
             }
+            //by default -> redirect to about page
             else
             {
                 return MoveToPage("About");
             }
         }
 
+        //action called when profile icon is clicked
         public ActionResult MoveToHomePage()
         {
             HttpCookie cookie = Request.Cookies["Authorization"];
@@ -53,8 +57,12 @@ namespace Table.Controllers
             return View("Home");
         }
 
+        //redirectong to pages(called from header menu)
         public ActionResult MoveToPage(string page)
         {
+             //for pages 'tasks' and 'home' there are actions onload
+             //so we run them, in case of other page 
+             //we directly show view
             if(page == "Tasks")
             {
                 return RedirectToAction("Index", "Task");
@@ -68,32 +76,30 @@ namespace Table.Controllers
             return View(page);
         }
 
-        public ActionResult Login()
-        {
-            return PartialView("LoginWindow");
-        }
-
         public ActionResult SendFeedback(string name, string email, string feedback)
         {
-            // отправитель - устанавливаем адрес и отображаемое в письме имя
+            //sender
             MailAddress from = new MailAddress("yaroshenko.aleksandr8@gmail.com", "Task-Manager");
-            // кому отправляем
+            //applier
             MailAddress to = new MailAddress("98sancho@ukr.net");
-            // создаем объект сообщения
+            //creating message object
             MailMessage m = new MailMessage(from, to);
-            // тема письма
+            //message subject
             m.Subject = "Отзыв о проекте Doer task-manager";
-            // текст письма
+            //message text
             m.Body = "<h2>От: " + name + ", Email: " + email + "</h2><br />";
             m.Body += "<h2>" + feedback + "</h2>";
-            // письмо представляет код html
+            //specify, that body is html
             m.IsBodyHtml = true;
-            // адрес smtp-сервера и порт, с которого будем отправлять письмо
+            //adress of smtp-server and port
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            // логин и пароль
+            //login and password of sender account
             smtp.Credentials = new NetworkCredential("yaroshenko.aleksandr8@gmail.com", "assasin777");
+            //specify delivery method
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //turn ssl on
             smtp.EnableSsl = true;
+            //sending
             smtp.Send(m);
             return RedirectToAction("Index","Home");
         }

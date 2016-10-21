@@ -1,0 +1,18 @@
+﻿<div class="modal fade" tabindex="-1" role="dialog" id="exit_modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Выход</h4>
+            </div>
+            <div class="modal-body">
+                <div style="font-size: 24px">Вы уверенны, что хотите выйти?</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" onclick="LogOutFromSocialNetworks();" id="exit-button">@Html.ActionLink("Выйти", "LogOutUser", "Auth", new { }, new { @id = "exit-link", @style="text-decoration:none; color: black" })</button>
+                <!--<button type="submit" class="btn btn-danger">Выйти</button>-->
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

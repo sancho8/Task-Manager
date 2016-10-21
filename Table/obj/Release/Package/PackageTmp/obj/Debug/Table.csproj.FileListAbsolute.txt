@@ -1,0 +1,89 @@
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\ApplicationInsights.config
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\csc.exe
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\System.Collections.Immutable.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\vbc.exe
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\VBCSCompiler.exe
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\roslyn\VBCSCompiler.exe.config
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Table.dll.config
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Table.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Table.pdb
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.Web.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.WindowsServer.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.ApplicationInsights.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.Web.Infrastructure.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Helpers.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Mvc.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Razor.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Webpages.Deployment.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Webpages.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Webpages.Razor.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.Web.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.AI.WindowsServer.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.ApplicationInsights.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Razor.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Webpages.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Webpages.Deployment.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Webpages.Razor.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Helpers.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\System.Web.Mvc.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\obj\Debug\Table.csprojResolveAssemblyReference.cache
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\obj\Debug\Table.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\obj\Debug\Table.pdb
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\EntityFramework.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\EntityFramework.SqlServer.dll
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\EntityFramework.xml
+c:\users\sancho\documents\visual studio 2015\Projects\Table\Table\bin\EntityFramework.SqlServer.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\ApplicationInsights.config
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\csc.exe
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\vbc.exe
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\VBCSCompiler.exe
+C:\Users\Sancho\Desktop\Table\Table\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Sancho\Desktop\Table\Table\bin\Table.dll.config
+C:\Users\Sancho\Desktop\Table\Table\bin\Table.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Table.pdb
+C:\Users\Sancho\Desktop\Table\Table\bin\EntityFramework.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\EntityFramework.SqlServer.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AI.Web.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\System.Web.Razor.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\System.Web.Webpages.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\System.Web.Webpages.Razor.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\System.Web.Helpers.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\System.Web.Mvc.xml
+C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Table.csprojResolveAssemblyReference.cache
+C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Table.dll
+C:\Users\Sancho\Desktop\Table\Table\obj\Debug\Table.pdb
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.Security.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Newtonsoft.Json.xml

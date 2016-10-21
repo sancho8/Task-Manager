@@ -15,9 +15,8 @@ namespace Table.Controllers
     public class TaskController : Controller
     {
         string connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectToDatabase"].ToString();
-        // @"Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True;";
-        // public static List<Task> TaskList = new List<Task>();
 
+        //modes of taskview
         enum TaskMode
         {
             SingleTableMode,
@@ -25,6 +24,7 @@ namespace Table.Controllers
             CalendarMode
         }
 
+        //current task mode
         private static TaskMode taskMode = TaskMode.SingleTableMode;
 
         // GET: Task
@@ -32,10 +32,12 @@ namespace Table.Controllers
         { 
             HttpCookie cookie = Request.Cookies["Authorization"];
             ViewBag.UserLogin = HttpUtility.UrlDecode(cookie["Login"]);
+            //load user's tasks
             GetTaskInPartialView();
             return View("Tasks");
         }
 
+        //deleting task by its id(come from js)
         public ActionResult DeleteTask(string id)
         {
             using (TaskContext context = new TaskContext())
@@ -48,29 +50,22 @@ namespace Table.Controllers
                     context.SaveChanges();
                 }
             }
-            SendMessage("Добавлен новый объект");
             return GetTaskInPartialView();
         }
 
-        private void SendMessage(string message)
-        {
-            // Получаем контекст хаба
-            var context =
-                Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<Hubs.NotificationHub>();
-            // отправляем сообщение
-            context.Clients.All.displayMessage(message);
-        }
-
+        //add task function(form come from js)
         [HttpPost]
         public ActionResult AddTask(string description, string data, char? priority, int? number)
         {
-            //getting number of new id for added tak
             using (TaskContext context = new TaskContext())
             {
                 HttpCookie cookie = Request.Cookies["Authorization"];
+                //get user id
                 int userId = Int32.Parse(cookie["Id"]);
+                //find new id number
                 var command = "SELECT TOP 1 Id FROM Tasks ORDER BY Id DESC";
                 int newId = context.Database.SqlQuery<int>(command).Single() + 1;
+                //create new task object
                 var taskToAdd = new Task(newId, userId, description, ParseData(data), priority.ToString(), number, false);
                 context.Tasks.Add(taskToAdd);
                 context.SaveChanges();
@@ -78,22 +73,29 @@ namespace Table.Controllers
             return GetTaskInPartialView();
         }
 
+        //parse data, return true if data passed correctly
         private Nullable<DateTime> ParseData(string str)
         {
             DateTime date;
             return DateTime.TryParse(str, out date) ? DateTime.Parse(str) : (DateTime?)null;
         }
 
+
+        //function for sorting tasks in table
         public ActionResult OrderTasks(string prop)
         {
             using (TaskContext context = new TaskContext())
             {
                 HttpCookie cookie = Request.Cookies["Authorization"];
+                //get user id
                 string UserID = cookie["Id"];
+                //get user tasks
                 var tasks = from e in context.Tasks
                             where e.UserId.Value.ToString() == UserID
                             orderby prop
                             select e;
+                //sort by property
+                //object with emty properties goes last
                 switch (prop)
                 {
                     case "Description": return GetTaskInPartialViewWithList(tasks.ToList().OrderBy(o => o.Description));
@@ -133,18 +135,16 @@ namespace Table.Controllers
         [HttpPost]
         public ActionResult ChangeTaskStatus(string id, string value)
         {
-            using (var conn = new SqlConnection(connection))
+            using (TaskContext context = new TaskContext())
             {
-                string command = "UPDATE Tasks SET IsComplete = '" + value + "'WHERE Id = '" + id + "'";
-
-                using (var cmd = new SqlCommand(command, conn))
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
+                int Id = Int32.Parse(id);
+                var a = (from e in context.Tasks
+                        where e.Id == Id
+                        select e).Single();
+                a.IsComplete = Boolean.Parse(value);
+                context.SaveChanges();
+                return GetTaskInPartialView();
             }
-            return GetTaskInPartialView();
         }
 
         public ActionResult GetTaskInPartialView()
@@ -172,9 +172,6 @@ namespace Table.Controllers
             {
                 HttpCookie cookie = Request.Cookies["Authorization"];
                 string UserID = cookie["Id"];
-                /*var tasks = from e in context.Tasks
-                            where e.UserId.Value.ToString() == UserID
-                            select e;*/
                 switch (taskMode)
                 {
                     case TaskMode.SingleTableMode: return PartialView("TaskRows", list);
@@ -243,20 +240,6 @@ namespace Table.Controllers
                 }
             }
             return true;
-        }
-
-        private void DbExecuteCommand(string command)
-        {
-            using (var conn = new SqlConnection(connection))
-            {
-                using (var cmd = new SqlCommand(command, conn))
-                {
-                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-            }
         }
     }
 }

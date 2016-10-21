@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Contacts";
+}
+@section Header{
+    <header class="row">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-brand" id="title-holder">Doer</p>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Профиль", "MoveToPage", "Home", new { page = "Home" }, new { })</li>
+                    <li>@Html.ActionLink("Задачи", "MoveToPage", "Home", new { page = "Tasks" }, new { })</li>
+                    <li>@Html.ActionLink("О нас", "MoveToPage", "Home", new { page = "About" }, new { })</li>
+                    <li>@Html.ActionLink("Контакты", "MoveToPage", "Home", new { page = "Contacts" }, new { })</li>
+                </ul>
+                @if (ViewBag.UserLogin == "")
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li data-toggle="modal" data-target="#myModal">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"></span>Регистрация
+                            </a>
+                        </li>
+                        <li data-toggle="modal" data-target="#login_modal">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-log-in">
+                                </span>Войти
+                            </a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li onclick="location.href = $('#RedirectToProfilePage').val();">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"></span>@ViewBag.UserLogin
+                            </a>
+                        </li>
+                        <li data-toggle="modal" data-target="#exit_modal">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-log-out"></span>Выйти
+                            </a>
+                        </li>
+                        @Html.Hidden("RedirectToProfilePage", Url.Action("MoveToHomePage", "Home"));
+                    </ul>
+                }
+            </div>
+        </nav>
+        <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4" id="logo-holder">
+            <img src="~/Content/images/logo.png" id="logo" alt="logo" />
+        </div>
+        <div class="col-md-6 col-sm-4 col-xs-12 col-lg-6" id="slogan-holder">
+            <h1>Менеджер задач</h1>
+            <h3>Простой и удобный инструмент управления временем</h3>
+        </div>
+        <!--Social buttons
+            <div class="col-md-3 col-sm-4 col-xs-12 col-lg-3" id="auth_box">
+            <a class="btn btn-social-icon btn-facebook">
+                <span class="fa fa-facebook"></span>
+            </a>
+            <a class="btn btn-social-icon btn-twitter">
+                <span class="fa fa-twitter"></span>
+            </a>
+            <a class="btn btn-social-icon btn-vk">
+                <span class="fa fa-vk"></span>
+            </a>
+            <a class="btn btn-social-icon btn-odnoklassniki">
+                <span class="fa fa-odnoklassniki"></span>
+            </a>
+            <a class="btn btn-social-icon btn-google">
+                <span class="fa fa-google"></span>
+            </a>
+            <p>Sign in by your favourite social network</p>
+        </div>
+        -->
+    </header>
+}
+@section Footer{
+    <footer class="row navbar-inverse">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 contact-info">
+            Контакты: 98sancho@ukr.net
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 copyright">
+            © Александр Ярошенко | КА "ШАГ" 2016
+        </div>
+    </footer>
+}
+<section class="row">
+    @using (Html.BeginForm("SendFeedback","Home",FormMethod.Post,new { @class="form-horizontal", @id = "contact_form", @onSubmit="return validateContactForm();"})){
+        <h4 id="contact_form_header">Оставьте ваш отзыв</h4>
+        <div class="row form-group feedback-form-input">
+            <label class="control-label col-sm-4">Ваше имя:</label>
+            <div class="col-sm-8">
+                @Html.TextBox("name", "",new {@type="text", @class= "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id = "feedback-name", @placeholder ="Enter name"})
+            </div>
+        </div>
+        <div class="row form-group feedback-form-input">
+            <label class="control-label col-sm-4">Введите адресс электронной почты:</label>
+            <div class="col-sm-8">
+                @Html.TextBox("email", "", new { @type = "email", @class = "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id = "feedback-email", @placeholder = "Enter your email" })
+            </div>
+        </div>
+        <div class="row form-group feedback-form-input">
+            <label class="control-label col-sm-4">Введите ваше сообщение:</label>
+            <div class="col-sm-8">
+                <div class="textarea" id="feedback-message-holder">
+                    @Html.TextArea("feedback", "", new { @type = "text", @class = "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id="feedback-message", @placeholder = "Enter your feedback" })
+                </div>
+            </div>
+        </div>
+        <div class="row form-group feedback-form-input">
+            <div class="col-sm-offset-4 col-sm-12">
+                <div id="contact-form-error-message"></div>
+            </div>
+        </div>
+        <div class="form-group feedback-form-input">
+            <div class="col-sm-offset-4 col-sm-12">
+                <button class="button-lg btn btn-primary btn-md" style="font-size: 24px">Отправить отзыв</button>
+            </div>
+        </div>
+    }
+</section>

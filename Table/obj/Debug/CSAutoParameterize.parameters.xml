@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ConnectToDatabase-Web.config Connection String" description="ConnectToDatabase Connection String used in web.config by the application to access the database." defaultValue="Data Source=.\SQLEXPRESS;AttachDbFilename='|DataDirectory|\Task_Database.mdf';Integrated Security=True;User Instance=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sancho\\Desktop\\Table\\Table\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConnectToDatabase']/@connectionString" />
+  </parameter>
+  <parameter name="TaskContext-Web.config Connection String" description="TaskContext Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.AppContext.csdl|res://*/Models.AppContext.ssdl|res://*/Models.AppContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.\SQLEXPRESS;attachdbfilename=|DataDirectory|\Task_Database.mdf;integrated security=True;user instance=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sancho\\Desktop\\Table\\Table\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TaskContext']/@connectionString" />
+  </parameter>
+</parameters>

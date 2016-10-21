@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="doermanager" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Sancho\\Desktop\\Table\\Table\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Sancho\\Desktop\\Table\\Table\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Add write permission to App_Data Folder" description="Add write permission to App_Data folder" value="doermanager/App_Data" tags="Hidden">
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Sancho\\Desktop\\Table\\Table\\obj\\Release\\Package\\PackageTmp\\App_Data$" />
+  </parameter>
+  <parameter name="ConnectToDatabase-Web.config Connection String" description="" value="Server=tcp:databasew.database.windows.net,1433;Initial Catalog=Task_Database;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sancho\\Desktop\\Table\\Table\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConnectToDatabase']/@connectionString" />
+  </parameter>
+  <parameter name="TaskContext-Web.config Connection String" description="" value="metadata=res://*/Models.AppContext.csdl|res://*/Models.AppContext.ssdl|res://*/Models.AppContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;Server=tcp:databasew.database.windows.net,1433;Initial Catalog=Task_Database;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sancho\\Desktop\\Table\\Table\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TaskContext']/@connectionString" />
+  </parameter>
+</parameters>

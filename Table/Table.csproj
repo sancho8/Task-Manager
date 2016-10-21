@@ -162,6 +162,67 @@
     <Content Include="App_Data\Task_Database_log.ldf">
       <DependentUpon>Task_Database.mdf</DependentUpon>
     </Content>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.xml" />
+    <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.xml" />
+    <Content Include="bin\Microsoft.AI.Web.dll" />
+    <Content Include="bin\Microsoft.AI.Web.xml" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.xml" />
+    <Content Include="bin\Microsoft.ApplicationInsights.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.xml" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.Core.xml" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.SystemWeb.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.xml" />
+    <Content Include="bin\Microsoft.Owin.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Microsoft.Web.Mvc.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.Deployment.dll" />
+    <Content Include="bin\System.Web.Webpages.Deployment.xml" />
+    <Content Include="bin\System.Web.Webpages.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.xml" />
+    <Content Include="bin\Table.dll" />
+    <Content Include="bin\Table.pdb" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -199,26 +260,16 @@
     <Content Include="Content\images\bg1.jpg" />
     <Content Include="Content\images\container_bg.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\matrix-eiz.jpg" />
+    <Content Include="Content\images\matrix-mode-cut.jpg" />
+    <Content Include="Content\images\matrix-mode.png" />
+    <Content Include="Content\images\matrix.jpg" />
+    <Content Include="Content\images\stats.png" />
+    <Content Include="Content\images\task-list-mode.bmp" />
+    <Content Include="Content\images\task-list-mode.jpg" />
+    <Content Include="Content\images\task-list-mode.png" />
     <Content Include="Content\images\task.jpg" />
     <Content Include="Content\images\vk-button.jpg" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\AUTHORS.txt" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\external\jquery\jquery.js" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_444444_256x240.png" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_555555_256x240.png" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_777620_256x240.png" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_777777_256x240.png" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_cc0000_256x240.png" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\index.html" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.css" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.js" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.min.css" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.min.js" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.structure.css" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.structure.min.css" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.css" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\jquery-ui.theme.min.css" />
-    <Content Include="Content\jquery-ui-1.12.1.custom\LICENSE.txt" />
     <Content Include="Content\Reset.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -233,6 +284,21 @@
       <DependentUpon>AppContext.edmx</DependentUpon>
       <LastGenOutput>AppContext.cs</LastGenOutput>
     </Content>
+    <Content Include="obj\Debug\Table.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Table.dll" />
+    <Content Include="obj\Debug\Table.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.AppContext.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.AppContext.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Models.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Models.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Models.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Modelы.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Modelы.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.TaskContext.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.TaskContext.Designer.cs.dll" />
+    <Content Include="Properties\PublishProfiles\sancho.pubxml.user" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="scripts\bootstrap-datetimepicker.min.js" />
@@ -245,7 +311,6 @@
     <Content Include="Models\AppContext.edmx.diagram">
       <DependentUpon>AppContext.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\jquery-ui-1.12.1.custom\package.json" />
     <Content Include="Content\calendar-widget\css\less\responsive-calendar.less" />
     <Content Include="Content\calendar-widget\js\coffee\responsive-calendar.coffee" />
     <Content Include="Content\datetimepicker-master\bower.json" />
@@ -286,6 +351,24 @@
     <Content Include="Content\font-awesome-4.6.3\scss\_screen-reader.scss" />
     <Content Include="Content\font-awesome-4.6.3\scss\_stacked.scss" />
     <Content Include="Content\font-awesome-4.6.3\scss\_variables.scss" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\AppContext.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\AppContext.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\AppContext.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Models.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Models.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Models.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\TaskContext.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\TaskContext.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\TaskContext.ssdl" />
+    <Content Include="obj\Debug\Table.csprojResolveAssemblyReference.cache" />
+    <Content Include="bin\ApplicationInsights.config" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="bin\Table.dll.config" />
+    <None Include="Properties\PublishProfiles\doermanager.pubxml" />
+    <None Include="Properties\PublishProfiles\sancho.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\Chart.min.js" />
     <Content Include="scripts\formchecker.js" />
@@ -299,7 +382,9 @@
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="scripts\social-auth.js" />
     <Content Include="scripts\wow.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -333,6 +418,12 @@
       <DependentUpon>AppContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\SendMailModule.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PushNotifyApp\Startup.cs" />
   </ItemGroup>

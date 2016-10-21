@@ -17,6 +17,10 @@ namespace Table.Controllers
             using (TaskContext context = new TaskContext())
             {
                 HttpCookie cookie = Request.Cookies["Authorization"];
+                if (cookie == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 if (String.IsNullOrWhiteSpace(cookie["Id"].ToString()))
                 {
                     return RedirectToAction("Index", "Home");

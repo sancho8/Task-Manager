@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Table.Models.Task>
+@{
+    List<SelectListItem> priorityList = new List<SelectListItem>();
+    priorityList.Add(new SelectListItem()
+    {
+        Text = "A",
+        Value = "A",
+    });
+    priorityList.Add(new SelectListItem()
+    {
+        Text = "B",
+        Value = "B",
+    });
+    priorityList.Add(new SelectListItem()
+    {
+        Text = "C",
+        Value = "C"
+    });
+    priorityList.Add(new SelectListItem()
+    {
+        Text = "D",
+        Value = "D"
+    });
+}
+<div id="MatrixHolder" class="row">
+    @foreach (var p in priorityList)
+    {
+            <div class="matrix-task-table-holder">
+                <table class="col-md-6 col-sm-12 col-xs-12 table-bordered table-condensed task_table">
+                    <thead>
+                        <tr>
+                            <th class="desc-column">
+                                Описание @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" },
+                        new { @class = "glyphicon glyphicon-chevron-down" })
+                            </th>
+                            <th class="data-column">Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="priority-column"><span style="font-size:14px">Приоритет</span> @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="number-column">№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                            <th class="complete-column">
+                                <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
+                                @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "IsCompleted" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
+                            </th>
+                            <th class="control-column" colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablebody">
+                        @foreach (var t in Model)
+                        {
+                            if (!t.Priority.Contains(p.Value))
+                            {
+                                continue;
+                            }
+                            <tr>
+                                <td class="desc-column">
+                                    <div class="value-holder description-value desc-text">@Html.DisplayFor(item => t.Description)</div>
+                                    <div class="edit-holder description-edit" id="desc-edit-holder"><input type="text" value="@t.Description"></div>
+                                </td>
+                                <td class="data-column">
+                                    <div class="value-holder data-value">@Html.DisplayFor(item => t.Data)</div>
+                                    <div class="edit-holder data-edit" id="data-edit-holder">@Html.EditorFor(item => t.Data)</div>
+                                </td>
+                                <td class="priority-column">
+                                    <div class="value-holder priority-value">@Html.DisplayFor(item => t.Priority)</div>
+                                    <select class="edit-holder priority-edit" id="priority-select">
+                                        <option value=" "> </option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                    </select>
+                                </td>
+                                <td class="number-column">
+                                    <div class="value-holder number-value">@Html.DisplayFor(item => t.Number)</div>
+                                    <div class="edit-holder number-edit" id="number-edit-holder">@Html.EditorFor(item => t.Number)</div>
+                                </td>
+                                @if (t.IsComplete == true)
+                                {
+                                    <td class="complete-column"><input type="checkbox" class="check" checked="checked" onchange="TaskStatusChanged(this)" id="@t.Id"></td>
+                                }
+                                else
+                                {
+                                    <td class="complete-column"><input class="check" type="checkbox" onchange="TaskStatusChanged(this)" id="@t.Id" /></td>
+                                }
+                                <td>
+                                    <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a onclick="SaveTaskWithReload()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+                                </td>
+                                <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-remove" })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+    }
+</div>
+<script>
+    $(".edit-holder").hide();
+    $("table:eq(0) td").css("background-color", "#F794D8");
+    $("table:eq(1) td").css("background-color", "#94A6F7");
+    $("table:eq(2) td").css("background-color", "#F7E594");
+    $("table:eq(3) td").css("background-color", "#94F7B4");
+    if ($(window).width() > 992) {
+        var a = $('table:eq(0)  tr').length - 1;
+        var b = $('table:eq(1) tr').length - 1;
+        for (var i = b; i < a; i++) {
+            $('table:eq(1)').append("<tr class='buffer'><td></td>td></td>td></td>td></td>td></td>td></td>td></td></tr>");
+        }
+    }
+</script>
