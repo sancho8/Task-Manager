@@ -25,6 +25,7 @@ namespace Table.Models
         public string Password { get; set; }
         public string Email { get; set; }
         public Nullable<bool> NeedDelivery { get; set; }
+        public Nullable<bool> IsSocialProfile { get; set; }
 
         public User(int id, string login, string password, string email, Nullable<bool> needDelivery)
         {
@@ -34,7 +35,17 @@ namespace Table.Models
             this.Email = email;
             this.NeedDelivery = NeedDelivery;
         }
-    
+
+        public User(int id, string login, string password, string email, Nullable<bool> needDelivery, Nullable<bool> isSocial)
+        {
+            this.Id = id;
+            this.Login = login;
+            this.Password = password;
+            this.Email = email;
+            this.NeedDelivery = NeedDelivery;
+            this.IsSocialProfile = isSocial;
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
     }

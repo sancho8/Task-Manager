@@ -23,6 +23,7 @@
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="NeedDelivery" Type="Boolean" />
     <NavigationProperty Name="Tasks" Relationship="Self.Key_from_task_to_UserId" FromRole="Users" ToRole="Tasks" />
+    <Property Name="IsSocialProfile" Type="Boolean" />
   </EntityType>
   <Association Name="Key_from_task_to_UserId">
     <End Role="Users" Type="Self.User" Multiplicity="0..1" />

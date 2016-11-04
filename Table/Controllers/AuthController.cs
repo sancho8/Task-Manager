@@ -93,7 +93,7 @@ namespace Table.Controllers
             {
                 if (password != confirmPassword)
                 {
-                    return "Пароли не свопадают";
+                    return "Пароли не совпадают";
                 }
                 if (context.Users.Any(o => o.Login == login))
                 {
@@ -121,7 +121,7 @@ namespace Table.Controllers
                 {
                     var command = "SELECT TOP 1 Id FROM Users ORDER BY Id DESC";
                     int id = context.Database.SqlQuery<int>(command).Single() + 1;
-                    context.Users.Add(new Models.User(id, login, password, email, needDelivery));
+                    context.Users.Add(new Models.User(id, login, password, email, needDelivery, false));
                     context.SaveChanges();
                 }
                 catch (Exception ex)
@@ -151,7 +151,7 @@ namespace Table.Controllers
                 {
                     var command = "SELECT TOP 1 Id FROM Users ORDER BY Id DESC";
                     int id = context.Database.SqlQuery<int>(command).Single() + 1;
-                    context.Users.Add(new Models.User(id, name, userid, email, true));
+                    context.Users.Add(new Models.User(id, name, userid, email, true, true));
                     context.SaveChanges();
                     LogInUser(name, userid);
                 }
@@ -177,7 +177,7 @@ namespace Table.Controllers
                 {
                     var command = "SELECT TOP 1 Id FROM Users ORDER BY Id DESC";
                     int id = context.Database.SqlQuery<int>(command).Single() + 1;
-                    context.Users.Add(new Models.User(id, name, userid, email, true));
+                    context.Users.Add(new Models.User(id, name, userid, email, true, true));
                     context.SaveChanges();
                     LogInUser(name, userid);
                 }
