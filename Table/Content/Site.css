@@ -22,6 +22,7 @@ th {
 
 select {
     height: 30px;
+    min-width: 40px;
     margin-top: 5px;
 }
 
@@ -66,6 +67,7 @@ body {
     height: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
+    overflow: scroll;
 }
 
     body.modal-open {
@@ -85,7 +87,7 @@ footer {
     border: 3px solid black;
     border-radius: 7px;
     margin-top: 10px;
-    padding: 10px;
+    padding: 20px;
 }
 
 section {
@@ -94,6 +96,7 @@ section {
     margin-top: 10px;
     background-image: url(images/container_bg.png);
     background-repeat: repeat;
+    padding-bottom: 40px;
 }
 
 nav {
@@ -295,9 +298,9 @@ li {
     font-size: 16px;
 }
 
-.btn-social-icon:hover {
-   background-color: #048FC8;
-}
+    .btn-social-icon:hover {
+        background-color: #048FC8;
+    }
 
 .glyphicon:hover {
     color: black;
@@ -391,8 +394,8 @@ li {
     color: black;
     margin: 10px;
     text-align: center;
-    font-size:32px;
-    font-family:Tahoma;
+    font-size: 32px;
+    font-family: Tahoma;
     padding: 10px;
 }
 
@@ -400,10 +403,10 @@ li {
     background-color: white;
 }
 
-.responsive-calendar h4 {
-    font-family: Arial;
-    font-size: 24px;
-}
+    .responsive-calendar h4 {
+        font-family: Arial;
+        font-size: 24px;
+    }
 
 .controls a {
     border: 2px solid red;
@@ -416,14 +419,13 @@ li {
     border: 1px solid blue;
 }
 
-.desc-text {
-    text-overflow: ellipsis;
-}
-
 .task_table {
     table-layout: fixed;
     overflow-x: scroll;
-    min-width: 370px;
+}
+
+.task_table th{
+    height: 60px;
 }
 
 .matrix-task-table-holder {
@@ -435,25 +437,34 @@ li {
 .task_table select {
     padding: 0px;
     margin: 0px;
+    width:inherit;
 }
 
 .desc-column {
-    width: 40%;
-    min-width: 40%;
-    max-width: 40%;
+    width: 30%;
+    min-width: 30%;
+    max-width: 30%;
 }
 
 .data-column {
-    width: 25%;
-    min-width: 25%;
-    max-width: 25%;
-}
-
-.priority-column {
     width: 20%;
     min-width: 20%;
     max-width: 20%;
-    text-overflow: ellipsis;
+}
+
+.table-condensed{
+    table-layout:auto;
+}
+
+.table-condensed tr{
+    height: 50px;
+}
+
+.priority-column {
+    width: 10%;
+    min-width: 10%;
+    max-width: 10%;
+    overflow-x: auto;
 }
 
 .number-column {
@@ -474,9 +485,15 @@ li {
     max-width: 20%;
 }
 
+.priority-select{
+    width: 60px;
+    min-width: 60px;
+    margin-top:5px;
+}
+
 #number-edit-holder input {
-    max-width: 35px;
-    max-height: 30px;
+    max-width: 40px;
+    max-height: 40px;
 }
 
 #data-edit-holder input {
@@ -485,19 +502,24 @@ li {
 }
 
 #desc-edit-holder input {
-    width: 300px;
-    max-width: 300px;
-    min-width: 300px;
-    max-height: 30px;
+    max-width: 140px;
 }
 
 .task_table td {
-    height: 30px;
-    max-height: 30px;
-    min-height: 30px;
+    height: 60px;
+    max-height: 60px;
+    min-height: 60px;
     margin: 0px;
     padding: 0px;
-    overflow-y: auto;
+    text-overflow:ellipsis;
+    white-space:normal;
+    overflow-x: auto;
+    overflow-y:hidden;
+}
+
+#data-redact-input{
+    max-width: 100px;
+    padding: 0;
 }
 
 .task_table input {
@@ -586,43 +608,52 @@ canvas {
     margin-top: 20px;
     margin-bottom: -10px;
 }
-#feedback-message-holder{
+
+#feedback-message-holder {
     padding: 5px;
 }
-.feedback-form-input{
+
+.feedback-form-input {
     padding-left: 20px;
     padding-right: 20px;
 }
-.feedback-form-input input{
-    padding: 10px;
-}
-.buffer{
+
+    .feedback-form-input input {
+        padding: 10px;
+    }
+
+.buffer {
     height: 45px;
     visibility: hidden;
 }
-#contact-form-error-message{
+
+#contact-form-error-message {
     font-size: 26px;
     color: red;
     margin-left: auto;
     margin-right: auto;
 }
-.desc-list li{
+
+.desc-list li {
     font-size: 48px;
     padding: 10px;
 }
-#register-button-holder{
-    margin-left:auto;
+
+#register-button-holder {
+    margin-left: auto;
     margin-right: auto;
 }
-#register-button-holder a{
-    height: 40px;
-    color: white;
-    font-size: 16px;
-    background-color: #428bca;
-    margin: 5px;
-}
-#register-button-holder span{
-    color: white;
-    font-size: 16px;
-    background-color: #428bca;
-}
+
+    #register-button-holder a {
+        height: 40px;
+        color: white;
+        font-size: 16px;
+        background-color: #428bca;
+        margin: 5px;
+    }
+
+    #register-button-holder span {
+        color: white;
+        font-size: 16px;
+        background-color: #428bca;
+    }

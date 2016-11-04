@@ -4,6 +4,9 @@
     if ($("#datetimepicker").length > 0) {
         LoadCalendar();
     }
+    $("#data-input").datetimepicker();
+    $("#data-redact-input").datetimepicker();
+    $.datetimepicker.setLocale('ru');
 });
 
 function validateContactForm() {
@@ -176,7 +179,6 @@ function SaveTask() {
             isComplete: e
         },
         success: function () {
-            $("#matrix-button").click();
             onEditing = false;
         }
     });

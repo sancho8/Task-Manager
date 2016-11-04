@@ -88,12 +88,13 @@
     </footer>
 }
 <section class="row">
-    @using (Html.BeginForm("SendFeedback","Home",FormMethod.Post,new { @class="form-horizontal", @id = "contact_form", @onSubmit="return validateContactForm();"})){
+    @using (Html.BeginForm("SendFeedback", "Home", FormMethod.Post, new { @class = "form-horizontal", @id = "contact_form", @onSubmit = "return validateContactForm();" }))
+    {
         <h4 id="contact_form_header">Оставьте ваш отзыв</h4>
         <div class="row form-group feedback-form-input">
             <label class="control-label col-sm-4">Ваше имя:</label>
             <div class="col-sm-8">
-                @Html.TextBox("name", "",new {@type="text", @class= "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id = "feedback-name", @placeholder ="Enter name"})
+                @Html.TextBox("name", "", new { @type = "text", @class = "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id = "feedback-name", @placeholder = "Enter name" })
             </div>
         </div>
         <div class="row form-group feedback-form-input">
@@ -106,19 +107,28 @@
             <label class="control-label col-sm-4">Введите ваше сообщение:</label>
             <div class="col-sm-8">
                 <div class="textarea" id="feedback-message-holder">
-                    @Html.TextArea("feedback", "", new { @type = "text", @class = "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id="feedback-message", @placeholder = "Enter your feedback" })
+                    @Html.TextArea("feedback", "", new { @type = "text", @class = "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id = "feedback-message", @placeholder = "Enter your feedback" })
                 </div>
             </div>
         </div>
+        <div class="row form-group feedback-form-input">
+            <label class="control-label col-sm-4">Добавить файл:</label>
+            <div class="col-sm-8">
+                <div class="textarea" id="feedback-file-holder">
+                    <input type="file" name="file" accept="image/*">
+                </div>
+            </div>
+        </div>
+
         <div class="row form-group feedback-form-input">
             <div class="col-sm-offset-4 col-sm-12">
                 <div id="contact-form-error-message"></div>
             </div>
         </div>
-        <div class="form-group feedback-form-input">
-            <div class="col-sm-offset-4 col-sm-12">
-                <button class="button-lg btn btn-primary btn-md" style="font-size: 24px">Отправить отзыв</button>
-            </div>
-        </div>
+                    <div class="form-group feedback-form-input">
+                        <div class="col-sm-offset-4 col-sm-12">
+                            <button class="button-lg btn btn-primary btn-md" style="font-size: 24px">Отправить отзыв</button>
+                        </div>
+                    </div>
     }
 </section>

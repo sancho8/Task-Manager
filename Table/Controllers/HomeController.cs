@@ -76,7 +76,7 @@ namespace Table.Controllers
             return View(page);
         }
 
-        public ActionResult SendFeedback(string name, string email, string feedback)
+        public ActionResult SendFeedback(string name, string email, string feedback, HttpPostedFileBase file)
         {
             //sender
             MailAddress from = new MailAddress("yaroshenko.aleksandr8@gmail.com", "Task-Manager");
@@ -91,6 +91,7 @@ namespace Table.Controllers
             m.Body += "<h2>" + feedback + "</h2>";
             //specify, that body is html
             m.IsBodyHtml = true;
+
             //adress of smtp-server and port
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             //login and password of sender account
