@@ -21,6 +21,7 @@
     <Property Name="Password" Type="varchar" MaxLength="50" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
     <Property Name="NeedDelivery" Type="bit" />
+    <Property Name="IsSocialProfile" Type="bit" />
   </EntityType>
   <Association Name="Key_from_task_to_UserId">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />

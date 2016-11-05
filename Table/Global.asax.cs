@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Table.Jobs;
 
 namespace Table
 {
@@ -14,6 +15,8 @@ namespace Table
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
+            // запуск выполнения работы
+            EmailSheduler.Start();
         }
     }
 }

@@ -108,12 +108,12 @@
                     Почта:
                     @if (!String.IsNullOrWhiteSpace(ViewBag.UserEmail))
                     {
-                    <div class="field-value-holder" style="display:inline">
-                        <p style="display:inline">@ViewBag.UserEmail</p>
-                    </div>
-                    <div class="field-redact-holder" id="change-email-field">
-                        @Html.EditorFor(x => Model.Email, "", "email")
-                    </div>
+                        <div class="field-value-holder" style="display:inline">
+                            <p style="display:inline">@ViewBag.UserEmail</p>
+                        </div>
+                        <div class="field-redact-holder" id="change-email-field">
+                            @Html.EditorFor(x => Model.Email, "", "email")
+                        </div>
                     }
                 </div>
                 <div class="field-redact-holder" id="old-password-field">
@@ -143,9 +143,9 @@
                 <div id="change-profile-error-message-holder">@ViewBag.ValidateErrorMessage</div>
                 if (Model.IsSocialProfile != true)
                 {
-                <div class="redact-button-holder">
-                    <button type="button" class="btn btn-primary" id="change-password-button">Редактировать профиль</button>
-                </div>
+                    <div class="redact-button-holder">
+                        <button type="button" class="btn btn-primary" id="change-password-button">Редактировать профиль</button>
+                    </div>
                 }
                 <div class="redact-button-holder">
                     <button type="submit" class="btn btn-warning" id="save-changes-button" onclick="ValidateUpdateProfileDataForm()">Сохранить изменения</button>
@@ -155,8 +155,11 @@
         </div>
         <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
             <div class="profile-inform-header">Cтатистика профиля:</div>
-            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" id="TaskStatsDiagramHolder">
-                <canvas id="TaskStatsDiagram" width="200" height="200" style="background-color:white"></canvas>
+            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" id="TaskStatsDiagramHolder1">
+                <canvas id="TaskStatsDiagram1" style="background-color:white"></canvas>
+            </div>
+            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" id="TaskStatsDiagramHolder2">
+                <canvas id="TaskStatsDiagram2" style="background-color:white"></canvas>
             </div>
             <script>
                 var completed, uncompleted, up_to_date;
@@ -188,10 +191,10 @@
                             up_to_date = result;
                         }
                     });
-                    var stat = [parseInt(completed), parseInt(up_to_date), parseInt(uncompleted), ];
-                    var ctx = document.getElementById("TaskStatsDiagram").getContext("2d");;
-                    ctx.canvas.width = 100;
-                    ctx.canvas.height = 100;
+                    var stat = [parseInt(completed), parseInt(up_to_date), parseInt(uncompleted)];
+                    var ctx1 = document.getElementById("TaskStatsDiagram1").getContext("2d");;
+                    ctx1.canvas.width = 400;
+                    ctx1.canvas.height = 400;
                     var myData = {
                         datasets: [{
                             data: stat,
@@ -208,9 +211,10 @@
                             "Выполняются"
                         ]
                     };
-                    var myChart = new Chart(ctx, {
+                    var myDoughnutChart = new Chart(ctx1, {
                         type: 'doughnut',
                         data: myData,
+                        maintainAspectRatio: true,
                         options: {
                             responsive: true,
                             rotation: -0.5 * Math.PI
@@ -219,6 +223,64 @@
                             display: true,
                             text: 'Статистика задач'
                         }
+                    });
+
+                    var data = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                    var params = new Array("Nc","Ac","Bc","Cc","Dc","Na","Aa","Ba","Ca","Da");
+
+                    for (var i = 0; i < data.length; i++) {
+                        $.ajax({
+                            type: "Get",
+                            url: "/Profile/getPriorityStats",
+                            data: { param: params[i] },
+                            async: false,
+                            success: function (result) {
+                                data[i] = result;
+                                //alert(data[i]);
+                            }
+                        });
+                    }
+                    var completedStats = [parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4])];
+                    var allStats = [parseInt(data[5]), parseInt(data[6]), parseInt(data[7]), parseInt(data[8]), parseInt(data[9])];
+                    var roseData = {
+                        labels: ["Без приоритета","A", "B", "C", "D"],
+                        datasets: [
+                            {
+                                label: "Выполненые задачи",
+                                backgroundColor: "rgba(255,99,132,0.2)",
+                                borderColor: "rgba(255,99,132,1)",
+                                pointBackgroundColor: "rgba(255,99,132,1)",
+                                pointBorderColor: "#fff",
+                                pointHoverBackgroundColor: "#fff",
+                                pointHoverBorderColor: "rgba(255,99,132,1)",
+                                data: completedStats
+                            },
+                            {
+                                label: "Все задачи",
+                                backgroundColor: "rgba(179,181,198,0.2)",
+                                borderColor: "rgba(179,181,198,1)",
+                                pointBackgroundColor: "rgba(179,181,198,1)",
+                                pointBorderColor: "#fff",
+                                pointHoverBackgroundColor: "#fff",
+                                pointHoverBorderColor: "rgba(179,181,198,1)",
+                                data: allStats
+                            }
+                        ]
+                    };
+                    var ctx2 = document.getElementById("TaskStatsDiagram2").getContext("2d");;
+                    ctx2.canvas.width = 400;
+                    ctx2.canvas.height = 400;
+                    var myRadarChart = new Chart(ctx2, {
+                        type: 'radar',
+                        data: roseData,
+                        options: {
+                            responsive: true,
+                            scales: {
+                                ticks: {
+                                    min: 0
+                                }
+                            }
+                        },
                     });
                 };
             </script>

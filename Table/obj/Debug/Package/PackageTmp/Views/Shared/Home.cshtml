@@ -141,10 +141,12 @@
                 </div>
 
                 <div id="change-profile-error-message-holder">@ViewBag.ValidateErrorMessage</div>
-
+                if (Model.IsSocialProfile != true)
+                {
                 <div class="redact-button-holder">
                     <button type="button" class="btn btn-primary" id="change-password-button">Редактировать профиль</button>
                 </div>
+                }
                 <div class="redact-button-holder">
                     <button type="submit" class="btn btn-warning" id="save-changes-button" onclick="ValidateUpdateProfileDataForm()">Сохранить изменения</button>
                     <button type="button" class="btn btn-default" id="reset-changes-button">Отменить изменения</button>

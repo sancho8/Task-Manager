@@ -5,7 +5,6 @@
         LoadCalendar();
     }
     $("#data-input").datetimepicker();
-    $("#data-redact-input").datetimepicker();
     $.datetimepicker.setLocale('ru');
 });
 
@@ -154,6 +153,7 @@ function SaveTask() {
     $(event.target).parents('tr').find('.edit-holder').hide();
     var a = $.trim($(event.target).parents('tr').find('.description-edit').find('input').val());
     var b = $(event.target).parents('tr').find('.data-edit').find('input').val();
+    alert(b);
     var c = $(event.target).parents('tr').find('.priority-edit').val(); //this is 'select' element
     var d = $(event.target).parents('tr').find('.number-edit').find('input').val();
     var e = $(event.target).parents('tr').find(':checkbox').attr('checked');

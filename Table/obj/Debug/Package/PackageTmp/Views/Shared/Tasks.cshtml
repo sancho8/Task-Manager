@@ -118,7 +118,7 @@
             OnBegin = "return ValidateAddTaskForm();", OnSuccess ="ClearForm" }, new {@Id="AddTaskForm"}))
         {
             @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание", @id="description-input"})
-            @Html.TextBox("data", "", new { @type = "datetime-local", @placeholder = "Введите дату", @id = "data-input" })
+            @Html.TextBox("data", "", new {@placeholder = "Введите дату", @id = "data-input",@autocomplete="off"})
             @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет", @id = "priority-input" })
             @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер", @id = "number-input"})
             <input type="submit" value="Добавить">

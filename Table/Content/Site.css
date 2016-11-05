@@ -141,6 +141,10 @@ h3 {
 }
 
 #logo-holder {
+    color: white;
+    font-size: 26px;
+    text-decoration: none;
+
 }
 
 #logo {
@@ -518,7 +522,8 @@ li {
 }
 
 #data-redact-input{
-    max-width: 100px;
+    max-width: 180px;
+    min-width: 180px;
     padding: 0;
 }
 
@@ -587,11 +592,18 @@ li {
     padding-left: 10px;
 }
 
-#TaskStatsDiagramHolder {
+#TaskStatsDiagramHolder1 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
-    min-width: 200px;
+    min-width: 400px;
+}
+
+#TaskStatsDiagramHolder2 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    min-width: 400px;
 }
 
 canvas {
