@@ -75,7 +75,7 @@
                     }
                     <td>
                         <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a onclick="SaveTask()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+                        <a onclick="SaveTaskRowsMode()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
                     </td>
                     <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "TaskTableHolder", OnBegin="return confirm('Удалить задачу?')" }, new { @class = "glyphicon glyphicon-remove" })</td>
                 </tr>

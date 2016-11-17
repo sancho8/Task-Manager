@@ -126,6 +126,21 @@ namespace Table.Controllers
             return Index();
         }
 
+        [HttpPost]
+        public void ChangeDeliveryStatus(bool status)
+        {
+            HttpCookie cookie = Request.Cookies["Authorization"];
+            int id = Int32.Parse(cookie["Id"]);
+            using (TaskContext context = new TaskContext())
+            {
+                var a = (from e in context.Users
+                         where e.Id == id
+                         select e).Single();
+                a.NeedDelivery = status;
+                context.SaveChanges();
+            }
+        }
+
         [HttpGet]
         public int getTaskStats(string param)
         {

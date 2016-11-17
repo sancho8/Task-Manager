@@ -37,7 +37,7 @@ namespace Table.Controllers
                     authCookie["Id"] = a.Id.ToString();
                     Response.Cookies.Add(authCookie);
                     ViewBag.UserLogin = login;
-                    RedirectToAction("Index", "Tasks");
+                    Redirect(Request.UrlReferrer.ToString());
                     return true;    //correct user data
                 }
                 catch (Exception ex)
@@ -178,31 +178,6 @@ namespace Table.Controllers
                     var command = "SELECT TOP 1 Id FROM Users ORDER BY Id DESC";
                     int id = context.Database.SqlQuery<int>(command).Single() + 1;
                     context.Users.Add(new Models.User(id, name, userid, email, true, true));
-                    context.SaveChanges();
-                    LogInUser(name, userid);
-                }
-            }
-        }
-        [HttpPost]
-        public void RegisterGoogle(string userid, string name, string email)
-        {
-            using (TaskContext context = new TaskContext())
-            {
-                if (context.Users.Any(o => o.Password == userid))
-                {
-                    var a = (from o in context.Users
-                             where o.Password == userid
-                             select o).Single();
-                    a.Login = name;
-                    a.Email = email;
-                    context.SaveChanges();
-                    LogInUser(a.Login, a.Password);
-                }
-                else
-                {
-                    var command = "SELECT TOP 1 Id FROM Users ORDER BY Id DESC";
-                    int id = context.Database.SqlQuery<int>(command).Single() + 1;
-                    context.Users.Add(new Models.User(id, name, userid, email, true));
                     context.SaveChanges();
                     LogInUser(name, userid);
                 }

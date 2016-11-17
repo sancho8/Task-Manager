@@ -57,7 +57,7 @@
                                 </td>
                                 <td class="data-column">
                                     <div class="value-holder data-value">@Html.DisplayFor(item => t.Data)</div>
-                                    <div class="edit-holder data-edit" id="data-edit-holder">@Html.EditorFor(item => t.Data)</div>
+                                    <div class="edit-holder data-edit" id="data-edit-holder"><input type="datetime-local" class="data-redact-input-matrix" value="@t.Data" /></div>
                                 </td>
                                 <td class="priority-column">
                                     <div class="value-holder priority-value">@Html.DisplayFor(item => t.Priority)</div>
@@ -83,7 +83,7 @@
                                 }
                                 <td>
                                     <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
-                                    <a onclick="SaveTaskWithReload()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+                                    <a onclick="SaveTaskMatrixMode()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
                                 </td>
                                 <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-remove" })</td>
                             </tr>

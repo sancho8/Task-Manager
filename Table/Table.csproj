@@ -271,11 +271,15 @@
     <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\bg1.jpg" />
     <Content Include="Content\images\container_bg.png" />
+    <Content Include="Content\images\list-slide.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\mail-slide.bmp" />
     <Content Include="Content\images\matrix-eiz.jpg" />
     <Content Include="Content\images\matrix-mode-cut.jpg" />
     <Content Include="Content\images\matrix-mode.png" />
+    <Content Include="Content\images\matrix-slide.bmp" />
     <Content Include="Content\images\matrix.jpg" />
+    <Content Include="Content\images\stats-slide.bmp" />
     <Content Include="Content\images\stats.png" />
     <Content Include="Content\images\task-list-mode.bmp" />
     <Content Include="Content\images\task-list-mode.jpg" />
@@ -284,6 +288,7 @@
     <Content Include="Content\images\vk-button.jpg" />
     <Content Include="Content\Reset.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="EmailTemplates\DailyTasksMailTemplate.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Models\AppContext.Context.tt">

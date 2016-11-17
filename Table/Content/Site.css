@@ -354,34 +354,43 @@ li {
     overflow-x: auto;
 }
 
+#icons-holder{
+    color: white;
+    font-size: 42px;
+}
+#icons-holder span{
+    color: white;
+    font-size: 42px;
+}
+#icons-holder div {
+}
+
 .desc-box {
-    min-height: 500px;
+    min-height: 400px;
     padding: 30px;
     background-color: white;
     font-size: 26px;
     font-family: Tahoma;
+    text-align: center;
     border-bottom: 2px solid black;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .desc-box-inverse {
-    min-height: 500px;
+    min-height: 400px;
     padding: 30px;
     background-color: #057cbe;
     font-size: 26px;
     font-family: Tahoma;
+    text-align: center;
     border-bottom: 2px solid black;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-.desc-img {
-    width: 500px;
-    height: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-}
-
-.desc-box-inverse span {
-    color: white;
+#desc-image {
+    margin: 5px;
 }
 
 .desc-button-holder {
@@ -526,6 +535,28 @@ li {
     min-width: 180px;
     padding: 0;
 }
+#AddTaskForm{
+}
+
+#AddTaskForm input{
+    height: 40px;
+    margin: 5px;
+}
+#AddTaskForm select{
+    height: 40px;
+    margin: 5px;
+}
+
+.data-redact-input-matrix{
+    min-width: 160px;
+    max-width: 160px;
+    padding: 0;
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+  margin-left: 5px;
+}
 
 .task_table input {
     height: 30px;
@@ -596,14 +627,12 @@ li {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
-    min-width: 400px;
 }
 
 #TaskStatsDiagramHolder2 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
-    min-width: 400px;
 }
 
 canvas {
@@ -652,20 +681,21 @@ canvas {
 }
 
 #register-button-holder {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 }
 
-    #register-button-holder a {
-        height: 40px;
-        color: white;
-        font-size: 16px;
-        background-color: #428bca;
-        margin: 5px;
-    }
+#register-button-holder a {
+    height: 40px;
+    color: white;
+    font-size: 16px;
+    background-color: #428bca;
+    margin: 5px;
+    min-width: 240px;
+    max-width: 240px;
+}
 
-    #register-button-holder span {
-        color: white;
-        font-size: 16px;
-        background-color: #428bca;
-    }
+#register-button-holder span {
+    color: white;
+    font-size: 16px;
+    background-color: #428bca;
+}

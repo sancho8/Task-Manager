@@ -140,11 +140,15 @@ $(document).keypress(function (e) {
     }
 });
 
-function SaveTaskWithReload(){
+function SaveTaskMatrixMode(){
     SaveTask();
     $("#matrix-button").click();
-    //.click();
 }
+function SaveTaskRowsMode() {
+    SaveTask();
+    //$("#rows-button").click();
+}
+
 
 function SaveTask() {
     $(event.target).parents('tr').find('.save').hide();
@@ -153,7 +157,6 @@ function SaveTask() {
     $(event.target).parents('tr').find('.edit-holder').hide();
     var a = $.trim($(event.target).parents('tr').find('.description-edit').find('input').val());
     var b = $(event.target).parents('tr').find('.data-edit').find('input').val();
-    alert(b);
     var c = $(event.target).parents('tr').find('.priority-edit').val(); //this is 'select' element
     var d = $(event.target).parents('tr').find('.number-edit').find('input').val();
     var e = $(event.target).parents('tr').find(':checkbox').attr('checked');
@@ -205,6 +208,7 @@ function OnLogin() {
             success: function (data) {
                 if (data == "True") {
                     $('#login-form').submit();
+                    window.location.reload();
                 }
                 else {
                     $('#login-error').text("Неверно веденные данные!");
@@ -298,6 +302,21 @@ function NumberChanged() {
     alert($(this).val());
 }
 
+$("#needDelivety-field").click(function () {
+    var status = false;
+    if ($("#needDelivety-field").is(":checked")) {
+        status = true;
+    }
+    $.ajax({
+        url: 'Profile/ChangeDeliveryStatus',
+        type: 'POST',
+        data: { status: status },
+        success: function () {
+            alert("Success");
+        }
+    });
+});
+
 function TaskStatusChanged(elem) {
     var value = elem.checked;
     var a = elem.id;
@@ -311,58 +330,6 @@ function TaskStatusChanged(elem) {
         }
     });
 };
-
-$('#change-password-button').on('click', function () {
-    $('.inform-box p').hide();
-    $('.field-redact-holder').css("display", "inline");
-    $('#change-password-button').css("display", "none");
-    $('#save-changes-button').css("display", "inline");
-    $('#reset-changes-button').css("display", "inline");
-});
-
-
-/*function ValidateUpdateProfileDataForm (){
-    var changeLogin = $('#change-login-field').find('input').val();
-    var changeEmail = $('#change-email-field').find('input').val();
-    var oldPassword = $('#old-password-field').find('input').val();
-    var newPassword = $('#new-password-field').find('input').val();
-    var confirmPassword = $('#confirm-password-field').find('input').val();
-    $.ajax({
-        url: '/Profile/ValidateUpdateProfileForm',
-        method: 'POST',
-        async: false,
-        data:{
-            login: changeLogin,
-            email: changeEmail,
-            oldPassword: oldPassword,
-            newPassword: newPassword,
-            confirmPassword: confirmPassword,
-            loginChanged: fieldChanges.login,
-            emailChanged: fieldChanges.email,
-            passwordChanged: fieldChanges.password
-            //needDelivery: $('#needDelivety-field').attr('checked')
-        },
-        success: function (result) {
-            if (result == "Success") {
-                    $('#loginChanged').prop('checked', true);
-                $('#emailChanged').val(fieldChanges.login);
-                $('#passwordChanged').val(fieldChanges.login);
-                $("#ChangeProfileDataForm").submit();
-                alert("success");
-            }
-            else {
-                $('#change-profile-error-message-holder').text(result);
-            }
-            fieldChanges.login = false;
-            fieldChanges.email = false;
-            fieldChanges.password = false;
-            $('#change-login-field').find('input').val("");
-            $('#change-email-field').find('input').val("");
-            $('#old-password-field').find('input').val("");
-            $('#new-password-field').find('input').val("");
-        }
-    });
-};*/
 
 var fieldChanges = {
     "login": false,

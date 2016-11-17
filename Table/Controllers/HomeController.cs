@@ -54,7 +54,14 @@ namespace Table.Controllers
         {
             HttpCookie cookie = Request.Cookies["Authorization"];
             ViewBag.UserLogin = HttpUtility.UrlDecode(cookie["Login"]);
-            return View("Home");
+            string id = cookie["ID"];
+            using (TaskContext context = new TaskContext())
+            {
+                User a = (User) (from e in context.Users
+                        where e.Id.ToString() == id
+                        select e).Single();
+                return View("Home",a);
+            }
         }
 
         //redirectong to pages(called from header menu)

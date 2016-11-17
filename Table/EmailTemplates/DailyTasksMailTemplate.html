@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        body {
+        }
+
+        th {
+            text-align: left; /* Выравнивание по левому краю */
+            background: #ccc; /* Цвет фона ячеек */
+            padding: 5px; /* Поля вокруг содержимого ячеек */
+        }
+
+        td {
+            padding: 5px; /* Поля вокруг содержимого ячеек */
+        }
+
+        #container {
+            background: linear-gradient(to bottom, rgba(5, 78, 252, 0.71), #ffffff);
+            border: 2px solid blue;
+            border-radius: 20px;
+            padding: 50px;
+            font-size: 24px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        p {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            color: black;
+            margin: 5px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        div {
+            text-align: center;
+            margin: 10px;
+        }
+
+        #task-table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #task-table {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+       #task-table td, #task-table th {
+           border: 1px solid #000000;
+           padding: 8px;
+       }
+
+       #task-table tr:nth-child(even) {
+           background-color: #f2f2f2;
+       }
+
+       #task-table tr:hover {
+           background-color: #ddd;
+       }
+
+       #task-table th {
+           padding-top: 12px;
+           padding-bottom: 12px;
+           text-align: left;
+           background-color: rgba(5, 78, 252, 0.71);
+           color: white;
+       }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div style="font-size: 28px;" id="mail-header">
+            Doer-task manager
+        </div>
+        <div style="font-size: 36px;">
+            Ваши задачи на сегодня:
+        </div>
+        <table id="task-table">
+            <tr><th>Описание</th><th>Время</th><th>Приоритет</th><th>Номер</th><th>Статус</th></tr>
+            *****
+        </table>
+        <div id="mail-footer">
+            <p style="font-size: 18px">
+                * Вы получили данное письмо так как подписались на рассылку
+                планов задач Doer-task manager
+            </p>
+            <div>
+            <p>
+                Контакты: 98sancho@ukr.net
+            </p>
+            <p>
+                © Александр Ярошенко | КА "ШАГ" 2016
+            </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

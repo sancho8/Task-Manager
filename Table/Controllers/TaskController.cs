@@ -60,15 +60,19 @@ namespace Table.Controllers
             using (TaskContext context = new TaskContext())
             {
                 HttpCookie cookie = Request.Cookies["Authorization"];
-                //get user id
-                int userId = Int32.Parse(cookie["Id"]);
-                //find new id number
-                var command = "SELECT TOP 1 Id FROM Tasks ORDER BY Id DESC";
-                int newId = context.Database.SqlQuery<int>(command).Single() + 1;
-                //create new task object
-                var taskToAdd = new Task(newId, userId, description, ParseData(data), priority.ToString(), number, false);
-                context.Tasks.Add(taskToAdd);
-                context.SaveChanges();
+                try
+                {
+                    //get user id
+                    int userId = Int32.Parse(cookie["Id"]);
+                    //find new id number
+                    var command = "SELECT TOP 1 Id FROM Tasks ORDER BY Id DESC";
+                    int newId = context.Database.SqlQuery<int>(command).Single() + 1;
+                    //create new task object
+                    var taskToAdd = new Task(newId, userId, description, ParseData(data), priority.ToString(), number, false);
+                    context.Tasks.Add(taskToAdd);
+                    context.SaveChanges();
+                }
+                catch(Exception ex) { }
             }
             return GetTaskInPartialView();
         }
@@ -121,8 +125,18 @@ namespace Table.Controllers
                 {
                     num = x;
                 }
+                Nullable<DateTime> date = new DateTime();
+                DateTime buf = new DateTime();
+                if (DateTime.TryParse(data, out buf))
+                {
+                    date = DateTime.Parse(data);
+                }
+                else
+                {
+                    date = null;
+                }
                 var taskToUpdate = context.Tasks.Find(Int32.Parse(id));
-                var updateTask = new Task(Int32.Parse(id), userId, description, ParseData(data), priority, num, Boolean.Parse(isComplete));
+                var updateTask = new Task(Int32.Parse(id), userId, description, date, priority, num, Boolean.Parse(isComplete));
                 if (taskToUpdate != null)
                 {
                     context.Entry(taskToUpdate).CurrentValues.SetValues(updateTask);
