@@ -2,9 +2,6 @@
     FB.login(function (response) {
         FB.api('/me', { locale: 'en_US', fields: 'name, email, id' },
             function (response) {
-                console.log(response.name);
-                console.log(response.id);
-                console.log(response.email);
                 $.ajax({
                     type: "POST",
                     async: false,
@@ -22,11 +19,6 @@
 
 function RegisterUsingVK() {
     VK.Auth.login(function (response) {
-        if (response.session) {
-            console.log(response.session.user.first_name + " " + response.session.user.last_name);
-            console.log(response.session.user.id);
-            console.log(response.session.user.domain);
-        }
         $.ajax({
             type: "POST",
             async: false,
@@ -47,6 +39,7 @@ function somefunc() {
     $('#google-button').click();
 }
 
+// Logging out from social networks
 function LogOutFromSocialNetworks() {
     FB.logout(function (response) {
         // user is now logged out

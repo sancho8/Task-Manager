@@ -20,7 +20,7 @@ namespace Table.Jobs
                 foreach (var user in a)
                 {
                     // Sender creation.
-                    MailAddress from = new MailAddress("yaroshenko.aleksandr8@gmail.com", "Task-Manager");
+                    MailAddress from = new MailAddress("Doer.manager@gmail.com", "Task-Manager");
                     // Applier creation.
                     MailAddress to = new MailAddress(user.Email);
                     // Creating message object.
@@ -70,7 +70,7 @@ namespace Table.Jobs
                     // Set address of smtp-server and port.
                     SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                     // Specify login and password of sender account.
-                    smtp.Credentials = new System.Net.NetworkCredential("yaroshenko.aleksandr8@gmail.com", "assasin777");
+                    smtp.Credentials = new System.Net.NetworkCredential("Doer.manager@gmail.com", "doermanager777");
                     // Specify delivery method.
                     smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                     // Turn ssl on.

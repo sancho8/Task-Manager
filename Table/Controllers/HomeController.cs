@@ -85,7 +85,7 @@ namespace Table.Controllers
         public ActionResult SendFeedback(string name, string email, string feedback)
         {
             // Identify sender.
-            MailAddress from = new MailAddress("yaroshenko.aleksandr8@gmail.com", "Task-Manager");
+            MailAddress from = new MailAddress("Doer.manager@gmail.com", "Task-Manager");
             // Identify applier.
             MailAddress to = new MailAddress("98sancho@ukr.net");
             // Creating message object.
@@ -100,7 +100,7 @@ namespace Table.Controllers
             // Set address of smtp-server and port.
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             // Login and password of sender account.
-            smtp.Credentials = new NetworkCredential("yaroshenko.aleksandr8@gmail.com", "assasin777");
+            smtp.Credentials = new NetworkCredential("Doer.manager@gmail.com", "doermanager777");
             // Specify delivery method.
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             // Turn ssl on.
