@@ -107,22 +107,25 @@
             Ваша таблица задач
         </div>
         <div class="row" id="table_navbar">
-            @Ajax.ActionLink(" ","SingleTableMode", "Task", new AjaxOptions{ UpdateTargetId= "TaskTableHolder" }, new { @class = "glyphicon glyphicon-align-justify" })
+            @Ajax.ActionLink(" ","SingleTableMode", "Task", new AjaxOptions{ UpdateTargetId= "TaskTableHolder" }, new { @class = "glyphicon glyphicon-align-justify", @id="rows-button" })
             @Ajax.ActionLink(" ", "MatrixMode", "Task", new AjaxOptions{ UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-th-large", @id="matrix-button"})
             @Ajax.ActionLink(" ", "CalendarMode", "Task", new AjaxOptions {UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-calendar" })
         </div>
         <div class="table-responsive" id="TaskTableHolder">
                    @Html.Action("GetTaskInPartialView", "Task")
         </div>
+        <div id="add-task-form-holder">
         @using (Ajax.BeginForm("AddTask", "Task", new AjaxOptions { UpdateTargetId = "TaskTableHolder",
             OnBegin = "return ValidateAddTaskForm();", OnSuccess ="ClearForm" }, new {@Id="AddTaskForm"}))
         {
+            <p style="font-size: 28px;display:inline; margin-top:3px;">Добавить задачу:</p>
             @Html.TextBox("description", "", new { @type = "text", @placeholder = "Введите задание", @id="description-input"})
-            @Html.TextBox("data", "", new {@placeholder = "Введите дату", @id = "data-input",@autocomplete="off"})
+            @Html.TextBox("data", "", new {@placeholder = "Введите дату", @type="datetime-local",@autocomplete="off"})
             @Html.DropDownList("priority", priorityList, new { @placeholder = "Выберите приоритет", @id = "priority-input" })
             @Html.TextBox("number", "", new { @type = "number", @placeholder = "Введите номер", @id = "number-input"})
             <input type="submit" value="Добавить">
             <div id="Error-message-holder"></div>
         }
+        </div>
     </div>
 </section>

@@ -94,7 +94,7 @@
         <div class="row form-group feedback-form-input">
             <label class="control-label col-sm-4">Ваше имя:</label>
             <div class="col-sm-8">
-                @Html.TextBox("name", "", new { @type = "text", @class = "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id = "feedback-name", @placeholder = "Enter name" })
+                @Html.TextBox("name", (string)ViewBag.UserLogin, new { @type = "text", @class = "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id = "feedback-name", @placeholder = "Enter name"})
             </div>
         </div>
         <div class="row form-group feedback-form-input">
@@ -108,14 +108,6 @@
             <div class="col-sm-8">
                 <div class="textarea" id="feedback-message-holder">
                     @Html.TextArea("feedback", "", new { @type = "text", @class = "input-lg col-sm-12 col-xs-12 col-lg-8 col-md-8", @id = "feedback-message", @placeholder = "Enter your feedback" })
-                </div>
-            </div>
-        </div>
-        <div class="row form-group feedback-form-input">
-            <label class="control-label col-sm-4">Добавить файл:</label>
-            <div class="col-sm-8">
-                <div class="textarea" id="feedback-file-holder">
-                    <input type="file" name="file" accept="image/*">
                 </div>
             </div>
         </div>

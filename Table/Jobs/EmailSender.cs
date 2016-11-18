@@ -1,10 +1,8 @@
 ﻿using Quartz;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
-using System.Web;
 using System.Web.Hosting;
 using Table.Models;
 
@@ -14,7 +12,6 @@ namespace Table.Jobs
     {
         public void Execute(Quartz.IJobExecutionContext context)
         {
-            string errors = "";
             using (TaskContext taskContext = new TaskContext())
             {
                 var a = from e in taskContext.Users
@@ -22,23 +19,20 @@ namespace Table.Jobs
                         select e;
                 foreach (var user in a)
                 {
-                    //sender
+                    // Sender creation.
                     MailAddress from = new MailAddress("yaroshenko.aleksandr8@gmail.com", "Task-Manager");
-                    //applier
+                    // Applier creation.
                     MailAddress to = new MailAddress(user.Email);
-                    //creating message object
+                    // Creating message object.
                     MailMessage m = new MailMessage(from, to);
                     m.SubjectEncoding = Encoding.UTF8;
                     m.BodyEncoding = Encoding.UTF8;
-                    //message subject
+                    // Setting message subject.
                     m.Subject = "План задач Doer task-manager";
-                    //message text
-                    // m.Body = "<h2>От: " + "sancho" + ", Email: " + "email" + "</h2><br />";
-                    //m.Body += "<h2>" + "feedback" + "</h2>";
-                    //System.IO.File.ReadAllText(HostingEnvironment.MapPath(@"~/EmailTemplates/DailyTasksMailTemplate.html"));
-                    // HttpCookie cookie = Reqest.Cookies["Authorization"];
-                    //string id = cookie["ID"];
+                    // Initializing value for usage in LINQ expression
                     DateTime dt = DateTime.Today;
+                    // Select tasks for message.
+                    // Select all tasks of this user where data == today.
                     var tasks = (from e in taskContext.Tasks
                                  where (e.UserId == user.Id
                             && e.Data.Value.Day == dt.Day
@@ -46,8 +40,12 @@ namespace Table.Jobs
                             && e.Data.Value.Year == dt.Year)
                                  select e).ToList<Table.Models.Task>().OrderBy(t => t.Data);
                     m.Body = user.Login;
+                    // Read HTML template from exiting file.
                     m.Body = System.IO.File.ReadAllText(HostingEnvironment.MapPath(@"~/EmailTemplates/DailyTasksMailTemplate.html"));
+                    // Initializing param for generate HTML code of task table. 
                     string generatedTasks = "";
+                    // Generation of HTML code for each task.
+                    // Create new table row with parameters of task object. 
                     foreach (Task t in tasks)
                     {
                         generatedTasks += "<tr>";
@@ -65,25 +63,25 @@ namespace Table.Jobs
                         }
                         generatedTasks += "</tr>";
                     }
+                    // Replace 
                     m.Body = m.Body.Replace("*****", generatedTasks);
-                    //specify, that body is html
+                    // Specify, that body is in HTML format.
                     m.IsBodyHtml = true;
-                    //adress of smtp-server and port
+                    // Set address of smtp-server and port.
                     SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                    //login and password of sender account
+                    // Specify login and password of sender account.
                     smtp.Credentials = new System.Net.NetworkCredential("yaroshenko.aleksandr8@gmail.com", "assasin777");
-                    //specify delivery method
+                    // Specify delivery method.
                     smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    //turn ssl on
+                    // Turn ssl on.
                     smtp.EnableSsl = true;
                     try
                     {
-                        //sending
+                        // Sending.
                         smtp.Send(m);
                     }
                     catch (Exception ex)
                     {
-                        errors += ex.Message + "\n";
                     }
                 }
             }

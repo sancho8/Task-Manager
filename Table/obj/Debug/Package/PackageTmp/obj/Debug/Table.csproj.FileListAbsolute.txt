@@ -87,3 +87,12 @@ C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.xml
 C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\Sancho\Desktop\Table\Table\bin\Microsoft.Owin.Security.xml
 C:\Users\Sancho\Desktop\Table\Table\bin\Newtonsoft.Json.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Common.Logging.Core.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Common.Logging.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Quartz.dll
+C:\Users\Sancho\Desktop\Table\Table\bin\Common.Logging.pdb
+C:\Users\Sancho\Desktop\Table\Table\bin\Common.Logging.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Common.Logging.Core.pdb
+C:\Users\Sancho\Desktop\Table\Table\bin\Common.Logging.Core.xml
+C:\Users\Sancho\Desktop\Table\Table\bin\Quartz.pdb
+C:\Users\Sancho\Desktop\Table\Table\bin\Quartz.xml

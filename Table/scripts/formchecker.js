@@ -331,12 +331,6 @@ function TaskStatusChanged(elem) {
     });
 };
 
-var fieldChanges = {
-    "login": false,
-    "email": false,
-    "password": false,
-}
-
 $('#reset-changes-button').on('click', function () {
     $('.inform-box p').show();
     $('#change-profile-error-message-holder').text("");

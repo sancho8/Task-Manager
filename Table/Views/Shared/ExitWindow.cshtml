@@ -9,10 +9,12 @@
                 <div style="font-size: 24px">Вы уверенны, что хотите выйти?</div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-warning" type="button" onclick="LogOutFromSocialNetworks();" id="exit-button">@Html.ActionLink("Выйти", "LogOutUser", "Auth", new { }, new { @id = "exit-link", @style="text-decoration:none; color: black" })</button>
-                <!--<button type="submit" class="btn btn-danger">Выйти</button>-->
+                <button class="btn btn-warning" type="button" onclick="LogOutFromSocialNetworks();" id="exit-button">
+                    @Html.ActionLink("Выйти", "LogOutUser", "Auth", new { },
+                                     new { @id = "exit-link", @style = "text-decoration:none; color: black" })
+                </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>

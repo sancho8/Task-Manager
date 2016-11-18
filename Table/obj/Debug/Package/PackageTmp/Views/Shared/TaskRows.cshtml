@@ -30,7 +30,7 @@
                     Описание @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Description" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })
                 </th>
                 <th class="data-column-rows-mode">Дата @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Data" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
-                <th class="priority-column-rows-mode"><span class="glyphicon glyphicon-sort-by-attributes" style="font-size:20px; color:#2f2e2e"</span> @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
+                <th class="priority-column-rows-mode"><span class="glyphicon glyphicon-sort-by-attributes" style="font-size:20px; color:#2f2e2e"></span> @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Priority" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
                 <th class="number-column-rows-mode">№ @Ajax.ActionLink(" ", "OrderTasks", "Task", new { prop = "Number" }, new AjaxOptions { UpdateTargetId = "TaskTableHolder" }, new { @class = "glyphicon glyphicon-chevron-down" })</th>
                 <th class="complete-column-rows-mode">
                     <span class="glyphicon glyphicon-check" style="color:#2f2e2e"></span>
@@ -49,7 +49,7 @@
                     </td>
                     <td class="data-column-rows-mode">
                         <div class="value-holder data-value">@Html.DisplayFor(item => t.Data)</div>
-                        <div class='edit-holder data-edit'>@Html.EditorFor(item => t.Data, new {@id="data-redact-input"})</div>
+                        <div class='edit-holder data-edit'><input type="datetime-local" id="data-redact-input" value="@t.Data" /></div>
                     </td>
                     <td class="priority-column-rows-mode">
                         <div class="value-holder priority-value">@Html.DisplayFor(item => t.Priority)</div>
@@ -75,7 +75,7 @@
                     }
                     <td>
                         <a onclick="EditTask()" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a onclick="SaveTask()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+                        <a onclick="SaveTaskRowsMode()" style="display:none" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
                     </td>
                     <td>@Ajax.ActionLink(" ", "DeleteTask", "Task", new { id = @t.Id.ToString() }, new AjaxOptions { UpdateTargetId = "TaskTableHolder", OnBegin="return confirm('Удалить задачу?')" }, new { @class = "glyphicon glyphicon-remove" })</td>
                 </tr>

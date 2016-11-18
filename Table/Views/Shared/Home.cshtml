@@ -132,11 +132,11 @@
                     Получать уведомления:
                     @if (ViewBag.UserNeedDelivery == "true")
                 {
-                        <input type="checkbox" name="needDelivery" checked="checked" id="needDelivety-field"/>
+                        <input type="checkbox" name="needDelivery" checked="checked" id="needDelivety-field" />
                     }
                     else
                     {
-                        <input type="checkbox" name="needDelivery" id="needDelivety-field"/>
+                        <input type="checkbox" name="needDelivery" id="needDelivety-field" />
                     }
                 </div>
 
@@ -163,7 +163,7 @@
             </div>
             <script>
                 var completed, uncompleted, up_to_date;
-                window.onload = function() {
+                window.onload = function () {
                     $.ajax({
                         type: "Get",
                         url: "/Profile/getTaskStats",
@@ -226,7 +226,7 @@
                     });
 
                     var data = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                    var params = new Array("Nc","Ac","Bc","Cc","Dc","Na","Aa","Ba","Ca","Da");
+                    var params = new Array("Nc", "Ac", "Bc", "Cc", "Dc", "Na", "Aa", "Ba", "Ca", "Da");
 
                     for (var i = 0; i < data.length; i++) {
                         $.ajax({
@@ -243,7 +243,7 @@
                     var completedStats = [parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4])];
                     var allStats = [parseInt(data[5]), parseInt(data[6]), parseInt(data[7]), parseInt(data[8]), parseInt(data[9])];
                     var roseData = {
-                        labels: ["Без приоритета","A", "B", "C", "D"],
+                        labels: ["Без приоритета", "A", "B", "C", "D"],
                         datasets: [
                             {
                                 label: "Выполненые задачи",

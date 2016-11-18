@@ -3,8 +3,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="276446912366-jqp0p82qcl5rhh5omktuvgm63i7b3t67.apps.googleusercontent.com">
     <title>Doer Task-Manager</title>
 
     <link rel="icon" type="image/x-icon" href="~/Content/favicon.ico">
@@ -21,6 +19,7 @@
 
 </head>
 <body>
+    <!-----------------------------------------Loading VK API-------------------------------------------->
     <div id="vk_api_transport"></div>
     <script type="text/javascript">
         window.vkAsyncInit = function () {
@@ -37,8 +36,7 @@
             document.getElementById("vk_api_transport").appendChild(el);
         }, 0);
     </script>
-
-
+    <!------------------------------------------------------------------------------>
     <!------------------------------ Loading Facebook API -------------------------->
     <script>
         // This is called with the results from from FB.getLoginStatus().
@@ -117,11 +115,6 @@
     <script src="~/scripts/social-auth.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
-    <!--
-      Below we include the Login Button social plugin. This button uses
-      the JavaScript SDK to present a graphical Login button that triggers
-      the FB.login() function when clicked.
-    -->
     <script src="~/scripts/jquery.signalR-2.2.1.js"></script>
 </body>
 </html>

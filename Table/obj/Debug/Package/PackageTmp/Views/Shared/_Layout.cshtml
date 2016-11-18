@@ -123,21 +123,5 @@
       the FB.login() function when clicked.
     -->
     <script src="~/scripts/jquery.signalR-2.2.1.js"></script>
-    <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
-    <script src="~/signalr/hubs"></script>
-    <script type="text/javascript">
-        $(function () {
-
-            var notificationhub = $.connection.notificationHub;
-
-            notificationhub.client.displayMessage = function (message) {
-
-                $('#notification').html(message);
-            };
-
-            $.connection.hub.start();
-
-        });
-    </script>
 </body>
 </html>

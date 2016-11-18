@@ -106,11 +106,15 @@ nav {
 h1 {
     color: white;
     font-family: Verdana;
+    font-size: 32px;
+    text-align: center;
 }
 
 h3 {
     color: white;
     font-family: Verdana;
+    font-size: 28px;
+    text-align: center;
 }
 
 #container {
@@ -127,6 +131,11 @@ h3 {
     text-align: center;
 }
 
+#section-info{
+    background-color: white;
+}
+.c
+
 #slogan-holder h1 {
     margin-right: -10px;
     text-align: center;
@@ -141,6 +150,10 @@ h3 {
 }
 
 #logo-holder {
+    color: white;
+    font-size: 26px;
+    text-decoration: none;
+
 }
 
 #logo {
@@ -177,23 +190,23 @@ li {
 }
 
 .carousel .item {
-    background-color: #048fc8;
+    background-color: white;
 }
 
 .carousel-indicators li {
     height: 20px;
     width: 20px;
-    background-color: #048fc8;
+    background-color: #428bca;
 }
 
-    .carousel-indicators li.active {
-        height: 20px;
-        width: 20px;
-        background-color: black;
-        margin-bottom: 1px;
-        padding-left: 1px;
-        padding-right: 1px;
-    }
+.carousel-indicators li.active {
+    height: 20px;
+    width: 20px;
+    background-color: black;
+    margin-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
 /*---------------------------------------------*/
 .image {
     margin-left: auto;
@@ -350,34 +363,41 @@ li {
     overflow-x: auto;
 }
 
+#icons-holder{
+    color: white;
+    font-size: 42px;
+}
+#icons-holder span{
+    color: white;
+    font-size: 42px;
+}
+
 .desc-box {
-    min-height: 500px;
+    min-height: 400px;
     padding: 30px;
     background-color: white;
     font-size: 26px;
     font-family: Tahoma;
+    text-align: center;
     border-bottom: 2px solid black;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .desc-box-inverse {
-    min-height: 500px;
+    min-height: 400px;
     padding: 30px;
     background-color: #057cbe;
     font-size: 26px;
     font-family: Tahoma;
+    text-align: center;
     border-bottom: 2px solid black;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-.desc-img {
-    width: 500px;
-    height: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-}
-
-.desc-box-inverse span {
-    color: white;
+#desc-image {
+    margin: 5px;
 }
 
 .desc-button-holder {
@@ -387,7 +407,7 @@ li {
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
-    background-color: white;
+    background: linear-gradient(to top, #8eceff, #057cbe);
 }
 
 .desc-header {
@@ -435,8 +455,8 @@ li {
 }
 
 .task_table select {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     width:inherit;
 }
 
@@ -518,8 +538,29 @@ li {
 }
 
 #data-redact-input{
-    max-width: 100px;
+    max-width: 180px;
+    min-width: 180px;
     padding: 0;
+}
+
+#AddTaskForm input{
+    height: 40px;
+    margin: 5px;
+}
+#AddTaskForm select{
+    height: 40px;
+    margin: 5px;
+}
+
+.data-redact-input-matrix{
+    min-width: 160px;
+    max-width: 160px;
+    padding: 0;
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+  margin-left: 5px;
 }
 
 .task_table input {
@@ -587,11 +628,16 @@ li {
     padding-left: 10px;
 }
 
-#TaskStatsDiagramHolder {
+#TaskStatsDiagramHolder1 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
-    min-width: 200px;
+}
+
+#TaskStatsDiagramHolder2 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
 }
 
 canvas {
@@ -599,9 +645,6 @@ canvas {
     width: 100% !important;
     max-width: 300px;
     height: auto !important;
-}
-
-#user-login-holder {
 }
 
 #social-buttons-holder {
@@ -640,20 +683,21 @@ canvas {
 }
 
 #register-button-holder {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 }
 
-    #register-button-holder a {
-        height: 40px;
-        color: white;
-        font-size: 16px;
-        background-color: #428bca;
-        margin: 5px;
-    }
+#register-button-holder a {
+    height: 40px;
+    color: white;
+    font-size: 16px;
+    background-color: #428bca;
+    margin: 5px;
+    min-width: 240px;
+    max-width: 240px;
+}
 
-    #register-button-holder span {
-        color: white;
-        font-size: 16px;
-        background-color: #428bca;
-    }
+#register-button-holder span {
+    color: white;
+    font-size: 16px;
+    background-color: #428bca;
+}

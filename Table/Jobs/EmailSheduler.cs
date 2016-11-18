@@ -1,9 +1,5 @@
 ﻿using Quartz;
 using Quartz.Impl;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Table.Jobs
 {
@@ -16,15 +12,20 @@ namespace Table.Jobs
 
             IJobDetail job = JobBuilder.Create<EmailSender>().Build();
 
-            ITrigger trigger = TriggerBuilder.Create()  // создаем триггер
-                .WithIdentity("trigger1", "group1")     // идентифицируем триггер с именем и группой
-                .StartNow()                             // запуск сразу после начала выполнения
-                .WithSimpleSchedule(x => x              // настраиваем выполнение действия
-                    .WithIntervalInHours(24)            // через 24 часа
-                    .RepeatForever())                   // бесконечное повторение
-                .Build();                               // создаем триггер
-
-            scheduler.ScheduleJob(job, trigger);        // начинаем выполнение работы
+            // Setting trigger.
+            ITrigger trigger = TriggerBuilder.Create()
+                // Identify trigger with group and name.
+                .WithIdentity("trigger1", "group1")     
+                // Starts with launch of application.
+                .StartNow()                          
+                // Setting shedule for task.
+                // Repeats every 24 hours   
+                .WithSimpleSchedule(x => x              
+                    .WithIntervalInHours(24)            
+                    .RepeatForever())                                                                
+                .Build();                              
+            // Start this job.
+            scheduler.ScheduleJob(job, trigger);
         }
     }
 }
